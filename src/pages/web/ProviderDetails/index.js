@@ -1,0 +1,769 @@
+import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
+import { Image } from 'component';
+const ProviderDetails = () => {
+	return (
+		<section className='Business_details'>
+			<div className='container'>
+				<div className='row'>
+					<div className='col-md-8'>
+						<div className='silder11'>
+							<div
+								id='carouselExampleIndicators'
+								className='carousel slide'
+								data-ride='carousel'
+							>
+								<ol className='carousel-indicators'>
+									<li
+										data-target='#carouselExampleIndicators'
+										data-slide-to='0'
+										className='active'
+									></li>
+									<li
+										data-target='#carouselExampleIndicators'
+										data-slide-to='1'
+									></li>
+									<li
+										data-target='#carouselExampleIndicators'
+										data-slide-to='2'
+									></li>
+								</ol>
+								<div className='carousel-inner'>
+									<div className='carousel-item active'>
+										<Image
+											className='d-block w-100'
+											url='assest/images/barber.PNG'
+											alt='First slide'
+										/>
+									</div>
+									<div className='carousel-item'>
+										<Image
+											className='d-block w-100'
+											url='assest/images/barber1.jpeg'
+											alt='Second slide'
+										/>
+									</div>
+									<div className='carousel-item'>
+										<Image
+											className='d-block w-100'
+											url='assest/images/barber2.jpeg'
+											alt='Third slide'
+										/>
+									</div>
+								</div>
+								<Link
+									className='carousel-control-prev'
+									href='#carouselExampleIndicators'
+									role='button'
+									data-slide='prev'
+								>
+									<span
+										className='carousel-control-prev-icon'
+										aria-hidden='true'
+									></span>
+									<span className='sr-only'>Previous</span>
+								</Link>
+								<a
+									className='carousel-control-next'
+									href='#carouselExampleIndicators'
+									role='button'
+									data-slide='next'
+								>
+									<span
+										className='carousel-control-next-icon'
+										aria-hidden='true'
+									></span>
+									<span className='sr-only'>Next</span>
+								</a>
+							</div>
+							<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
+								<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
+									5.0
+								</div>
+								<div className='purify_jYSVgwzoOcOfpiyrJrJSX purify_1MN_nIJ2zinOn-c26cMHl1'>
+									75 reviews
+								</div>
+							</div>
+						</div>
+
+						<div className='purify_L83AzFuVDcsMUGu-iworl purify_2se5gmL9KHmm2yN4OtqL_X purify_2SvKv3MmhxAqq-wQiZJQc3 purify_g4ZFx3Vp_j_IFmMZMFN6T'>
+							<div className='purify_1NZ8fvAg5iM_eHIylYQgHS'>
+								<div style={{ width: '100%' }}>
+									<h1 className='purify_1sQI6P3rgyGZvU5pf3yAvt purify_3k1NnTEGO6TSunXbY5Zrkx'>
+										Luxe Barber &amp; Shave Lounge
+									</h1>
+									<div className='purify_2U3GPA6ftCkPxPR_0NKXCC purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
+										<div className=''>
+											17 E Monroe, The Palmer house Hotel/ Ground Lev, Chicago,
+											IL, 60605
+										</div>
+									</div>
+								</div>
+								<div
+									mode='default'
+									className='purify_3otKsdI9lS_D92PQCSq2Lw purify_bcGIHqRb-2k3e0m3uLOFA purify_3dd8BXoCuu778Lk9arqv--'
+									style={{ width: '36px', height: '36px' }}
+								>
+									<Link href='#'>
+										<i className='fa fa-heart' aria-hidden='true'></i>
+									</Link>
+								</div>
+							</div>
+						</div>
+
+						<div className='servicds'>
+							<div className='purify_2Bb9PTqxYaK9qlbr90yc5f'>
+								<h2 className='purify_2jycfUvFB5_MR7TPv5oX2A purify_1rkZUT9Q222TF1-HRC0qWi purify_1kwtwINWAYWvhdUjnzbb80'>
+									Services
+								</h2>
+								<div className='purify_1yywQqdPiQchSF0Y8TcNoc'>
+									<div
+										type='search'
+										aria-label='Search for service'
+										placeholder='Search for service'
+										value=''
+									>
+										<div className='purify_2BjQo2x5lZgAUDswjCcd8_ purify_391_SXUf6kTrP1fzafcEJU purify_1bVBor9L1Nal5qAEUca1vS purify_2LKEPV2U5S_LcccI6-gGBp purify_1pt98fHyv-ddtlHlR7ZSoM'>
+											<div>
+												<input
+													type='search'
+													aria-label='Search for service'
+													placeholder='Search for service'
+													className='purify_1ZTfTbZjaVbhUkBRHyt0eY purify_Y1prq6mbHtuK9nWzbTqF9 purify_264bF_d7zMnGqSAM6litJ_'
+												/>
+
+												<div className='purify_BVPUBE4mrr3sjRuRGjGW1'>
+													<div
+														mode='default'
+														className='purify_3otKsdI9lS_D92PQCSq2Lw'
+													>
+														<i className='fas fa-search'></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className='acordina'>
+							<div id='accordion'>
+								<div className='card'>
+									<div className='card-header'>
+										<a
+											className='card-link collapsed'
+											data-toggle='collapse'
+											href='#a1'
+										>
+											Popular Services <i className='fas fa-angle-down'></i>
+										</a>
+									</div>
+									<div id='a1' className='collapse' data-parent='#accordion'>
+										<div className='card-body'>
+											<ul className='purify_1noWHOyaADqV7ZoPnoK6YA'>
+												<li className='purify_pxwM-croMXL8QulS7HGwl'>
+													<div className='purify_G1QImzdPFEZgTe9--pF1c'>
+														<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
+															<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																Hair cuts, tapers, fades, afros, etc
+															</h3>
+														</div>
+														<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
+															<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
+																<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
+																	<div>
+																		<div className='purify_3vqyS7lnyFQo9f7t5mfXVp purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																			$65.00
+																		</div>{' '}
+																		<span className='duration purify_3Et0DYxjLaY1d_TqtmRX-U purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
+																			1h
+																		</span>
+																	</div>
+																	<div className='purify_3RwjUX8hSiee916iZITO25'>
+																		<button
+																			className='purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr'
+																			data-toggle='modal'
+																			data-target='#booking'
+																		>
+																			Book
+																		</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li className='purify_pxwM-croMXL8QulS7HGwl'>
+													<div className='purify_G1QImzdPFEZgTe9--pF1c'>
+														<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
+															<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																Hair cuts, tapers, fades, afros, etc
+															</h3>
+														</div>
+														<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
+															<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
+																<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
+																	<div>
+																		<div className='purify_3vqyS7lnyFQo9f7t5mfXVp purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																			$65.00
+																		</div>{' '}
+																		<span className='duration purify_3Et0DYxjLaY1d_TqtmRX-U purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
+																			1h
+																		</span>
+																	</div>
+																	<div className='purify_3RwjUX8hSiee916iZITO25'>
+																		<button className='purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr'>
+																			Book
+																		</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+								<div className='card'>
+									<div className='card-header'>
+										<a
+											className='card-link collapsed'
+											data-toggle='collapse'
+											href='#a2'
+										>
+											Popular Services <i className='fas fa-angle-down'></i>
+										</a>
+									</div>
+									<div id='a2' className='collapse ' data-parent='#accordion'>
+										<div className='card-body'>
+											<ul className='purify_1noWHOyaADqV7ZoPnoK6YA'>
+												<li className='purify_pxwM-croMXL8QulS7HGwl'>
+													<div className='purify_G1QImzdPFEZgTe9--pF1c'>
+														<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
+															<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																Hair cuts, tapers, fades, afros, etc
+															</h3>
+														</div>
+														<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
+															<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
+																<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
+																	<div>
+																		<div className='purify_3vqyS7lnyFQo9f7t5mfXVp purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																			$65.00
+																		</div>{' '}
+																		<span className='duration purify_3Et0DYxjLaY1d_TqtmRX-U purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
+																			1h
+																		</span>
+																	</div>
+																	<div className='purify_3RwjUX8hSiee916iZITO25'>
+																		<button className='purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr'>
+																			Book
+																		</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+								<div className='card'>
+									<div className='card-header'>
+										<a
+											className='card-link collapsed'
+											data-toggle='collapse'
+											href='#a3'
+										>
+											Popular Services <i className='fas fa-angle-down'></i>
+										</a>
+									</div>
+									<div id='a3' className='collapse' data-parent='#accordion'>
+										<div className='card-body'>
+											<ul className='purify_1noWHOyaADqV7ZoPnoK6YA'>
+												<li className='purify_pxwM-croMXL8QulS7HGwl'>
+													<div className='purify_G1QImzdPFEZgTe9--pF1c'>
+														<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
+															<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																Hair cuts, tapers, fades, afros, etc
+															</h3>
+														</div>
+														<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
+															<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
+																<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
+																	<div>
+																		<div className='purify_3vqyS7lnyFQo9f7t5mfXVp purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																			$65.00
+																		</div>{' '}
+																		<span className='duration purify_3Et0DYxjLaY1d_TqtmRX-U purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
+																			1h
+																		</span>
+																	</div>
+																	<div className='purify_3RwjUX8hSiee916iZITO25'>
+																		<button className='purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr'>
+																			Book
+																		</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className='venue'>
+							<h4>Venue Health and Safety Rules</h4>
+							<ul>
+								<li>
+									{' '}
+									<i className='fa fa-circle-o'></i> No walk-ins
+								</li>
+								<li>
+									{' '}
+									<i className='fa fa-circle-o'></i> Employees wear masks
+								</li>
+								<li>
+									{' '}
+									<i className='fa fa-circle-o'></i>Employees wear disposable
+									glovess
+								</li>
+								<li>
+									{' '}
+									<i className='fa fa-circle-o'></i>Employee temperature checks
+								</li>
+								<li>
+									{' '}
+									<i className='fa fa-circle-o'></i> No walk-ins
+								</li>
+								<li>
+									{' '}
+									<i className='fa fa-circle-o'></i> Employees wear masks
+								</li>
+								<li>
+									{' '}
+									<i className='fa fa-circle-o'></i>Employees wear disposable
+									glovess
+								</li>
+								<li>
+									{' '}
+									<i className='fa fa-circle-o'></i>Employee temperature checks
+								</li>
+							</ul>
+							<Link to='#'>Show me All Rules (15)</Link>
+						</div>
+
+						<div className='venue See '>
+							<h4>See Our Work</h4>
+							<div className='row'>
+								<div className='  col-md-4 col-sm-6 mb-3'>
+									<Link to='#'>
+										<Image url='assest/images/b.JPEG' />
+									</Link>
+								</div>
+								<div className='  col-md-4 col-sm-6 mb-3'>
+									<Link to='#'>
+										<Image url='assest/images/b2.JPEG' />
+									</Link>
+								</div>
+								<div className='  col-md-4 col-sm-6 mb-3'>
+									<Link to='#'>
+										<Image url='assest/images/b1.JPEG' />
+									</Link>
+								</div>
+								<div className='  col-md-4 col-sm-6 mb-3'>
+									<Link to='#'>
+										<Image url='assest/images/b5.JPEG' />
+									</Link>
+								</div>
+								<div className='  col-md-4 col-sm-6 mb-3'>
+									<Link to='#'>
+										<Image url='assest/images/b4.JPEG' />
+									</Link>
+								</div>
+								<div className='  col-md-4 col-sm-6 mb-3'>
+									<Link to='#'>
+										<Image url='assest/images/b.JPEG' />
+									</Link>
+								</div>
+							</div>
+							<Link to='#'>See All</Link>
+						</div>
+
+						<div className='revie'>
+							<div className='purify_3nJh_zj15_yteEfXQai8_E'>
+								<div className='purify_pbi2yi0foJGfKM4uiJhtE'>
+									<h2 className='purify_2SWmjNNRlVfF57OgFsjnAn purify_1rkZUT9Q222TF1-HRC0qWi purify_1kwtwINWAYWvhdUjnzbb80'>
+										Reviews
+									</h2>
+									<div className='purify_2X3G2Tw7_2Y0cGb7aNmwFg purify_Y1prq6mbHtuK9nWzbTqF9 purify_264bF_d7zMnGqSAM6litJ_'>
+										Reviews are no joke! Booksy values authentic reviews and
+										only verifies them if we know the reviewer has visited this
+										business.
+									</div>
+									<div></div>
+								</div>
+								<div className='purify_2ejQNvhE_VYsxcE709H9Pw'>
+									<div className='purify_9Cy-RHFxaOj60XZ5e271l'>
+										<div className='purify_AsVoxIFDw5Y_5e6NSysK2'>
+											<div className='purify_3gaZGLTrTpBMOCi6MxRFKl purify_Y1prq6mbHtuK9nWzbTqF9 purify_Jo_pJo5C9YAbReoZm7ALD'>
+												5.0
+												<span className='purify_wcIXCnwwFxUeCkbrK0R1T purify_Y1prq6mbHtuK9nWzbTqF9 purify_264bF_d7zMnGqSAM6litJ_'>
+													/5
+												</span>
+											</div>
+											<div className='purify_1zyl9HeT-UsSF6ESnsKN9T'>
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
+													style={{ width: '22px', height: '22px' }}
+												>
+													<i className='fa fa-star' aria-hidden='true'></i>
+												</div>
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
+													style={{ width: '22px', height: '22px' }}
+												>
+													<i className='fa fa-star' aria-hidden='true'></i>
+												</div>
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
+													style={{ width: '22px', height: '22px' }}
+												>
+													<i className='fa fa-star' aria-hidden='true'></i>
+												</div>
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
+													style={{ width: '22px', height: '22px' }}
+												>
+													<i className='fa fa-star' aria-hidden='true'></i>
+												</div>
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
+													style={{ width: '22px', height: '22px' }}
+												>
+													<i className='fa fa-star' aria-hidden='true'></i>
+												</div>
+											</div>
+											<div className='purify_AhojriMtGGWEpdGeIdJFE purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
+												75 reviews
+											</div>
+										</div>
+										<ul className='purify_12NB-KoHvfjsnMl6F-Ge7_'>
+											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
+												<div className='purify_2ZJEuBF5oxqLkYyHt7JO41 purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
+													5
+												</div>
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_URcswKAGNgCBtv_eN2-e'
+													icon='star'
+													style={{ width: '9px', height: '9px' }}
+												>
+													<i className='fa fa-star' aria-hidden='true'></i>
+												</div>
+												<div className='purify_1ektmDihKTZMvhSWRYBGeN'>
+													<i className='purify_39yRTKNPUdHam0BYy9t7S0'></i>{' '}
+													<i style={{ width: '100%' }}></i>
+												</div>
+												<div className='purify_21ErlnIB0xXKqFKFb8FKoD purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
+													74
+												</div>
+											</li>
+											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
+												<div className='purify_2ZJEuBF5oxqLkYyHt7JO41 purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
+													4
+												</div>
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_URcswKAGNgCBtv_eN2-e'
+													icon='star'
+													style={{ width: '9px', height: '9px' }}
+												>
+													<i className='fa fa-star' aria-hidden='true'></i>
+												</div>
+												<div className='purify_1ektmDihKTZMvhSWRYBGeN'>
+													<i className='purify_39yRTKNPUdHam0BYy9t7S0'></i>{' '}
+													<i style={{ width: '1.35%' }}></i>
+												</div>
+												<div className='purify_21ErlnIB0xXKqFKFb8FKoD purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
+													1
+												</div>
+											</li>
+											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
+												<div className='purify_2ZJEuBF5oxqLkYyHt7JO41 purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
+													3
+												</div>
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_URcswKAGNgCBtv_eN2-e'
+													icon='star'
+													style={{ width: '9px', height: '9px' }}
+												>
+													<i className='fa fa-star' aria-hidden='true'></i>
+												</div>
+												<div className='purify_1ektmDihKTZMvhSWRYBGeN'>
+													<i className='purify_39yRTKNPUdHam0BYy9t7S0'></i>{' '}
+													<i style={{ width: '0%' }}></i>
+												</div>
+												<div className='purify_21ErlnIB0xXKqFKFb8FKoD purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
+													0
+												</div>
+											</li>
+											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
+												<div className='purify_2ZJEuBF5oxqLkYyHt7JO41 purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
+													2
+												</div>
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_URcswKAGNgCBtv_eN2-e'
+													icon='star'
+													style={{ width: '9px', height: '9px' }}
+												>
+													<i className='fa fa-star' aria-hidden='true'></i>
+												</div>
+												<div className='purify_1ektmDihKTZMvhSWRYBGeN'>
+													<i className='purify_39yRTKNPUdHam0BYy9t7S0'></i>{' '}
+													<i style={{ width: '0%' }}></i>
+												</div>
+												<div className='purify_21ErlnIB0xXKqFKFb8FKoD purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
+													0
+												</div>
+											</li>
+											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
+												<div className='purify_2ZJEuBF5oxqLkYyHt7JO41 purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
+													1
+												</div>
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_URcswKAGNgCBtv_eN2-e'
+													icon='star'
+													style={{ width: '9px', height: '9px;' }}
+												>
+													<i className='fa fa-star' aria-hidden='true'></i>
+												</div>
+												<div className='purify_1ektmDihKTZMvhSWRYBGeN'>
+													<i className='purify_39yRTKNPUdHam0BYy9t7S0'></i>{' '}
+													<i style={{ width: '0%' }}></i>
+												</div>
+												<div className='purify_21ErlnIB0xXKqFKFb8FKoD purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
+													0
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className='review_section'>
+							<div className='purify_3dF0FXNcrAxxOjRAE0aOsu purify_2Ijx6eI6-t0edptgYNLYbX'>
+								<div className='purify_2ufga5qKONQ261zJK_WBBS'>
+									<div className='purify_1QoAiUxWDSBK8wGfk8vDGQ'>
+										<div className='purify_2hl-U9Yi40L_luyHbfOS6Z'>
+											<div
+												mode='default'
+												className='purify_3otKsdI9lS_D92PQCSq2Lw purify_1fSPSyzOPL3R-eoK09yuB5 purify_1W84gb1Ee49s0ToCV2uUbR'
+												style={{ width: '32px', height: '32px;' }}
+											>
+												<i className='fas fa-user'></i>
+											</div>
+										</div>
+										<div className='purify_2hl-U9Yi40L_luyHbfOS6Z'>
+											<h3>David P…</h3>
+
+											<div className='purify_1-RMaVd8UGDv2TOFLBbhSv purify_1k6778cT50NgxFa37XCsWy'>
+												<div className='purify_1zyl9HeT-UsSF6ESnsKN9T purify_3pVl4aKEjYb-8ZEiWIjbII purify_JAS0fqZBY3uAN-miq-119'>
+													<div
+														mode='default'
+														className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
+														style={{ width: '12px', height: '12px' }}
+													>
+														<i className='fa fa-star' aria-hidden='true'></i>
+													</div>
+													<div
+														mode='default'
+														className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
+														style={{ width: '12px', height: '12px' }}
+													>
+														<i className='fa fa-star' aria-hidden='true'></i>
+													</div>
+													<div
+														mode='default'
+														className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
+														style={{ width: '12px', height: '12px' }}
+													>
+														<i className='fa fa-star' aria-hidden='true'></i>
+													</div>
+													<div
+														mode='default'
+														className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
+														style={{ width: '12px', height: '12px' }}
+													>
+														<i className='fa fa-star' aria-hidden='true'></i>
+													</div>
+													<div
+														mode='default'
+														className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
+														style={{ width: '12px', height: '12px' }}
+													>
+														<i className='fa fa-star' aria-hidden='true'></i>
+													</div>
+												</div>{' '}
+												<span className='purify_pQ62lLFvRLzEWf0pGOYxm purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
+													Apr 10, 2021
+												</span>
+											</div>
+										</div>
+										<div className='purify_2hl-U9Yi40L_luyHbfOS6Z aa'>
+											<div className='purify_3NyHwUfUZdJ6aXn9_MQ7jS purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
+												Verified by Booksy
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_3LuOxxVZw04CKZgGLCicVW'
+													style={{ width: '14px', height: '14px' }}
+												>
+													<i className='fas fa-check-circle'></i>
+												</div>
+											</div>
+											<span className='purify_27N-FGVWIzdUy-94Bzpcyj purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
+												Report
+												<div
+													mode='default'
+													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_3LuOxxVZw04CKZgGLCicVW'
+												>
+													<i className='fa fa-flag' aria-hidden='true'></i>
+												</div>
+											</span>
+										</div>
+									</div>
+									<div className='purify_3HXjnceCTDjB4HA57RuGnk purify_Y1prq6mbHtuK9nWzbTqF9 purify_264bF_d7zMnGqSAM6litJ_'>
+										Excellent and professional service....
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className='col-md-4'>
+						<div className='mp'>
+							<Image url='assest/images/mp.png' />
+						</div>
+						<div className='aboutaa'>
+							<h4 className='title4'>About Us</h4>
+							<p>
+								http://Luxe Barber & Shave Lounge is an upscale experience,
+								where we blend old school charm and new school freshness to
+								truly groom our clients. Our barbershop is located in The Palmer
+								House, a Hilton
+							</p>
+						</div>
+						<div className='Staffers'>
+							<h4 className='title4'>Staffers</h4>
+							<ul>
+								<li>
+									<Link to=''>
+										<Image url='assest/assest/images/b2.JPEG' />
+									</Link>
+								</li>
+								<li>
+									<Link to=''>
+										<Image url='assest/assest/images/b2.JPEG' />
+									</Link>
+								</li>
+								<li>
+									<Link to=''>
+										<Image url='assest/assest/images/b2.JPEG' />
+									</Link>
+								</li>
+							</ul>
+						</div>
+
+						<div className='Contactusiness'>
+							<h4 className='title4'>Contact & Business hours</h4>
+							<div className='con'>
+								<div className='con1'>
+									<i className='fa fa-phone' aria-hidden='true'></i> (312)
+									285-2007
+									<button>Call</button>
+								</div>
+							</div>
+						</div>
+
+						<div className='busins'>
+							<div className='business-time'>
+								<div className='days1'>Sunday</div>
+								<div className='timeing'>10:00 AM - 10:00 PM</div>
+							</div>
+							<div className='business-time'>
+								<div className='days1'>Sunday</div>
+								<div className='timeing'>10:00 AM - 10:00 PM</div>
+							</div>
+							<div className='business-time'>
+								<div className='days1'>Sunday</div>
+								<div className='timeing'>10:00 AM - 10:00 PM</div>
+							</div>
+							<div className='business-time'>
+								<div className='days1'>Sunday</div>
+								<div className='timeing'>10:00 AM - 10:00 PM</div>
+							</div>
+							<div className='business-time'>
+								<div className='days1'>Sunday</div>
+								<div className='timeing'>10:00 AM - 10:00 PM</div>
+							</div>
+							<div className='business-time'>
+								<div className='days1'>Sunday</div>
+								<div className='timeing'>10:00 AM - 10:00 PM</div>
+							</div>
+							<div className='business-time'>
+								<div className='days1'>Sunday</div>
+								<div className='timeing'>10:00 AM - 10:00 PM</div>
+							</div>
+						</div>
+
+						<p className='purify_IOiISPWJndtcc4r9FXmCL purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
+							Call 773-972-6609 , sundays are strictly appointment only.
+						</p>
+						<div className='sss'>
+							<h4 className='title4'> Social Media & Share</h4>
+							<div className='social'>
+								<Link href=''>
+									<i className='fab fa-facebook-f' aria-hidden='true'></i>
+								</Link>
+								<Link href=''>
+									<i className='fa fa-twitter' aria-hidden='true'></i>
+								</Link>
+								<Link href=''>
+									<i className='fa fa-instagram' aria-hidden='true'></i>
+								</Link>
+								<Link href=''>
+									<i className='fa fa-linkedin' aria-hidden='true'></i>
+								</Link>
+							</div>
+						</div>
+
+						<Link href='#' className='rp'>
+							Report <i className='fas fa-arrow-right'></i>
+						</Link>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
+};
+
+export default memo(ProviderDetails);
