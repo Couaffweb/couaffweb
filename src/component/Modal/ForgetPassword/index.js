@@ -1,11 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'component';
+import { Image, Input, Form, ReactLoading } from 'component';
+import { store as notify } from 'react-notifications-component';
+import { validateEmail, alertMessage } from 'utils';
+import { forGetPasswordUser } from './apis';
 const ForgotPassword = ({ onClose, openModel, isShow }) => {
+	const [email, setEmail] = useState('');
+	const [emailError, setEmailError] = useState('');
+	const [loading, setLoading] = useState(false);
+	const removeError = () => {
+		setEmailError('');
+	};
+	const checkError = ({ target: { name, value } }) => {
+		const error = validateEmail(name, value);
+		setEmailError(error[name]);
+	};
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		if (!emailError) {
+			setLoading(true);
+			forGetPasswordUser({ email })
+				.then(({ message }) => {
+					notify.addNotification(alertMessage({ title: 'Success', message }));
+					onClose();
+				})
+				.catch(({ message }) => {
+					notify.addNotification(
+						alertMessage({ title: 'error', message, type: 'danger' })
+					);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
+		}
+	};
 	return (
 		<>
 			{isShow && (
 				<div className='modal fade first_modal2 in show show-popup animate__animated animate__zoomIn'>
+					<ReactLoading isShow={loading} />
 					<div className='modal-dialog'>
 						<div className='modal-content'>
 							<button type='button' className='close' onClick={onClose}>
@@ -20,16 +53,19 @@ const ForgotPassword = ({ onClose, openModel, isShow }) => {
 								</p>
 
 								<div className='log-in_form'>
-									<form>
+									<Form onSubmit={handleSubmit}>
 										<div className='form-group log_iocns'>
-											<label> Phone Number</label>
-											<input
-												placeholder=' +123 Enter Phone Number'
+											<label> Email</label>
+											<Input
+												onBlur={checkError}
+												onFocus={removeError}
+												isError={emailError}
+												placeholder=' Enter Email Address'
 												type='email'
 												className='form-control'
-												id='email1'
 												name='email'
-												required=''
+												value={email}
+												onChange={({ target: { value } }) => setEmail(value)}
 											/>
 											<Image url='assest/images/call.png' />
 										</div>
@@ -51,7 +87,7 @@ const ForgotPassword = ({ onClose, openModel, isShow }) => {
 												</span>
 											</h3>
 										</div>
-									</form>
+									</Form>
 								</div>
 							</div>
 						</div>

@@ -1,11 +1,70 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'component';
+import { useHistory } from 'react-router-dom';
+import { Image, Input, ReactLoading } from 'component';
+import { store as notify } from 'react-notifications-component';
+import { setUserInfo, alertMessage, setAuthKey } from 'utils';
+import { verifyOTP } from './apis';
 const OTP = ({ onClose, isShow, onSuccess }) => {
+	const history = useHistory();
+	const [otp, setOtp] = useState({ 0: '', 1: '', 2: '', 3: '' });
+	const [loading, setLoading] = useState(false);
+	const checkAllValue = () => {
+		const value = Object.values(otp).filter((val) => val);
+		return value.length === 4;
+	};
+	const handleInput = function ({ target: { value, name, maxLength } }) {
+		const key = name.replace('otp-', '');
+		setOtp({ ...otp, [key]: value });
+		if (value.length === maxLength) {
+			const nextSibling = document.querySelector(
+				`input[name=otp-${parseInt(key, 10) + 1}]`
+			);
+			if (nextSibling) {
+				nextSibling.focus();
+			}
+		}
+	};
+
+	const submitOtp = () => {
+		if (checkAllValue()) {
+			setLoading(true);
+			const createOtp = Object.values(otp).join('');
+			verifyOTP({ otp: createOtp })
+				.then(({ data }) => {
+					notify.addNotification(
+						alertMessage({
+							title: 'Success',
+							message: 'signup successfully',
+						})
+					);
+					setUserInfo(data);
+					setAuthKey(data.authorization_key);
+					onClose();
+					onSuccess();
+					if (data.userType === 1) {
+						history.push('/add-service');
+					}
+				})
+				.catch(({ message }) => {
+					notify.addNotification(
+						alertMessage({
+							type: 'danger',
+							title: 'Error',
+							message,
+						})
+					);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
+		}
+	};
 	return (
 		<>
 			{isShow && (
 				<div className='modal fade first_modal signup OTP show show-popup animate__animated animate__zoomIn'>
+					<ReactLoading isShow={loading} />
 					<div className='modal-dialog'>
 						<div className='modal-content'>
 							<button type='button' className='close' onClick={onClose}>
@@ -26,51 +85,63 @@ const OTP = ({ onClose, isShow, onSuccess }) => {
 													<form>
 														<div className='otp1'>
 															<div className='form-group log_iocns'>
-																<input
-																	placeholder='-'
-																	type='email'
-																	className='form-control'
-																/>{' '}
-															</div>
-
-															<div className='form-group log_iocns'>
-																<input
+																<Input
+																	name='otp-0'
+																	value={otp['0']}
+																	maxLength='1'
 																	placeholder='-'
 																	type='text'
+																	pattern='\d*'
 																	className='form-control'
-																	id='email1'
-																	name='email'
-																	required=''
-																/>
-															</div>
-															<div className='form-group log_iocns'>
-																<input
-																	placeholder='-'
-																	type='text'
-																	className='form-control'
-																	id='email1'
-																	name='email'
-																	required=''
+																	onChange={handleInput}
 																/>
 															</div>
 
 															<div className='form-group log_iocns'>
-																<input
+																<Input
+																	name='otp-1'
+																	value={otp['1']}
+																	maxLength='1'
 																	placeholder='-'
 																	type='text'
+																	pattern='\d*'
 																	className='form-control'
-																	id='email1'
-																	name='email'
-																	required=''
+																	onChange={handleInput}
+																/>
+															</div>
+															<div className='form-group log_iocns'>
+																<Input
+																	name='otp-2'
+																	value={otp['2']}
+																	maxLength='1'
+																	placeholder='-'
+																	type='text'
+																	pattern='\d*'
+																	className='form-control'
+																	onChange={handleInput}
+																/>
+															</div>
+
+															<div className='form-group log_iocns'>
+																<Input
+																	name='otp-3'
+																	value={otp['3']}
+																	maxLength='1'
+																	placeholder='-'
+																	type='text'
+																	pattern='\d*'
+																	className='form-control'
+																	onChange={handleInput}
 																/>
 															</div>
 														</div>
 
 														<div className='log_button'>
 															<input
-																type='submit'
+																type='button'
 																data-dismiss='modal'
 																value='Submit'
+																onClick={submitOtp}
 															/>
 														</div>
 													</form>

@@ -1,11 +1,9 @@
-import { RollbarErrorTracking } from 'utils/rollbar';
-
 export const serverErrors = ({
 	response,
 	request,
 	message,
 	config,
-	response: { data, data: { error = {} } = {}, status } = {},
+	response: { data, data: { error_message = {} } = {}, status } = {},
 } = {}) => {
 	switch (true) {
 		case status === 401:
@@ -14,16 +12,13 @@ export const serverErrors = ({
 		case response && data && status >= 400 && status <= 499:
 			return returnErrorObject(
 				true,
-				{ ...error, status },
-				error.message,
+				{ ...data, status },
+				error_message,
 				false,
 				status
 			);
 
 		case response && status >= 500:
-			RollbarErrorTracking.logErrorInRollbar(
-				`Error come on this request ${request.responseURL}, message:${message}`
-			);
 			return returnErrorObject(
 				false,
 				null,

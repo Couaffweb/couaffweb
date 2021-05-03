@@ -1,18 +1,29 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Image, Input, Form } from 'component';
+import {
+	Image,
+	Input,
+	Form,
+	ReactLoading,
+	GoogleAutoComplete,
+} from 'component';
 import {
 	checkRequiredField,
 	validateEmail,
 	validatePassword,
 	checkAllRequiredFieldsWithKey,
+	alertMessage,
+	setAuthKey,
 } from 'utils';
+import { store as notify } from 'react-notifications-component';
 import { signUpForm } from './constants';
+import { signupUser } from './apis';
 
 const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 	const [userForm, setUserForm] = useState(signUpForm[userType]);
 	const [formError, setFormError] = useState(signUpForm[userType]);
+	const [loading, setLoading] = useState(false);
 	const handleInput = ({ target: { name, value } }) => {
 		setUserForm({ ...userForm, [name]: value });
 	};
@@ -39,13 +50,33 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 			signUpForm[userType],
 			userForm
 		);
+		Object.assign(errors, validatePassword('password', userForm.password));
 		setFormError({ ...formError, ...errors });
 		return Object.values(errors).some((value) => value.length > 0);
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (!checkAllField()) {
-			openModel('otp');
+			setLoading(true);
+			Object.assign(userForm, { userType });
+			signupUser(userForm)
+				.then(({ data: { authorization_key } }) => {
+					console.log(authorization_key);
+					setAuthKey(authorization_key);
+					openModel('otp');
+				})
+				.catch(({ message }) => {
+					notify.addNotification(
+						alertMessage({
+							type: 'danger',
+							title: 'Error',
+							message,
+						})
+					);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
 		}
 	};
 	return (
@@ -56,6 +87,7 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 					id='signup-modal_1'
 					role='dialog'
 				>
+					<ReactLoading isShow={loading} />
 					<div className='modal-dialog'>
 						<div className='modal-content'>
 							<button type='button' className='close' onClick={onClose}>
@@ -105,7 +137,7 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 														{userType === 1 && (
 															<div className='form-group log_iocns'>
 																<label> Location</label>
-																<Input
+																<GoogleAutoComplete
 																	onBlur={checkError}
 																	onFocus={removeError}
 																	isError={formError.location}
@@ -114,7 +146,11 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 																	type='text'
 																	className='form-control'
 																	name='location'
-																	onChange={handleInput}
+																	onChange={(value) =>
+																		handleInput({
+																			target: { value, name: 'location' },
+																		})
+																	}
 																/>
 															</div>
 														)}
@@ -157,7 +193,7 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 														<div className='log_button'>
 															<input
 																type='submit'
-																data-dismiss='modal'
+																disabled={loading}
 																value='Create an Account'
 															/>
 														</div>

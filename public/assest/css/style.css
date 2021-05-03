@@ -18,6 +18,18 @@ img {
 }
 .click-span{
 	cursor: pointer;
+}.sprate{
+	margin: 0px 6px;
+}
+.loading-loader{
+	position: fixed;
+    left: 50%;
+    z-index: 99;
+    top: 30%;
+}
+.otp1 .form-group.log_iocns input {
+    text-align: center !important;
+    width: 3.4em !important;
 }
 .error-class{
 	border: 2px solid red !important;
@@ -3065,6 +3077,7 @@ table.shop_table {
 }
 .otp1 {
     display: flex;
+	justify-content: center;
 }
 .otp1 .form-group.log_iocns {
     position: relative;

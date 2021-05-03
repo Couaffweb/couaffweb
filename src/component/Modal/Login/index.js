@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Image, Input, Form } from 'component';
+import { Image, Input, Form, ReactLoading } from 'component';
 import { Link } from 'react-router-dom';
 import { store as notify } from 'react-notifications-component';
 import {
@@ -9,12 +9,15 @@ import {
 	checkAllRequiredFieldsWithKey,
 	setUserInfo,
 	alertMessage,
+	setAuthKey,
 } from 'utils';
+import { userLogin } from './apis';
 import { loginForm } from './constants';
 const Login = ({ openModel, onClose, isShow, onSuccess }) => {
 	const [activeTab, setActiveTab] = useState(0);
 	const [useForm, setUserForm] = useState(loginForm);
 	const [formError, setFormError] = useState(loginForm);
+	const [loading, setLoading] = useState(false);
 	const handleInput = ({ target: { name, value } }) => {
 		setUserForm({ ...useForm, [name]: value });
 	};
@@ -41,24 +44,33 @@ const Login = ({ openModel, onClose, isShow, onSuccess }) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (!checkAllField()) {
-			notify.addNotification(
-				alertMessage({ title: 'Success', message: 'Login successfully' })
-			);
-			setUserInfo({
-				id: 1,
-				name: 'Pankaj',
-				email: useForm.email,
-				userType: activeTab,
-				phone: '7988898889',
-			});
-			onClose();
-			onSuccess();
+			setLoading(true);
+			Object.assign(useForm, { userType: activeTab });
+			userLogin(useForm)
+				.then(({ data }) => {
+					notify.addNotification(
+						alertMessage({ title: 'Success', message: 'Login successfully' })
+					);
+					setUserInfo(data);
+					setAuthKey(data.authorization_key);
+					onClose();
+					onSuccess();
+				})
+				.catch(({ message }) => {
+					notify.addNotification(
+						alertMessage({ title: 'error', message, type: 'danger' })
+					);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
 		}
 	};
 	return (
 		<>
 			{isShow && (
 				<div className='modal fade first_modal in show show-popup animate__animated animate__zoomIn'>
+					<ReactLoading isShow={loading} />
 					<div className='modal-dialog'>
 						<div className='modal-content'>
 							<button

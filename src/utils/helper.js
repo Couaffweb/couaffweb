@@ -26,12 +26,14 @@ export const authInfo = () => {
 };
 
 export const getAuthKey = () => {
-	let info = window.localStorage.getItem('authUser');
-	info = JSON.parse(info);
-	if (info) {
-		return info.Authorization;
+	const authKey = window.localStorage.getItem('authKey');
+	if (authKey) {
+		return authKey;
 	}
 	return false;
+};
+export const setAuthKey = (key) => {
+	window.localStorage.setItem('authKey', key);
 };
 
 export const setUserInfo = (loginInfo) => {
@@ -57,4 +59,5 @@ export const alertMessage = ({ title, message, type = 'success' }) => ({
 });
 
 export const apiURl =
-	process.env.REACT_APP_API_URL || `${window.location.origin}/apis/v1`;
+	process.env.REACT_APP_API_URL ||
+	`http://${window.location.hostname}:4001/apis/v1`;

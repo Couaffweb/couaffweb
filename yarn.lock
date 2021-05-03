@@ -8330,6 +8330,11 @@ os-browserify@^0.3.0:
   resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.3.0.tgz#854373c7f5c2315914fc9bfc6bd8238fdda1ec27"
   integrity sha1-hUNzx/XCMVkU/Jv8a9gjj92h7Cc=
 
+otp-input-react@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/otp-input-react/-/otp-input-react-0.2.4.tgz#efb3f2a94ab6bfe1eb936de424a45087296c5a60"
+  integrity sha512-3RkekIT5lFx5Au5cvn/pK8TRJQbHHLD6OewUd8sDDyBIQGb3VtkfpB6NwnrRukdw6XERqPPM9Gs+pCZBH1cIMg==
+
 p-cancelable@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/p-cancelable/-/p-cancelable-1.1.0.tgz#d078d15a3af409220c886f1d9a0ca2e441ab26cc"
@@ -9704,6 +9709,13 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
+react-loader-spinner@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-loader-spinner/-/react-loader-spinner-4.0.0.tgz#43d9e71b0574219f64216933c28ef5faa12262f6"
+  integrity sha512-RU2vpEej6G4ECei0h3q6bgLU10of9Lw5O+4AwF/mtkrX5oY20Sh/AxoPJ7etbrs/7Q3u4jN5qwCwGLRKCHpk6g==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-loading-skeleton@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-loading-skeleton/-/react-loading-skeleton-2.2.0.tgz#b8ce516f9a2471e90d7d9ead35d61425367e3340"
@@ -9715,6 +9727,11 @@ react-notifications-component@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-notifications-component/-/react-notifications-component-3.1.0.tgz#c676b7897a3fb10c554b69dba25fe2a9da6170e2"
   integrity sha512-qq+zgqVIa2zhlw+RvO2QSPk7xHLvZWTHl9VKRO56sMUef/UrcUTqOswL0DSJtRIpZYZhclquQUfDxD6H2w8aWA==
+
+react-otp-input@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-otp-input/-/react-otp-input-2.3.0.tgz#2457b47540e2de2751c3a3e14311452b0c8313a8"
+  integrity sha512-xzljlohVaPkUqO4H61x4r7KMRSq2ZPYFFZeSqqVXid+kJNL1UekSBP1xPafvI0eGNpus/PA1447jYZf2EJRY0A==
 
 react-redux@^7.2.4:
   version "7.2.4"
