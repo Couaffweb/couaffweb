@@ -6,7 +6,7 @@ const database = {
 		host: process.env.HOST || '127.0.0.1',
 		user: process.env.USERNAME || 'root',
 		password: process.env.PASSWORD || '',
-		database: process.env.DATABASE || '',
+		database: process.env.DATABASE || 'serviceWeb',
 		charset: 'utf8mb4',
 	},
 	url: '',

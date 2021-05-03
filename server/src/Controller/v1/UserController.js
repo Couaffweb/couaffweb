@@ -141,6 +141,7 @@ class UserController extends ApiController {
 		const required = {
 			email: req.body.email,
 			password: req.body.password,
+			userType: req.body.userType,
 		};
 		const non_required = {
 			device_type: req.body.device_type || 0,
@@ -251,9 +252,9 @@ class UserController extends ApiController {
 		if (files.image === undefined) {
 			throw new ApiError('image field is required');
 		}
-		
+
 		const allImages = [];
-		if(Array.isArray(files.image)){
+		if (Array.isArray(files.image)) {
 			const totalFiles = files.image.length;
 			for (let i = 0; i < totalFiles; i++) {
 				const image = app.upload_pic_with_await(files.image[i]);
@@ -271,19 +272,19 @@ class UserController extends ApiController {
 			}
 		} else {
 			const image = app.upload_pic_with_await(files.image);
-				const imageId = await DB.save('user_images', {
-					user_id,
-					image,
-					position: 1,
-				});
-				allImages.push({
-					imageId,
-					user_id,
-					image,
-					position: 1,
-				});
+			const imageId = await DB.save('user_images', {
+				user_id,
+				image,
+				position: 1,
+			});
+			allImages.push({
+				imageId,
+				user_id,
+				image,
+				position: 1,
+			});
 		}
-		
+
 		return {
 			message: 'Image added successfully',
 			status: 201,
