@@ -55,3 +55,6 @@ export const alertMessage = ({ title, message, type = 'success' }) => ({
 		onScreen: true,
 	},
 });
+
+export const apiURl =
+	process.env.REACT_APP_API_URL || `${window.location.origin}/apis/v1`;
