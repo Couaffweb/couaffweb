@@ -2,7 +2,9 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Image } from 'component';
+import { getUserType } from 'utils';
 const Menu = ({ logoutUser }) => {
+	const userType = getUserType();
 	const wrapperRef = useRef();
 	const [showProfile, setShowProfile] = useState(false);
 	const handleClick = ({ target, offsetX }) => {
@@ -34,18 +36,45 @@ const Menu = ({ logoutUser }) => {
 				/>
 				{showProfile && (
 					<div className='dropdown-menu show'>
-						<Link className='dropdown-item' to='/profile'>
+						<Link
+							className='dropdown-item'
+							onClick={() => setShowProfile(!showProfile)}
+							to='/profile'
+						>
 							Profile
 						</Link>
-						<Link className='dropdown-item' to='/'>
-							Payment
+						{userType === 1 && (
+							<>
+								<Link
+									className='dropdown-item'
+									onClick={() => setShowProfile(!showProfile)}
+									to='/add-service'
+								>
+									Add Service
+								</Link>
+								<Link
+									className='dropdown-item'
+									onClick={() => setShowProfile(!showProfile)}
+									to='/services'
+								>
+									My Services
+								</Link>
+							</>
+						)}
+						<Link
+							className='dropdown-item'
+							onClick={() => setShowProfile(!showProfile)}
+							to='/orders'
+						>
+							Orders
 						</Link>
-						<Link className='dropdown-item' to='/terms_conditions'>
-							Terms Of Service
-						</Link>
-						<span className='dropdown-item click-span' onClick={logoutUser}>
+						<Link
+							className='dropdown-item click-span'
+							to='/'
+							onClick={logoutUser}
+						>
 							Log Out
-						</span>
+						</Link>
 					</div>
 				)}
 			</span>
