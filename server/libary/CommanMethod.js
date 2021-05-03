@@ -16,11 +16,10 @@ const crypto = require('crypto');
 const https = require('https');
 const url = require('url');
 const twilio = require('twilio');
-
+const { Mail } = require('./mails');
 module.exports = {
 	send_mail: function (object) {
-		const { nodemailer } = require('./mails');
-		const Sendmails = new nodemailer(mails[mails.default]);
+		const Sendmails = new Mail(mails[mails.default]);
 		Sendmails.to(object.to)
 			.subject(object.subject)
 			.html(object.template, object.data)
