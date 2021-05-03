@@ -35,6 +35,7 @@ router.delete(
 	Apiresponse(user.removeImage)
 );
 router.get('/app-information', Apiresponse(user.appInfo));
+router.get('/top-rated', Apiresponse(user.topRated));
 router
 	.route('/services')
 	.get(Apiresponse(ServiceController.allService))

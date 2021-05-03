@@ -455,6 +455,39 @@ class UserController extends ApiController {
 			},
 		};
 	}
+	async topRated({ body: { user_id }, query: { page = 1, limit = 20 } }) {
+		const offset = (page - 1) * limit;
+		const condition = {
+			conditions: {
+				status: 1,
+				userType: 1,
+			},
+			fields: [
+				'users.id',
+				'users.name',
+				'users.email',
+				'users.phone',
+				'users.longitude',
+				'users.latitude',
+				'users.location',
+				'users.profile',
+				'users.workingExperience',
+				'users.working_hours',
+				`(select count(*) from favourite_services where userId=${user_id} and massagerId=users.id) as isFav`,
+				`(select IFNULL(round(avg(rating),1),0) as rating from ratings where massagerId=users.id) as totalRating`,
+			],
+			limit: [offset, limit],
+			order: ['id desc'],
+		};
+		const allMassager = await DB.find('users', 'all', condition);
+		return {
+			message: 'Top rated',
+			data: {
+				pagination: await super.Paginations('users', condition, page, limit),
+				result: app.addUrl(allMassager, 'profile'),
+			},
+		};
+	}
 	async getRating({
 		params: { massagerId },
 		query: { page = 1, limit = 20 },

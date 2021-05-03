@@ -11,6 +11,7 @@ const missingRoutes = {
 	'question-categoires': 'GET',
 	'home-feeds': 'GET',
 	services: 'GET',
+	'top-rated': 'GET',
 };
 const AuthSkip = (Req, res, next) => {
 	res.auth = true;
