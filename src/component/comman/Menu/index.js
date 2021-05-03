@@ -2,7 +2,7 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Image } from 'component';
-import { getUserType } from 'utils';
+import { getUserType, authInfo } from 'utils';
 const Menu = ({ logoutUser }) => {
 	const userType = getUserType();
 	const wrapperRef = useRef();
@@ -30,7 +30,7 @@ const Menu = ({ logoutUser }) => {
 		<li className='nav-item dropdown'>
 			<span className='nav-link profile click-span' ref={wrapperRef}>
 				<Image
-					url='assest/images/user.png'
+					url={authInfo().profile || 'assest/images/user.png'}
 					onClick={() => setShowProfile(!showProfile)}
 					alt='logo'
 				/>

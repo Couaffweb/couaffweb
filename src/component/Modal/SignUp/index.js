@@ -61,7 +61,6 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 			Object.assign(userForm, { userType });
 			signupUser(userForm)
 				.then(({ data: { authorization_key } }) => {
-					console.log(authorization_key);
 					setAuthKey(authorization_key);
 					openModel('otp');
 				})
@@ -80,8 +79,13 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 		}
 	};
 	const selectLocation = useCallback(
-		({ latitude, longitude }) => {
-			setUserForm((val) => ({ ...val, latitude, longitude }));
+		({ latitude, longitude, address }) => {
+			setUserForm((val) => ({
+				...val,
+				latitude,
+				longitude,
+				location: address,
+			}));
 		},
 		[setUserForm]
 	);

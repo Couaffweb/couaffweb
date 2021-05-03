@@ -1,5 +1,11 @@
-import React, { useState, memo } from 'react';
-import { Image, Input, Form } from 'component';
+import React, { useState, memo, useCallback } from 'react';
+import {
+	Image,
+	Input,
+	Form,
+	GoogleAutoComplete,
+	ReactLoading,
+} from 'component';
 import {
 	checkRequiredField,
 	validateEmail,
@@ -8,8 +14,12 @@ import {
 	getUserType,
 	authInfo,
 	matchPassword,
+	alertMessage,
+	setUserInfo,
 } from 'utils';
+import { store as notify } from 'react-notifications-component';
 import { signUpForm, passwordForm } from './constants';
+import { updatePassword, updateProfile } from './apis';
 const Profile = () => {
 	const userType = getUserType();
 	const [isEdit, setEdit] = useState(false);
@@ -17,6 +27,14 @@ const Profile = () => {
 	const [formError, setFormError] = useState(signUpForm[userType]);
 	const [changePassword, setChangePassword] = useState(passwordForm);
 	const [passwordFormError, setPasswordFormError] = useState(passwordForm);
+	const [loading, setLoading] = useState(false);
+	const [userPic, setUserPic] = useState(
+		userForm.profile || 'assest/images/pro.png'
+	);
+	const handleFile = ({ target: { name, files } }) => {
+		setUserForm({ ...userForm, [name]: files[0] });
+		setUserPic(URL.createObjectURL(files[0]));
+	};
 	const handleInput = ({ target: { name, value } }) => {
 		setUserForm({ ...userForm, [name]: value });
 	};
@@ -51,24 +69,60 @@ const Profile = () => {
 		setPasswordFormError({ ...passwordFormError, ...errors });
 		return Object.values(errors).some((value) => value.length > 0);
 	};
+	const selectLocation = useCallback(
+		({ latitude, longitude, address }) => {
+			setUserForm((val) => ({
+				...val,
+				latitude,
+				longitude,
+				location: address,
+			}));
+		},
+		[setUserForm]
+	);
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (!checkAllField()) {
-			setEdit(!isEdit);
+			setLoading(true);
+			updateProfile(userForm)
+				.then(({ data }) => {
+					notify.addNotification(
+						alertMessage({
+							title: 'Success',
+							message: 'Profile Updated successfully',
+						})
+					);
+					setUserInfo(data);
+					setEdit(!isEdit);
+				})
+				.catch(({ message }) => {
+					notify.addNotification(
+						alertMessage({ title: 'error', message, type: 'danger' })
+					);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
 		}
 	};
 	const handleInputPassword = ({ target: { name, value } }) => {
-		setChangePassword({ ...passwordForm, [name]: value });
+		setChangePassword({ ...changePassword, [name]: value });
 	};
 
 	const removeErrorPassword = ({ target: { name } }) => {
-		setPasswordFormError({ ...formError, [name]: '' });
+		setPasswordFormError({ ...passwordFormError, [name]: '' });
 	};
 	const checkErrorPassword = ({ target: { name, value } }) => {
 		const errors = {};
 		switch (name) {
 			case 'confirm_password':
-				Object.assign(errors, matchPassword(name, value));
+				Object.assign(
+					errors,
+					matchPassword(name, value, changePassword.new_password)
+				);
+				break;
+			case 'old_password':
+				Object.assign(errors, checkRequiredField(name, value));
 				break;
 			default:
 				Object.assign(errors, validatePassword(name, value));
@@ -79,6 +133,25 @@ const Profile = () => {
 	const handlePasswordform = (event) => {
 		event.preventDefault();
 		if (!checkPasswordField()) {
+			setLoading(true);
+			updatePassword(changePassword)
+				.then(() => {
+					setChangePassword({ ...passwordForm });
+					notify.addNotification(
+						alertMessage({
+							title: 'Success',
+							message: 'Password changed successfully',
+						})
+					);
+				})
+				.catch(({ message }) => {
+					notify.addNotification(
+						alertMessage({ title: 'error', message, type: 'danger' })
+					);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
 		}
 	};
 	return (
@@ -89,7 +162,7 @@ const Profile = () => {
 						<div className='row'>
 							<div className='col-lg-3 col-md-4 col-sm-5'>
 								<div className='mendr_img'>
-									<Image url='assest/images/pro.png' width='100%' />
+									<Image url={userPic} width='100%' />
 								</div>
 							</div>
 							<div className='col-lg-9 col-md-8 col-sm-7'>
@@ -108,7 +181,7 @@ const Profile = () => {
 									</p>
 									{userType === 1 && (
 										<p>
-											<strong>Address :</strong> {userForm.address}
+											<strong>Address :</strong> {userForm.location}
 										</p>
 									)}
 									<button
@@ -125,6 +198,7 @@ const Profile = () => {
 				</section>
 			) : (
 				<>
+					<ReactLoading isShow={loading} />
 					<section className='payment ediprofile1 animate__animated animate__zoomIn'>
 						<div className='container'>
 							<div className='row'>
@@ -145,14 +219,20 @@ const Profile = () => {
 												onSubmit={handleSubmit}
 											>
 												<div className='form-group edit_pic'>
-													<input type='file' id='edit_pic' />
-													<Image url='assest/images/pro.png' />
+													<input
+														type='file'
+														id='edit_pic'
+														onChange={handleFile}
+														name='profile'
+														accept='image/*'
+													/>
+													<Image url={userPic} alt='profile' />
 													<label htmlFor='edit_pic'>
 														<Image url='assest/images/cam.png' />
 													</label>
 												</div>
 												<div className='edit_profile_data'>
-													<div className='form-group'>
+													<div className='form-group log_iocns'>
 														<label htmlFor='email'>Name:</label>
 														<Input
 															onBlur={checkError}
@@ -166,7 +246,7 @@ const Profile = () => {
 															onChange={handleInput}
 														/>
 													</div>
-													<div className='form-group'>
+													<div className='form-group log_iocns'>
 														<label htmlFor='email'>Email:</label>
 														<Input
 															onBlur={checkError}
@@ -182,9 +262,9 @@ const Profile = () => {
 														/>
 													</div>
 													{userType === 1 && (
-														<div className='form-group'>
+														<div className='form-group log_iocns'>
 															<label> Location</label>
-															<Input
+															<GoogleAutoComplete
 																onBlur={checkError}
 																onFocus={removeError}
 																isError={formError.location}
@@ -193,11 +273,16 @@ const Profile = () => {
 																type='text'
 																className='form-control'
 																name='location'
-																onChange={handleInput}
+																onAddress={selectLocation}
+																onChange={(value) =>
+																	handleInput({
+																		target: { value, name: 'location' },
+																	})
+																}
 															/>
 														</div>
 													)}
-													<div className='form-group'>
+													<div className='form-group log_iocns'>
 														<label> Phone Number</label>
 														<Input
 															onBlur={checkError}
@@ -225,22 +310,22 @@ const Profile = () => {
 											>
 												<h3>Change Password</h3>
 												<div className='edit_profile_data update_password'>
-													<div className='form-group'>
+													<div className='form-group log_iocns'>
 														<label htmlFor='email'>Old Password:</label>
 														<Input
 															onBlur={checkErrorPassword}
 															onFocus={removeErrorPassword}
-															isError={passwordFormError.old_passworld}
-															value={changePassword.old_passworld}
+															isError={passwordFormError.old_password}
+															value={changePassword.old_password}
 															placeholder='Old Password'
 															type='password'
 															className='form-control'
-															name='old_passworld'
+															name='old_password'
 															onChange={handleInputPassword}
 														/>
 													</div>
 
-													<div className='form-group'>
+													<div className='form-group log_iocns'>
 														<label htmlFor='email'>New Password:</label>
 														<Input
 															onBlur={checkErrorPassword}
@@ -254,7 +339,7 @@ const Profile = () => {
 															onChange={handleInputPassword}
 														/>
 													</div>
-													<div className='form-group'>
+													<div className='form-group log_iocns'>
 														<label htmlFor='email'>Confirm Password:</label>
 														<Input
 															onBlur={checkErrorPassword}

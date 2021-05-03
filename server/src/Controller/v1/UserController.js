@@ -154,6 +154,7 @@ class UserController extends ApiController {
 		let login_details = await DB.find('users', 'first', {
 			conditions: {
 				email: request_data.email,
+				userType: request_data.userType,
 			},
 			fields: ['id', 'password', 'status', 'email'],
 		});
@@ -207,7 +208,7 @@ class UserController extends ApiController {
 			name: req.body.name,
 			email: req.body.email,
 			phone: req.body.phone,
-			working_hours: req.body.working_hours,
+			location: req.body.location,
 			workingExperience: req.body.workingExperience,
 		};
 		const request_data = await super.vaildation(required, non_required);

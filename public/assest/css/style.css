@@ -51,7 +51,8 @@ img {
     color: red;
     font-weight: 200;
 }
-img:hover {
+.form-inline .edit_profile_data .form-control {
+	width: 100%  !important;
 }
 ul ,ul li {
 	margin: 0;	

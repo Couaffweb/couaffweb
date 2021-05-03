@@ -1,5 +1,5 @@
 export const passwordForm = {
-	old_passworld: '',
+	old_password: '',
 	new_password: '',
 	confirm_password: '',
 };
