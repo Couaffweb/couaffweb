@@ -477,7 +477,7 @@ class UserController extends ApiController {
 				`(select IFNULL(round(avg(rating),1),0) as rating from ratings where massagerId=users.id) as totalRating`,
 			],
 			limit: [offset, limit],
-			order: ['id desc'],
+			orderBy: ['id desc'],
 		};
 		const allMassager = await DB.find('users', 'all', condition);
 		return {

@@ -125,7 +125,7 @@ const GoogleAutoComplete = ({ onAddress, onChange, ...props }) => {
 
 GoogleAutoComplete.propTypes = {
 	onChange: PropTypes.func.isRequired,
-	update: PropTypes.func.isRequired,
+	onAddress: PropTypes.func.isRequired,
 	value: PropTypes.string,
 };
 

@@ -36,13 +36,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../build')));
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, '../build/index.html'));
-});
-
+app.use(express.static(path.join(__dirname, '../build')));
 app.use(function (req, res, next) {
 	global.appURL = req.protocol + '://' + req.get('host') + '/';
 	next();
@@ -52,6 +47,10 @@ app.use('/admins', adminRouter);
 app.use('/apis/v1/', apiRouter);
 app.use('/users', users);
 app.use('/welcome', index);
+
+app.get('/*', (req, res) => {
+	res.sendFile(path.resolve(__dirname, '../build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

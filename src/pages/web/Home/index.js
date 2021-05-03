@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Image } from 'component';
-import { SearchBox } from 'container';
+import { SearchBox, TopRated } from 'container';
 const Home = () => {
 	return (
 		<>
@@ -35,101 +35,7 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
-			<section className='team'>
-				<div className='container'>
-					<div className='row align-items-center h-100 '>
-						<div className='col-md-12 mb-2'>
-							<div className='how_it'>
-								<h2 className='title2'>Top Rated Professionals </h2>
-							</div>
-						</div>
-						<div className='col-md-6 col-lg-3'>
-							<div className='all_team'>
-								<Link to='/provider-details/1'>
-									<div className='team_Image'>
-										<Image url='assest/images/top1.png' />
-									</div>
-									<div className='team_text'>
-										<h2>Hair Brainding Salon</h2>
-										<h1>2223 Park Blvd, Los Angenl CA</h1>
-										<p>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											233 Reviews
-										</p>
-									</div>
-								</Link>
-							</div>
-						</div>
-						<div className='col-md-6 col-lg-3'>
-							<div className='all_team'>
-								<Link to='/provider-details/1'>
-									<div className='team_Image'>
-										<Image url='assest/images/top1.png' />
-									</div>
-									<div className='team_text'>
-										<h2>Hair Brainding Salon</h2>
-										<h1>2223 Park Blvd, Los Angenl CA</h1>
-										<p>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											233 Reviews
-										</p>
-									</div>
-								</Link>
-							</div>
-						</div>
-						<div className='col-md-6 col-lg-3'>
-							<div className='all_team'>
-								<Link to='/provider-details/1'>
-									<div className='team_Image'>
-										<Image url='assest/images/top1.png' />
-									</div>
-									<div className='team_text'>
-										<h2>Hair Brainding Salon</h2>
-										<h1>2223 Park Blvd, Los Angenl CA</h1>
-										<p>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											233 Reviews
-										</p>
-									</div>
-								</Link>
-							</div>
-						</div>
-						<div className='col-md-6 col-lg-3'>
-							<div className='all_team'>
-								<Link to='/provider-details/1'>
-									<div className='team_Image'>
-										<Image url='assest/images/top1.png' />
-									</div>
-									<div className='team_text'>
-										<h2>Hair Brainding Salon</h2>
-										<h1>2223 Park Blvd, Los Angenl CA</h1>
-										<p>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											<i className='fas fa-star' aria-hidden='true'></i>
-											233 Reviews
-										</p>
-									</div>
-								</Link>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			<TopRated />
 			<section className='serch_here'>
 				<div className='container'>
 					<div className='serch_here1'>
