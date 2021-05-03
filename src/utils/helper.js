@@ -59,5 +59,5 @@ export const alertMessage = ({ title, message, type = 'success' }) => ({
 });
 
 export const apiURl = process.env.REACT_APP_IS_DEV
-	? `${window.location.hostname}apis/v1`
+	? `${window.location.origin}apis/v1`
 	: `http://${window.location.hostname}:4001/apis/v1`;
