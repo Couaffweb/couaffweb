@@ -18,13 +18,11 @@ const Header = () => {
 	const [showPopup, setShowPopup] = useState(popUps);
 	const [userType, setUserType] = useState(0);
 	const [isLogin, setIsLogin] = useState(isUserLogin());
-	const [showProfile, setShowProfile] = useState(false);
 	useEffect(() => {
 		const header = document.getElementById('myHeader');
-		if (header) {
+		if (header && !isHome) {
 			const sticky = header.offsetTop;
 			const scrollCallBack = window.addEventListener('scroll', () => {
-				console.log(sticky, window.pageYOffset);
 				if (window.pageYOffset > sticky) {
 					header.classList.add('sticky');
 				} else {
@@ -35,7 +33,7 @@ const Header = () => {
 				window.removeEventListener('scroll', scrollCallBack);
 			};
 		}
-	}, []);
+	}, [isHome]);
 
 	const logoutUser = () => {
 		removeAuth();
