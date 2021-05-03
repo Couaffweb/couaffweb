@@ -44,6 +44,7 @@ const AddService = () => {
 						})
 					);
 					setService({ ...serviceValue });
+					setServiceImage('');
 				})
 				.catch(({ message }) => {
 					notify.addNotification(
@@ -90,13 +91,13 @@ const AddService = () => {
 													onBlur={checkError}
 													onFocus={removeError}
 													isError={formError.category_id}
-													value={service.phone}
+													defaultValue={service.phone}
 													type='number'
 													className='form-control'
 													name='category_id'
 													onChange={handleInput}
 												>
-													<option>--Please select category--</option>
+													<option value=''>--Please select category--</option>
 													<option value='1'>Hair Cute</option>
 												</select>
 											</div>
