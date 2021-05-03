@@ -455,7 +455,7 @@ class UserController extends ApiController {
 			},
 		};
 	}
-	async topRated({ body: { user_id }, query: { page = 1, limit = 20 } }) {
+	async topRated({ body: { user_id = 0 }, query: { page = 1, limit = 20 } }) {
 		const offset = (page - 1) * limit;
 		const condition = {
 			conditions: {
