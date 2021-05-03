@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useRef, memo } from 'react';
 import PropTypes from 'prop-types';
-
+import { Input } from 'component';
 let googleListner;
 const GoogleAutoComplete = ({ onAddress, onChange, ...props }) => {
 	const currentRef = useRef(null);
@@ -110,7 +110,7 @@ const GoogleAutoComplete = ({ onAddress, onChange, ...props }) => {
 	};
 
 	return (
-		<input
+		<Input
 			{...props}
 			ref={currentRef}
 			value={

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
@@ -79,6 +79,12 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 				});
 		}
 	};
+	const selectLocation = useCallback(
+		({ latitude, longitude }) => {
+			setUserForm((val) => ({ ...val, latitude, longitude }));
+		},
+		[setUserForm]
+	);
 	return (
 		<>
 			{isShow && (
@@ -146,6 +152,7 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 																	type='text'
 																	className='form-control'
 																	name='location'
+																	onAddress={selectLocation}
 																	onChange={(value) =>
 																		handleInput({
 																			target: { value, name: 'location' },

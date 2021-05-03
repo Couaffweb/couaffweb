@@ -27,6 +27,9 @@ img {
     z-index: 99;
     top: 30%;
 }
+.pac-container { 
+    z-index: 10000 !important;
+}
 .otp1 .form-group.log_iocns input {
     text-align: center !important;
     width: 3.4em !important;

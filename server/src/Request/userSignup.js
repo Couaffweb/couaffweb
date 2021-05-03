@@ -20,13 +20,13 @@ module.exports = async (Request, res, next) => {
 		otp: 1111, //app.randomNumber(),
 	};
 	try {
-		if (parseInt(requried.userType) === 1) {
-			Object.assign(requried, {
-				serviceId: Request.body.serviceId,
-				workingExperience: Request.body.workingExperience,
-				working_hours: Request.body.working_hours,
-			});
-		}
+		// if (parseInt(requried.userType) === 1) {
+		// 	Object.assign(requried, {
+		// 		serviceId: Request.body.serviceId,
+		// 		workingExperience: Request.body.workingExperience,
+		// 		working_hours: Request.body.working_hours,
+		// 	});
+		// }
 		Request.RequestData = await vaildation(requried, nonRequired);
 		next();
 	} catch (err) {

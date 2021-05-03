@@ -7,7 +7,7 @@ const SearchBox = ({ onSelectAddress }) => {
 	const selectAddress = useCallback(
 		(val) => {
 			setAddressDetails({ ...val });
-			onSelectAddress(val);
+			//onSelectAddress(val);
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[setAddressDetails]
