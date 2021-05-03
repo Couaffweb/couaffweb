@@ -6,3 +6,4 @@ export const changePassword = 'change-password';
 export const forgetPassword = 'forgot-password';
 export const logout = 'logout';
 export const topRated = 'top-rated';
+export const service = 'services';

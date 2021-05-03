@@ -11,7 +11,7 @@ module.exports = {
 		body: {
 			name,
 			price,
-			description,
+			category_id,
 			user_id,
 			userInfo: { userType },
 		},
@@ -19,7 +19,7 @@ module.exports = {
 		const data = await apis.vaildation({
 			name,
 			price,
-			description,
+			category_id,
 			userId: user_id,
 			isAdmin: 0,
 		});

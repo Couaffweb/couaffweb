@@ -54,6 +54,9 @@ img {
 .form-inline .edit_profile_data .form-control {
 	width: 100%  !important;
 }
+.container-all{
+	margin: 100px auto;
+}
 .top-rated {
  width: 255px;
  height: 168px;

@@ -157,40 +157,44 @@ const Profile = () => {
 	return (
 		<>
 			{!isEdit ? (
-				<section className='mender_details prfile animate__animated animate__zoomIn'>
+				<section className='mender_details prfile animate__animated animate__zoomIn container-all'>
 					<div className='container'>
-						<div className='row'>
-							<div className='col-lg-3 col-md-4 col-sm-5'>
-								<div className='mendr_img'>
-									<Image url={userPic} width='100%' />
-								</div>
-							</div>
-							<div className='col-lg-9 col-md-8 col-sm-7'>
-								<div className='mendr_details'>
-									<h2>About</h2>
+						<div className='card'>
+							<div className='card-body'>
+								<div className='row'>
+									<div className='col-lg-3 col-md-4 col-sm-5'>
+										<div className='mendr_img'>
+											<Image url={userPic} width='100%' />
+										</div>
+									</div>
+									<div className='col-lg-9 col-md-8 col-sm-7'>
+										<div className='mendr_details'>
+											<h2>About</h2>
 
-									<p>
-										<strong>Name :</strong> {userForm.name}
-									</p>
-									<p>
-										<strong>Email :</strong> {userForm.email}
-									</p>
-									<p>
-										<strong>Phone :</strong>
-										{userForm.phone}
-									</p>
-									{userType === 1 && (
-										<p>
-											<strong>Address :</strong> {userForm.location}
-										</p>
-									)}
-									<button
-										type='button'
-										onClick={() => setEdit(!isEdit)}
-										className='btn btn-primary et'
-									>
-										Edit
-									</button>
+											<p>
+												<strong>Name :</strong> {userForm.name}
+											</p>
+											<p>
+												<strong>Email :</strong> {userForm.email}
+											</p>
+											<p>
+												<strong>Phone :</strong>
+												{userForm.phone}
+											</p>
+											{userType === 1 && (
+												<p>
+													<strong>Address :</strong> {userForm.location}
+												</p>
+											)}
+											<button
+												type='button'
+												onClick={() => setEdit(!isEdit)}
+												className='btn btn-primary et'
+											>
+												Edit
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
