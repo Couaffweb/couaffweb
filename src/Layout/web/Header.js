@@ -65,12 +65,14 @@ const Header = () => {
 				onClose={closePopUp}
 				openModel={openPopup}
 			/>
-			<SignUpModal
-				userType={userType}
-				isShow={showPopup.signup}
-				onClose={closePopUp}
-				openModel={openPopup}
-			/>
+			{showPopup.signup && (
+				<SignUpModal
+					userType={userType}
+					isShow={showPopup.signup}
+					onClose={closePopUp}
+					openModel={openPopup}
+				/>
+			)}
 			<OtpModal
 				isShow={showPopup.otp}
 				onClose={closePopUp}
