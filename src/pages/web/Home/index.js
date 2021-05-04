@@ -44,55 +44,91 @@ const Home = () => {
 								<div className='serch_here2'>
 									<div className='round1'>
 										<Link className='round2 co1'>
-											<i className='fa fa-book' aria-hidden='true'></i>
+											<Image
+												url='assest/images/icon1.png'
+												className='cat-image'
+												aria-hidden='true'
+											/>
 											<p>Lorem Ipsum</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co2'>
-											<i className='fa fa-book' aria-hidden='true'></i>
+											<Image
+												url='assest/images/icon2.png'
+												className='cat-image'
+												aria-hidden='true'
+											/>
 											<p>Lorem Ipsum</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co3'>
-											<i className='fa fa-book' aria-hidden='true'></i>
+											<Image
+												url='assest/images/icon3.png'
+												className='cat-image'
+												aria-hidden='true'
+											/>
 											<p>Lorem Ipsum</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co4'>
-											<i className='fa fa-book' aria-hidden='true'></i>
+											<Image
+												url='assest/images/icon5.png'
+												className='cat-image'
+												aria-hidden='true'
+											/>
 											<p>Lorem Ipsum</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co5'>
-											<i className='fa fa-book' aria-hidden='true'></i>
+											<Image
+												url='assest/images/icon6.png'
+												className='cat-image'
+												aria-hidden='true'
+											/>
 											<p>Lorem Ipsum</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co6'>
-											<i className='fa fa-book' aria-hidden='true'></i>
+											<Image
+												url='assest/images/icon7.png'
+												className='cat-image'
+												aria-hidden='true'
+											/>
 											<p>Lorem Ipsum</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co7'>
-											<i className='fa fa-book' aria-hidden='true'></i>
+											<Image
+												url='assest/images/icon8.png'
+												className='cat-image'
+												aria-hidden='true'
+											/>
 											<p>Lorem Ipsum</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co8'>
-											<i className='fa fa-book' aria-hidden='true'></i>
+											<Image
+												url='assest/images/icon9.png'
+												className='cat-image'
+												aria-hidden='true'
+											/>
 											<p>Lorem Ipsum</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co9'>
-											<i className='fa fa-book' aria-hidden='true'></i>
+											<Image
+												url='assest/images/icon1.png'
+												className='cat-image'
+												aria-hidden='true'
+											/>
 											<p>Lorem Ipsum</p>
 										</Link>
 									</div>
