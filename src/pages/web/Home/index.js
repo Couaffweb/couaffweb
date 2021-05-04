@@ -75,7 +75,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co4'>
 											<Image
-												url='/assest/images/icon4.png'
+												url='/assest/images/Icon4.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -105,7 +105,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co7'>
 											<Image
-												url='/assest/images/icon7.png'
+												url='/assest/images/Icon7.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -115,7 +115,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co8'>
 											<Image
-												url='/assest/images/icon8.png'
+												url='/assest/images/Icon8.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -125,7 +125,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co9'>
 											<Image
-												url='/assest/images/icon9.png'
+												url='/assest/images/Icon9.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
