@@ -12,6 +12,7 @@ const missingRoutes = {
 	'home-feeds': 'GET',
 	services: 'GET',
 	'top-rated': 'GET',
+	'massager/services': 'GET',
 };
 const AuthSkip = (Req, res, next) => {
 	res.auth = true;

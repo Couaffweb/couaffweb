@@ -9,7 +9,7 @@ const ToRated = () => {
 	const [loading, setLoading] = useState(true);
 	const redirect = (id = 1, info) => {
 		history.push(`/provider-details/${id}`, {
-			state: { info },
+			info,
 		});
 	};
 	useEffect(() => {
@@ -55,36 +55,38 @@ const ToRated = () => {
 									</div>
 								</div>
 						  ))
-						: topMassgerRated.map(({ profile, name, id, location }) => (
-								<div className='col-md-6 col-lg-3' key={id}>
-									<div className='all_team'>
-										<span
-											onClick={() =>
-												redirect(id, { profile, name, id, location })
-											}
-										>
-											<div className='team_Image'>
-												<Image
-													className='top-rated '
-													url={profile || '/assest/images/top1.png'}
-												/>
-											</div>
-											<div className='team_text'>
-												<h2>{name}</h2>
-												<h1>{location}</h1>
-												<p>
-													<i className='fas fa-star' aria-hidden='true'></i>
-													<i className='fas fa-star' aria-hidden='true'></i>
-													<i className='fas fa-star' aria-hidden='true'></i>
-													<i className='fas fa-star' aria-hidden='true'></i>
-													<i className='fas fa-star' aria-hidden='true'></i>0
-													Reviews
-												</p>
-											</div>
-										</span>
+						: topMassgerRated.map(
+								({ profile, name, id, location, ...rest }) => (
+									<div className='col-md-6 col-lg-3' key={id}>
+										<div className='all_team'>
+											<span
+												onClick={() =>
+													redirect(id, { profile, name, id, location, ...rest })
+												}
+											>
+												<div className='team_Image'>
+													<Image
+														className='top-rated '
+														url={profile || '/assest/images/top1.png'}
+													/>
+												</div>
+												<div className='team_text'>
+													<h2>{name}</h2>
+													<h1>{location}</h1>
+													<p>
+														<i className='fas fa-star' aria-hidden='true'></i>
+														<i className='fas fa-star' aria-hidden='true'></i>
+														<i className='fas fa-star' aria-hidden='true'></i>
+														<i className='fas fa-star' aria-hidden='true'></i>
+														<i className='fas fa-star' aria-hidden='true'></i>0
+														Reviews
+													</p>
+												</div>
+											</span>
+										</div>
 									</div>
-								</div>
-						  ))}
+								)
+						  )}
 				</div>
 			</div>
 		</section>

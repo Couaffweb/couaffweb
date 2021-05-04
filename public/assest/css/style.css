@@ -27,6 +27,9 @@ img {
     z-index: 99;
     top: 30%;
 }
+.service-detail-image{
+	width:50%
+}
 .pac-container { 
     z-index: 10000 !important;
 }
@@ -2673,12 +2676,12 @@ section.baner.inn.fx + .cart1 {
     background: no-repeat;
     border: none;
 }
-.acordina a.card-link {
+.acordina .card-link {
     display: flex;
     align-items: center;
     color: #333;
 }
-.acordina a.card-link i {
+.acordina span.card-link i {
     margin-left: auto;
     font-size: 20px;
     transition: all ease 0.5s;

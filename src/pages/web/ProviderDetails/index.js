@@ -1,7 +1,28 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import { Image } from 'component';
-const ProviderDetails = () => {
+import { providerService } from './apis';
+const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
+	const [providerInfo, setProviderInfo] = useState(state.info);
+	const [services, setServices] = useState([]);
+	const [loading, setLoading] = useState(true);
+	useEffect(() => {
+		fetchData();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [params.id]);
+	const fetchData = () => {
+		providerService(params.id)
+			.then(({ data: { services, massagerInfo } }) => {
+				setProviderInfo(massagerInfo);
+				setServices(services.result);
+			})
+			.catch()
+			.finally(() => {
+				setLoading(false);
+			});
+	};
 	return (
 		<section className='Business_details'>
 			<div className='container'>
@@ -32,7 +53,7 @@ const ProviderDetails = () => {
 									<div className='carousel-item active'>
 										<Image
 											className='d-block w-100'
-											url='/assest/images/barber.PNG'
+											url={providerInfo.profile || '/assest/images/barber.PNG'}
 											alt='First slide'
 										/>
 									</div>
@@ -78,7 +99,7 @@ const ProviderDetails = () => {
 							</div>
 							<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
 								<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
-									5.0
+									{providerInfo.totalRating}
 								</div>
 								<div className='purify_jYSVgwzoOcOfpiyrJrJSX purify_1MN_nIJ2zinOn-c26cMHl1'>
 									75 reviews
@@ -90,13 +111,10 @@ const ProviderDetails = () => {
 							<div className='purify_1NZ8fvAg5iM_eHIylYQgHS'>
 								<div style={{ width: '100%' }}>
 									<h1 className='purify_1sQI6P3rgyGZvU5pf3yAvt purify_3k1NnTEGO6TSunXbY5Zrkx'>
-										Luxe Barber &amp; Shave Lounge
+										{providerInfo.name}
 									</h1>
 									<div className='purify_2U3GPA6ftCkPxPR_0NKXCC purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-										<div className=''>
-											17 E Monroe, The Palmer house Hotel/ Ground Lev, Chicago,
-											IL, 60605
-										</div>
+										<div className=''>{providerInfo.location}</div>
 									</div>
 								</div>
 								<div
@@ -150,175 +168,97 @@ const ProviderDetails = () => {
 
 						<div className='acordina'>
 							<div id='accordion'>
-								<div className='card'>
-									<div className='card-header'>
-										<a
-											className='card-link collapsed'
-											data-toggle='collapse'
-											href='#a1'
-										>
-											Popular Services <i className='fas fa-angle-down'></i>
-										</a>
-									</div>
-									<div id='a1' className='collapse' data-parent='#accordion'>
-										<div className='card-body'>
-											<ul className='purify_1noWHOyaADqV7ZoPnoK6YA'>
-												<li className='purify_pxwM-croMXL8QulS7HGwl'>
-													<div className='purify_G1QImzdPFEZgTe9--pF1c'>
-														<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
-															<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
-																Hair cuts, tapers, fades, afros, etc
-															</h3>
-														</div>
-														<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
-															<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
-																<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
-																	<div>
-																		<div className='purify_3vqyS7lnyFQo9f7t5mfXVp purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
-																			$65.00
-																		</div>{' '}
-																		<span className='duration purify_3Et0DYxjLaY1d_TqtmRX-U purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-																			1h
-																		</span>
+								{loading
+									? [1, 2, 3, 4].map((val) => (
+											<div className='card' key={val}>
+												<div className='card-header'>
+													<span
+														className='card-link collapsed'
+														data-toggle='collapse'
+														role='button'
+														tabIndex='1'
+													>
+														<Skeleton width={300} />
+													</span>
+												</div>
+												<div className=''>
+													<div className='card-body'>
+														<ul className='purify_1noWHOyaADqV7ZoPnoK6YA'>
+															<li className='purify_pxwM-croMXL8QulS7HGwl'>
+																<div className='purify_G1QImzdPFEZgTe9--pF1c'>
+																	<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
+																		<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																			<Skeleton width={200} />
+																		</h3>
 																	</div>
-																	<div className='purify_3RwjUX8hSiee916iZITO25'>
-																		<button
-																			className='purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr'
-																			data-toggle='modal'
-																			data-target='#booking'
-																		>
-																			Book
-																		</button>
+																	<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
+																		<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
+																			<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
+																				<div>
+																					<div className='purify_3vqyS7lnyFQo9f7t5mfXVp purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																						<Skeleton width={100} />
+																					</div>{' '}
+																					<span className='duration purify_3Et0DYxjLaY1d_TqtmRX-U purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'></span>
+																				</div>
+																				<div className='purify_3RwjUX8hSiee916iZITO25'></div>
+																			</div>
+																		</div>
 																	</div>
 																</div>
-															</div>
-														</div>
+															</li>
+														</ul>
 													</div>
-												</li>
-												<li className='purify_pxwM-croMXL8QulS7HGwl'>
-													<div className='purify_G1QImzdPFEZgTe9--pF1c'>
-														<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
-															<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
-																Hair cuts, tapers, fades, afros, etc
-															</h3>
-														</div>
-														<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
-															<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
-																<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
-																	<div>
-																		<div className='purify_3vqyS7lnyFQo9f7t5mfXVp purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
-																			$65.00
-																		</div>{' '}
-																		<span className='duration purify_3Et0DYxjLaY1d_TqtmRX-U purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-																			1h
-																		</span>
+												</div>
+											</div>
+									  ))
+									: services.map(({ id, name, price, image }) => (
+											<div className='card'>
+												<div className='card-header' key={id}>
+													<span
+														className='card-link collapsed'
+														data-toggle='collapse'
+														role='button'
+														tabIndex='1'
+													>
+														{name}
+														<i>${price}</i>
+													</span>
+												</div>
+												<div className=''>
+													<div className='card-body'>
+														<ul className='purify_1noWHOyaADqV7ZoPnoK6YA'>
+															<li className='purify_pxwM-croMXL8QulS7HGwl'>
+																<div className='purify_G1QImzdPFEZgTe9--pF1c'>
+																	<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
+																		<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																			<Image
+																				url={image}
+																				className='service-detail-image'
+																			/>
+																		</h3>
 																	</div>
-																	<div className='purify_3RwjUX8hSiee916iZITO25'>
-																		<button className='purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr'>
-																			Book
-																		</button>
+																	<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
+																		<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
+																			<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
+																				<div className='purify_3RwjUX8hSiee916iZITO25'>
+																					<button
+																						className='purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr'
+																						data-toggle='modal'
+																						data-target='#booking'
+																					>
+																						Book
+																					</button>
+																				</div>
+																			</div>
+																		</div>
 																	</div>
 																</div>
-															</div>
-														</div>
+															</li>
+														</ul>
 													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div className='card'>
-									<div className='card-header'>
-										<a
-											className='card-link collapsed'
-											data-toggle='collapse'
-											href='#a2'
-										>
-											Popular Services <i className='fas fa-angle-down'></i>
-										</a>
-									</div>
-									<div id='a2' className='collapse ' data-parent='#accordion'>
-										<div className='card-body'>
-											<ul className='purify_1noWHOyaADqV7ZoPnoK6YA'>
-												<li className='purify_pxwM-croMXL8QulS7HGwl'>
-													<div className='purify_G1QImzdPFEZgTe9--pF1c'>
-														<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
-															<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
-																Hair cuts, tapers, fades, afros, etc
-															</h3>
-														</div>
-														<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
-															<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
-																<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
-																	<div>
-																		<div className='purify_3vqyS7lnyFQo9f7t5mfXVp purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
-																			$65.00
-																		</div>{' '}
-																		<span className='duration purify_3Et0DYxjLaY1d_TqtmRX-U purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-																			1h
-																		</span>
-																	</div>
-																	<div className='purify_3RwjUX8hSiee916iZITO25'>
-																		<button className='purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr'>
-																			Book
-																		</button>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div className='card'>
-									<div className='card-header'>
-										<a
-											className='card-link collapsed'
-											data-toggle='collapse'
-											href='#a3'
-										>
-											Popular Services <i className='fas fa-angle-down'></i>
-										</a>
-									</div>
-									<div id='a3' className='collapse' data-parent='#accordion'>
-										<div className='card-body'>
-											<ul className='purify_1noWHOyaADqV7ZoPnoK6YA'>
-												<li className='purify_pxwM-croMXL8QulS7HGwl'>
-													<div className='purify_G1QImzdPFEZgTe9--pF1c'>
-														<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
-															<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
-																Hair cuts, tapers, fades, afros, etc
-															</h3>
-														</div>
-														<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
-															<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
-																<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
-																	<div>
-																		<div className='purify_3vqyS7lnyFQo9f7t5mfXVp purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
-																			$65.00
-																		</div>{' '}
-																		<span className='duration purify_3Et0DYxjLaY1d_TqtmRX-U purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-																			1h
-																		</span>
-																	</div>
-																	<div className='purify_3RwjUX8hSiee916iZITO25'>
-																		<button className='purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr'>
-																			Book
-																		</button>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
+												</div>
+											</div>
+									  ))}
 							</div>
 						</div>
 
@@ -417,7 +357,7 @@ const ProviderDetails = () => {
 									<div className='purify_9Cy-RHFxaOj60XZ5e271l'>
 										<div className='purify_AsVoxIFDw5Y_5e6NSysK2'>
 											<div className='purify_3gaZGLTrTpBMOCi6MxRFKl purify_Y1prq6mbHtuK9nWzbTqF9 purify_Jo_pJo5C9YAbReoZm7ALD'>
-												5.0
+												{providerInfo.totalRating}
 												<span className='purify_wcIXCnwwFxUeCkbrK0R1T purify_Y1prq6mbHtuK9nWzbTqF9 purify_264bF_d7zMnGqSAM6litJ_'>
 													/5
 												</span>
@@ -677,17 +617,17 @@ const ProviderDetails = () => {
 							<ul>
 								<li>
 									<Link to=''>
-										<Image url='/assest/assest/images/b2.JPEG' />
+										<Image url='/assest/images/b2.JPEG' />
 									</Link>
 								</li>
 								<li>
 									<Link to=''>
-										<Image url='/assest/assest/images/b2.JPEG' />
+										<Image url='/assest/images/b2.JPEG' />
 									</Link>
 								</li>
 								<li>
 									<Link to=''>
-										<Image url='/assest/assest/images/b2.JPEG' />
+										<Image url='/assest/images/b2.JPEG' />
 									</Link>
 								</li>
 							</ul>
@@ -697,8 +637,8 @@ const ProviderDetails = () => {
 							<h4 className='title4'>Contact & Business hours</h4>
 							<div className='con'>
 								<div className='con1'>
-									<i className='fa fa-phone' aria-hidden='true'></i> (312)
-									285-2007
+									<i className='fa fa-phone' aria-hidden='true'></i>
+									{providerInfo.phone}
 									<button>Call</button>
 								</div>
 							</div>
@@ -736,7 +676,7 @@ const ProviderDetails = () => {
 						</div>
 
 						<p className='purify_IOiISPWJndtcc4r9FXmCL purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-							Call 773-972-6609 , sundays are strictly appointment only.
+							Call {providerInfo.phone} , sundays are strictly appointment only.
 						</p>
 						<div className='sss'>
 							<h4 className='title4'> Social Media & Share</h4>
@@ -764,6 +704,10 @@ const ProviderDetails = () => {
 			</div>
 		</section>
 	);
+};
+ProviderDetails.propType = {
+	match: PropTypes.object.isRequired,
+	location: PropTypes.object.isRequired,
 };
 
 export default memo(ProviderDetails);
