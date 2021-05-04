@@ -7,9 +7,9 @@ const ToRated = () => {
 	const history = useHistory();
 	const [topMassgerRated, setTopMassgerRated] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const redirect = (id = 1) => {
-		history.push('/provider-details', {
-			state: id,
+	const redirect = (id = 1, info) => {
+		history.push(`/provider-details/${id}`, {
+			state: { info },
 		});
 	};
 	useEffect(() => {
@@ -58,7 +58,11 @@ const ToRated = () => {
 						: topMassgerRated.map(({ profile, name, id, location }) => (
 								<div className='col-md-6 col-lg-3' key={id}>
 									<div className='all_team'>
-										<span onClick={() => redirect(id)}>
+										<span
+											onClick={() =>
+												redirect(id, { profile, name, id, location })
+											}
+										>
 											<div className='team_Image'>
 												<Image
 													className='top-rated '
