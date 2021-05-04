@@ -11,7 +11,7 @@ const Home = () => {
 					<div className='row'>
 						<div className='col-lg-12'>
 							<div className='banner_text'>
-								<h4> BRAIDING Expert</h4>
+								<h4> Braiding Expert</h4>
 								<p>Search and book skilled braiding professional near you</p>
 							</div>
 						</div>
