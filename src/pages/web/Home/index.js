@@ -45,11 +45,11 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co1'>
 											<Image
-												url='/assest/images/icon1.png'
+												url='/assest/images/Icon1.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
-											<p>Lorem Ipsum</p>
+											<p>Nails</p>
 										</Link>
 									</div>
 									<div className='round1'>
@@ -59,7 +59,7 @@ const Home = () => {
 												className='cat-image'
 												aria-hidden='true'
 											/>
-											<p>Lorem Ipsum</p>
+											<p>Make up</p>
 										</Link>
 									</div>
 									<div className='round1'>
@@ -69,67 +69,67 @@ const Home = () => {
 												className='cat-image'
 												aria-hidden='true'
 											/>
-											<p>Lorem Ipsum</p>
+											<p>Massage</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co4'>
 											<Image
-												url='/assest/images/icon5.png'
+												url='/assest/images/icon4.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
-											<p>Lorem Ipsum</p>
+											<p>Beauty Salon</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co5'>
 											<Image
-												url='/assest/images/icon6.png'
+												url='/assest/images/icon5.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
-											<p>Lorem Ipsum</p>
+											<p>Haircuts</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co6'>
 											<Image
-												url='/assest/images/icon7.png'
+												url='/assest/images/icon6.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
-											<p>Lorem Ipsum</p>
+											<p>Afro Braiding</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co7'>
 											<Image
-												url='/assest/images/icon8.png'
+												url='/assest/images/icon7.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
-											<p>Lorem Ipsum</p>
+											<p>Braids</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co8'>
 											<Image
-												url='/assest/images/icon9.png'
+												url='/assest/images/icon8.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
-											<p>Lorem Ipsum</p>
+											<p>Barbershop</p>
 										</Link>
 									</div>
 									<div className='round1'>
 										<Link className='round2 co9'>
 											<Image
-												url='/assest/images/icon1.png'
+												url='/assest/images/icon9.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
-											<p>Lorem Ipsum</p>
+											<p>Eyelashes</p>
 										</Link>
 									</div>
 									<Link href='' className='mor'>

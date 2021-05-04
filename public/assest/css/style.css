@@ -2330,6 +2330,10 @@ a.mor {
     text-align: center;
     box-shadow: 0 0 4px #ccc;
     display: inline-block;
+	border-left: 4px solid #494949;
+}
+.round2 p{
+	color:black
 }
 .round2 i {
     font-size: 20px;
