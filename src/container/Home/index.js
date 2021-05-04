@@ -73,8 +73,8 @@ const ToRated = () => {
 													<i className='fas fa-star' aria-hidden='true'></i>
 													<i className='fas fa-star' aria-hidden='true'></i>
 													<i className='fas fa-star' aria-hidden='true'></i>
-													<i className='fas fa-star' aria-hidden='true'></i>
-													233 Reviews
+													<i className='fas fa-star' aria-hidden='true'></i>0
+													Reviews
 												</p>
 											</div>
 										</span>
