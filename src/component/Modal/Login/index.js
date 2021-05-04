@@ -79,7 +79,7 @@ const Login = ({ openModel, onClose, isShow, onSuccess }) => {
 								onClick={onClose}
 								data-dismiss='modal'
 							>
-								<Image url='assest/images/cross.png' />
+								<Image url='/assest/images/cross.png' />
 							</button>
 							<div className='modal-body'>
 								<div className='row'>
@@ -140,7 +140,7 @@ const Login = ({ openModel, onClose, isShow, onSuccess }) => {
 																name='email'
 																onChange={handleInput}
 															/>
-															<Image url='assest/images/mail.png' />
+															<Image url='/assest/images/mail.png' />
 														</div>
 
 														<div className='form-group log_iocns'>
@@ -156,7 +156,7 @@ const Login = ({ openModel, onClose, isShow, onSuccess }) => {
 																name='password'
 																onChange={handleInput}
 															/>
-															<Image url='assest/images/lock.png' />
+															<Image url='/assest/images/lock.png' />
 														</div>
 
 														<div className='form-group text-right'>
@@ -198,7 +198,7 @@ const Login = ({ openModel, onClose, isShow, onSuccess }) => {
 									</div>
 									<div className='col-md-6'>
 										<div className='sing_image'>
-											<Image url='assest/images/about.png' />
+											<Image url='/assest/images/about.png' />
 										</div>
 									</div>
 								</div>

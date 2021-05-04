@@ -68,7 +68,7 @@ const OTP = ({ onClose, isShow, onSuccess }) => {
 					<div className='modal-dialog'>
 						<div className='modal-content'>
 							<button type='button' className='close' onClick={onClose}>
-								<Image url='assest/images/cross.png' />
+								<Image url='/assest/images/cross.png' />
 							</button>
 							<div className='modal-body'>
 								<div className='row'>

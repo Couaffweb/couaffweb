@@ -42,10 +42,10 @@ const ForgotPassword = ({ onClose, openModel, isShow }) => {
 					<div className='modal-dialog'>
 						<div className='modal-content'>
 							<button type='button' className='close' onClick={onClose}>
-								<Image url='assest/images/cross.png' />
+								<Image url='/assest/images/cross.png' />
 							</button>
 							<div className='modal-body'>
-								<Image className='forgot_logo' url='assest/images/logo.png' />
+								<Image className='forgot_logo' url='/assest/images/logo.png' />
 								<h2 className='head1'> Forgot Passowrd</h2>
 								<p className='head2'>
 									Please enter the register phone numberWe will send you otp
@@ -67,7 +67,7 @@ const ForgotPassword = ({ onClose, openModel, isShow }) => {
 												value={email}
 												onChange={({ target: { value } }) => setEmail(value)}
 											/>
-											<Image url='assest/images/call.png' />
+											<Image url='/assest/images/call.png' />
 										</div>
 
 										<div className='log_button'>

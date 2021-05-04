@@ -375,6 +375,7 @@ section{
     border: 0px solid #e6e1e1;
     border-radius: 4px;
     transition: all 0.3s ease;
+	cursor: pointer;
 }
 .team_text p b {
 	color: #414141;

@@ -84,7 +84,7 @@ const Header = () => {
 					<div className='container'>
 						<div className='row'>
 							<Link className='navbar-brand' to='/'>
-								<Image url='assest/images/logo.png' alt='logo' />
+								<Image url='/assest/images/logo.png' alt='logo' />
 							</Link>
 							<ul className='inr_drop'>
 								{isLogin && <Menu logoutUser={logoutUser} />}

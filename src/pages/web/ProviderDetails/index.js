@@ -32,21 +32,21 @@ const ProviderDetails = () => {
 									<div className='carousel-item active'>
 										<Image
 											className='d-block w-100'
-											url='assest/images/barber.PNG'
+											url='/assest/images/barber.PNG'
 											alt='First slide'
 										/>
 									</div>
 									<div className='carousel-item'>
 										<Image
 											className='d-block w-100'
-											url='assest/images/barber1.jpeg'
+											url='/assest/images/barber1.jpeg'
 											alt='Second slide'
 										/>
 									</div>
 									<div className='carousel-item'>
 										<Image
 											className='d-block w-100'
-											url='assest/images/barber2.jpeg'
+											url='/assest/images/barber2.jpeg'
 											alt='Third slide'
 										/>
 									</div>
@@ -368,32 +368,32 @@ const ProviderDetails = () => {
 							<div className='row'>
 								<div className='  col-md-4 col-sm-6 mb-3'>
 									<Link to='#'>
-										<Image url='assest/images/b.JPEG' />
+										<Image url='/assest/images/b.JPEG' />
 									</Link>
 								</div>
 								<div className='  col-md-4 col-sm-6 mb-3'>
 									<Link to='#'>
-										<Image url='assest/images/b2.JPEG' />
+										<Image url='/assest/images/b2.JPEG' />
 									</Link>
 								</div>
 								<div className='  col-md-4 col-sm-6 mb-3'>
 									<Link to='#'>
-										<Image url='assest/images/b1.JPEG' />
+										<Image url='/assest/images/b1.JPEG' />
 									</Link>
 								</div>
 								<div className='  col-md-4 col-sm-6 mb-3'>
 									<Link to='#'>
-										<Image url='assest/images/b5.JPEG' />
+										<Image url='/assest/images/b5.JPEG' />
 									</Link>
 								</div>
 								<div className='  col-md-4 col-sm-6 mb-3'>
 									<Link to='#'>
-										<Image url='assest/images/b4.JPEG' />
+										<Image url='/assest/images/b4.JPEG' />
 									</Link>
 								</div>
 								<div className='  col-md-4 col-sm-6 mb-3'>
 									<Link to='#'>
-										<Image url='assest/images/b.JPEG' />
+										<Image url='/assest/images/b.JPEG' />
 									</Link>
 								</div>
 							</div>
@@ -661,7 +661,7 @@ const ProviderDetails = () => {
 
 					<div className='col-md-4'>
 						<div className='mp'>
-							<Image url='assest/images/mp.png' />
+							<Image url='/assest/images/mp.png' />
 						</div>
 						<div className='aboutaa'>
 							<h4 className='title4'>About Us</h4>
@@ -677,17 +677,17 @@ const ProviderDetails = () => {
 							<ul>
 								<li>
 									<Link to=''>
-										<Image url='assest/assest/images/b2.JPEG' />
+										<Image url='/assest/assest/images/b2.JPEG' />
 									</Link>
 								</li>
 								<li>
 									<Link to=''>
-										<Image url='assest/assest/images/b2.JPEG' />
+										<Image url='/assest/assest/images/b2.JPEG' />
 									</Link>
 								</li>
 								<li>
 									<Link to=''>
-										<Image url='assest/assest/images/b2.JPEG' />
+										<Image url='/assest/assest/images/b2.JPEG' />
 									</Link>
 								</li>
 							</ul>

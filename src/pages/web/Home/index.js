@@ -6,7 +6,7 @@ const Home = () => {
 	return (
 		<>
 			<section className='baner'>
-				<Image url='assest/images/banner.png' />
+				<Image url='/assest/images/banner.png' />
 				<div className=' back_fruits'>
 					<div className='row'>
 						<div className='col-lg-12'>
@@ -45,7 +45,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co1'>
 											<Image
-												url='assest/images/icon1.png'
+												url='/assest/images/icon1.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -55,7 +55,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co2'>
 											<Image
-												url='assest/images/icon2.png'
+												url='/assest/images/icon2.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -65,7 +65,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co3'>
 											<Image
-												url='assest/images/icon3.png'
+												url='/assest/images/icon3.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -75,7 +75,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co4'>
 											<Image
-												url='assest/images/icon5.png'
+												url='/assest/images/icon5.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -85,7 +85,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co5'>
 											<Image
-												url='assest/images/icon6.png'
+												url='/assest/images/icon6.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -95,7 +95,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co6'>
 											<Image
-												url='assest/images/icon7.png'
+												url='/assest/images/icon7.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -105,7 +105,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co7'>
 											<Image
-												url='assest/images/icon8.png'
+												url='/assest/images/icon8.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -115,7 +115,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co8'>
 											<Image
-												url='assest/images/icon9.png'
+												url='/assest/images/icon9.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -125,7 +125,7 @@ const Home = () => {
 									<div className='round1'>
 										<Link className='round2 co9'>
 											<Image
-												url='assest/images/icon1.png'
+												url='/assest/images/icon1.png'
 												className='cat-image'
 												aria-hidden='true'
 											/>
@@ -163,17 +163,17 @@ const Home = () => {
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 								<div className='plys'>
 									<Link href=''>
-										<Image url='assest/images/g.png' />{' '}
+										<Image url='/assest/images/g.png' />{' '}
 									</Link>
 									<Link href=''>
-										<Image url='assest/images/f.png' />{' '}
+										<Image url='/assest/images/f.png' />{' '}
 									</Link>
 								</div>
 							</div>
 						</div>
 						<div className='col-md-6'>
 							<div className='dwonnlod11'>
-								<Image url='assest/images/mob.png' />
+								<Image url='/assest/images/mob.png' />
 							</div>
 						</div>
 					</div>

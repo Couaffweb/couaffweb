@@ -16,7 +16,7 @@ const SearchResult = () => {
 										<div className='all_team' style={{ padding: '0 10px' }}>
 											<Link to='#'>
 												<div className='team_img'>
-													<Image url='assest/images/top1.png' />
+													<Image url='/assest/images/top1.png' />
 													<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
 														<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
 															5.0
@@ -40,7 +40,7 @@ const SearchResult = () => {
 										<div className='all_team' style={{ padding: '0 10px' }}>
 											<Link href='#'>
 												<div className='team_img'>
-													<Image url='assest/images/top1.png' />
+													<Image url='/assest/images/top1.png' />
 													<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
 														<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
 															5.0
@@ -64,7 +64,7 @@ const SearchResult = () => {
 										<div className='all_team' style={{ padding: '0 10px' }}>
 											<Link href='#'>
 												<div className='team_img'>
-													<Image src='assest/images/top1.png' />
+													<Image src='/assest/images/top1.png' />
 													<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
 														<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
 															5.0
@@ -88,7 +88,7 @@ const SearchResult = () => {
 										<div className='all_team' style={{ padding: '0 10px' }}>
 											<Link to='#'>
 												<div className='team_img'>
-													<Image url='assest/images/top1.png' />
+													<Image url='/assest/images/top1.png' />
 													<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
 														<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
 															5.0
@@ -112,7 +112,7 @@ const SearchResult = () => {
 										<div className='all_team' style={{ padding: '0 10px' }}>
 											<Link href='#'>
 												<div className='team_img'>
-													<Image url='assest/images/top1.png' />
+													<Image url='/assest/images/top1.png' />
 													<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
 														<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
 															5.0
@@ -136,7 +136,7 @@ const SearchResult = () => {
 										<div className='all_team' style={{ padding: '0 10px' }}>
 											<Link href='#'>
 												<div className='team_img'>
-													<Image url='assest/images/top1.png' />
+													<Image url='/assest/images/top1.png' />
 													<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
 														<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
 															5.0
@@ -199,7 +199,7 @@ const SearchResult = () => {
 								<div className='row'>
 									<div className='col-md-3'>
 										<div className='list_img'>
-											<Image url='assest/images/l1.jpg' />
+											<Image url='/assest/images/l1.jpg' />
 											<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
 												<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
 													5.0
@@ -332,7 +332,7 @@ const SearchResult = () => {
 								<div className='row'>
 									<div className='col-md-3'>
 										<div className='list_img'>
-											<Image url='assest/images/l1.jpg' />
+											<Image url='/assest/images/l1.jpg' />
 											<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
 												<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
 													5.0

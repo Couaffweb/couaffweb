@@ -62,7 +62,7 @@ const ToRated = () => {
 											<div className='team_Image'>
 												<Image
 													className='top-rated '
-													url={profile || 'assest/images/top1.png'}
+													url={profile || '/assest/images/top1.png'}
 												/>
 											</div>
 											<div className='team_text'>

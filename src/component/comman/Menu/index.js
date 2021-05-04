@@ -30,7 +30,7 @@ const Menu = ({ logoutUser }) => {
 		<li className='nav-item dropdown'>
 			<span className='nav-link profile click-span' ref={wrapperRef}>
 				<Image
-					url={authInfo().profile || 'assest/images/user.png'}
+					url={authInfo().profile || '/assest/images/user.png'}
 					onClick={() => setShowProfile(!showProfile)}
 					alt='logo'
 				/>

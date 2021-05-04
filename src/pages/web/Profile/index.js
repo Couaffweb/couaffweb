@@ -29,7 +29,7 @@ const Profile = () => {
 	const [passwordFormError, setPasswordFormError] = useState(passwordForm);
 	const [loading, setLoading] = useState(false);
 	const [userPic, setUserPic] = useState(
-		userForm.profile || 'assest/images/pro.png'
+		userForm.profile || '/assest/images/pro.png'
 	);
 	const handleFile = ({ target: { name, files } }) => {
 		setUserForm({ ...userForm, [name]: files[0] });
@@ -232,7 +232,7 @@ const Profile = () => {
 													/>
 													<Image url={userPic} alt='profile' />
 													<label htmlFor='edit_pic'>
-														<Image url='assest/images/cam.png' />
+														<Image url='/assest/images/cam.png' />
 													</label>
 												</div>
 												<div className='edit_profile_data'>

@@ -101,7 +101,7 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 					<div className='modal-dialog'>
 						<div className='modal-content'>
 							<button type='button' className='close' onClick={onClose}>
-								<Image url='assest/images/cross.png' />
+								<Image url='/assest/images/cross.png' />
 							</button>
 							<div className='modal-body'>
 								<div className='row'>
@@ -230,7 +230,7 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 									</div>
 									<div className='col-md-6'>
 										<div className='sing_image'>
-											<Image src='assest/images/about.png' />
+											<Image src='/assest/images/about.png' />
 										</div>
 									</div>
 								</div>
