@@ -31,8 +31,9 @@ const Bookings = () => {
 			.then(() => {
 				if (status !== 1) {
 					myService.splice(index, 1);
-				} else if (status === 3) {
-					setStatus(3);
+					if (status === 3) {
+						setStatus(3);
+					}
 				} else {
 					myService[index].bookingInfo.status = 1;
 				}
