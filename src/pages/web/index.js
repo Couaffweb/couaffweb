@@ -20,6 +20,9 @@ const AddService = React.lazy(() =>
 const Services = React.lazy(() =>
 	import(/* webpackChunkName: "service" */ './Services')
 );
+const Bookings = React.lazy(() =>
+	import(/* webpackChunkName: "bookings" */ './Bookings')
+);
 const WebRoutes = () => (
 	<WebLayout>
 		<ReactNotification />
@@ -34,6 +37,7 @@ const WebRoutes = () => (
 					render={(props) => <SearchResult {...props} />}
 				/>
 				<AuthRoute path='/profile' component={Profile} />
+				<AuthRoute path='/bookings' component={Bookings} />
 				<AuthProviderRoute path='/add-service' component={AddService} />
 				<AuthProviderRoute path='/services' component={Services} />
 				<Route path='/' component={Home} />
