@@ -36,9 +36,9 @@ const BookingModal = ({ onClose, isShow, onSubmit }) => {
 	return (
 		<>
 			{isShow && (
-				<div className='modal fade first_modal first_modal1 in show show-popup animate__animated animate__zoomIn'>
+				<div className='modal fade first_modal first_modal1 in show show-popup'>
 					<div className='modal-dialog'>
-						<div className='modal-content'>
+						<div className='modal-content animate__animated animate__zoomIn'>
 							<button
 								type='button'
 								className='close'

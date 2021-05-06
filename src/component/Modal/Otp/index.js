@@ -63,10 +63,10 @@ const OTP = ({ onClose, isShow, onSuccess }) => {
 	return (
 		<>
 			{isShow && (
-				<div className='modal fade first_modal signup OTP show show-popup animate__animated animate__zoomIn'>
+				<div className='modal fade first_modal signup OTP show show-popup'>
 					<ReactLoading isShow={loading} />
 					<div className='modal-dialog'>
-						<div className='modal-content'>
+						<div className='modal-content animate__animated animate__zoomIn'>
 							<button type='button' className='close' onClick={onClose}>
 								<Image url='/assest/images/cross.png' />
 							</button>

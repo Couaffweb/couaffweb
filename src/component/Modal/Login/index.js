@@ -69,10 +69,10 @@ const Login = ({ openModel, onClose, isShow, onSuccess }) => {
 	return (
 		<>
 			{isShow && (
-				<div className='modal fade first_modal in show show-popup animate__animated animate__zoomIn'>
+				<div className='modal fade first_modal in show show-popup'>
 					<ReactLoading isShow={loading} />
 					<div className='modal-dialog'>
-						<div className='modal-content'>
+						<div className='modal-content animate__animated animate__zoomIn'>
 							<button
 								type='button'
 								className='close'

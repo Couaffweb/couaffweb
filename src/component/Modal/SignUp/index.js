@@ -93,13 +93,13 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 		<>
 			{isShow && (
 				<div
-					className='modal fade first_modal signup in show-popup show animate__animated animate__zoomIn'
+					className='modal fade first_modal signup in show-popup show'
 					id='signup-modal_1'
 					role='dialog'
 				>
 					<ReactLoading isShow={loading} />
 					<div className='modal-dialog'>
-						<div className='modal-content'>
+						<div className='modal-content animate__animated animate__zoomIn'>
 							<button type='button' className='close' onClick={onClose}>
 								<Image url='/assest/images/cross.png' />
 							</button>
