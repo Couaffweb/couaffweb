@@ -15,6 +15,7 @@ img {
 .show-popup {
 	display: block;
 	padding-right: 15px;
+	background-color: #01223770;
 }
 .click-span{
 	cursor: pointer;
@@ -34,6 +35,10 @@ img {
 	display: flex;
     justify-content: center;
     margin-top: 40px;
+}
+
+.booking-button{
+	margin-top: 30px;
 }
 .pac-container { 
     z-index: 10000 !important;

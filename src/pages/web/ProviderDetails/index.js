@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Image, MAP, BookService } from 'component';
 import { providerService } from './apis';
 const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
-	const [providerInfo, setProviderInfo] = useState(state.info);
+	const [providerInfo, setProviderInfo] = useState(state.info || {});
 	const [services, setServices] = useState([]);
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
@@ -241,7 +241,11 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 																		<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
 																			<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
 																				<div className='purify_3RwjUX8hSiee916iZITO25'>
-																					<BookService id={id} />
+																					<BookService
+																						services_ids={id}
+																						massagerId={providerInfo.id}
+																						price={price}
+																					/>
 																				</div>
 																			</div>
 																		</div>
