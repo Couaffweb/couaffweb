@@ -71,7 +71,7 @@ const Bookings = () => {
 											aria-controls='pills-home'
 											aria-selected='true'
 										>
-											Requested
+											{userType === 1 ? 'Requests' : 'Requested'}
 										</span>
 									</li>
 									<li className='nav-item'>
@@ -202,15 +202,19 @@ const Bookings = () => {
 												</div>
 												<div class='card-footer'>
 													{userType === 1 && status === 1 && (
-														<strong>Accepted</strong>
+														<strong className='d-flex justify-content-center text-success'>
+															Accepted
+														</strong>
 													)}
 													{userType === 0 && status === 0 && (
-														<strong>Await</strong>
+														<strong className='d-flex justify-content-center text-info'>
+															Await
+														</strong>
 													)}
 													{userType === 1 && status === 0 && (
 														<div className='d-flex justify-content-center'>
 															<button
-																className='btn btn-success'
+																className='btn btn-success mr-4'
 																onClick={() => updateBooking(id, 1, index)}
 																disabled={reactLoading}
 															>
