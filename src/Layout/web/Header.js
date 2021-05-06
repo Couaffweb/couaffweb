@@ -34,7 +34,6 @@ const Header = () => {
 			});
 			return () => {
 				window.removeEventListener('scroll', scrollCallBack);
-				window.removeEventListener('isLogin');
 			};
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps

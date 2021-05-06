@@ -64,9 +64,9 @@ const Menu = ({ logoutUser }) => {
 						<Link
 							className='dropdown-item'
 							onClick={() => setShowProfile(!showProfile)}
-							to='/orders'
+							to='/bookings'
 						>
-							Orders
+							{userType === 1 ? 'Booking request' : 'My Bookings'}
 						</Link>
 						<Link
 							className='dropdown-item click-span'
