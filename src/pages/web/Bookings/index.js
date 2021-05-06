@@ -31,6 +31,8 @@ const Bookings = () => {
 			.then(() => {
 				if (status !== 1) {
 					myService.splice(index, 1);
+				} else if (status === 3) {
+					setStatus(3);
 				} else {
 					myService[index].bookingInfo.status = 1;
 				}
@@ -199,6 +201,12 @@ const Bookings = () => {
 													</p>
 												</div>
 												<div class='card-footer'>
+													{userType === 1 && status === 1 && (
+														<strong>Accepted</strong>
+													)}
+													{userType === 0 && status === 0 && (
+														<strong>Await</strong>
+													)}
 													{userType === 1 && status === 0 && (
 														<div className='d-flex justify-content-center'>
 															<button
@@ -225,23 +233,21 @@ const Bookings = () => {
 																className='btn btn-info'
 																disabled={reactLoading}
 															>
-																complete Payment
+																Complete Payment
 															</button>
 														</div>
 													)}
-													{userType === 1 &&
-														status === 3 &&
-														paymentStatus === 1 && (
-															<div className='d-flex justify-content-center'>
-																<button
-																	onClick={() => updateBooking(id, 4, index)}
-																	className='btn btn-primary'
-																	disabled={reactLoading}
-																>
-																	Complete Booking
-																</button>
-															</div>
-														)}
+													{userType === 1 && status === 3 && (
+														<div className='d-flex justify-content-center'>
+															<button
+																onClick={() => updateBooking(id, 4, index)}
+																className='btn btn-primary'
+																disabled={reactLoading}
+															>
+																Complete Booking
+															</button>
+														</div>
+													)}
 												</div>
 											</div>
 										</div>

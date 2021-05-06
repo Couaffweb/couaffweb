@@ -151,10 +151,10 @@ const Header = () => {
 									>
 										<ul className='navbar-nav nav_custom'>
 											<li className='nav-item'>
-												<a className='nav-link active ' href='index.html'>
+												<Link className='nav-link active ' to='/'>
 													{' '}
 													Home{' '}
-												</a>
+												</Link>
 											</li>
 											<li className='nav-item'>
 												<a className='nav-link ' href='About.html'>
