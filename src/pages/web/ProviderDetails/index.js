@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
-import { Image } from 'component';
+import { Image, MAP, BookService } from 'component';
 import { providerService } from './apis';
 const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 	const [providerInfo, setProviderInfo] = useState(state.info);
@@ -212,8 +212,8 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 											</div>
 									  ))
 									: services.map(({ id, name, price, image }) => (
-											<div className='card'>
-												<div className='card-header' key={id}>
+											<div className='card' key={id}>
+												<div className='card-header'>
 													<span
 														className='card-link collapsed'
 														data-toggle='collapse'
@@ -241,13 +241,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 																		<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
 																			<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
 																				<div className='purify_3RwjUX8hSiee916iZITO25'>
-																					<button
-																						className='purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr'
-																						data-toggle='modal'
-																						data-target='#booking'
-																					>
-																						Book
-																					</button>
+																					<BookService id={id} />
 																				</div>
 																			</div>
 																		</div>
@@ -400,13 +394,13 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 												</div>
 											</div>
 											<div className='purify_AhojriMtGGWEpdGeIdJFE purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-												75 reviews
+												{0} reviews
 											</div>
 										</div>
 										<ul className='purify_12NB-KoHvfjsnMl6F-Ge7_'>
 											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
 												<div className='purify_2ZJEuBF5oxqLkYyHt7JO41 purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
-													5
+													0
 												</div>
 												<div
 													mode='default'
@@ -601,7 +595,12 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 
 					<div className='col-md-4'>
 						<div className='mp'>
-							<Image url='/assest/images/mp.png' />
+							<MAP
+								lat={providerInfo.latitude}
+								lng={providerInfo.lognitude}
+								name={providerInfo.name}
+								height='200px;'
+							/>
 						</div>
 						<div className='aboutaa'>
 							<h4 className='title4'>About Us</h4>

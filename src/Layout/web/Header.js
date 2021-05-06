@@ -20,6 +20,9 @@ const Header = () => {
 	const [isLogin, setIsLogin] = useState(isUserLogin());
 	useEffect(() => {
 		const header = document.getElementById('myHeader');
+		window.addEventListener('isLogin', () => {
+			setShowPopup({ ...showPopup, login: true });
+		});
 		if (header && !isHome) {
 			const sticky = header.offsetTop;
 			const scrollCallBack = window.addEventListener('scroll', () => {
@@ -31,8 +34,10 @@ const Header = () => {
 			});
 			return () => {
 				window.removeEventListener('scroll', scrollCallBack);
+				window.removeEventListener('isLogin');
 			};
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isHome]);
 
 	const logoutUser = () => {
