@@ -132,6 +132,7 @@ const Bookings = () => {
 												status,
 												paymentStatus,
 												serviceDetails = [],
+												date,
 											},
 										},
 										index
@@ -165,11 +166,11 @@ const Bookings = () => {
 														</p>
 														{userType === 1 && (
 															<div>
-																Name: <strong>{userInfo.name}</strong>
+																Name: <strong>{userInfo.userName}</strong>
 																<br />
-																Email: <strong>{userInfo.email}</strong>
+																Email: <strong>{userInfo.userEmail}</strong>
 																<br />
-																Phone: <strong>{userInfo.phone}</strong>
+																Phone: <strong>{userInfo.userPhone}</strong>
 																<br />
 															</div>
 														)}
@@ -187,6 +188,13 @@ const Bookings = () => {
 																Location:{' '}
 																<strong>{massagerInfo.massagerLocation}</strong>
 															</div>
+														)}
+														<hr className='line' />
+														{date && (
+															<>
+																<strong>Booking Date : </strong>
+																{new Date(date * 1000).toUTCString()}
+															</>
 														)}
 													</p>
 												</div>
