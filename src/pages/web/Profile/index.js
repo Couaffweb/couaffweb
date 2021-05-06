@@ -1,4 +1,5 @@
 import React, { useState, memo, useCallback } from 'react';
+import { Redirect } from 'react-router-dom';
 import {
 	Image,
 	Input,
@@ -16,10 +17,12 @@ import {
 	matchPassword,
 	alertMessage,
 	setUserInfo,
+	removeAuth,
 } from 'utils';
+import Alert from 'sweetalert';
 import { store as notify } from 'react-notifications-component';
 import { signUpForm, passwordForm } from './constants';
-import { updatePassword, updateProfile } from './apis';
+import { updatePassword, updateProfile, removeAccount } from './apis';
 const Profile = () => {
 	const userType = getUserType();
 	const [isEdit, setEdit] = useState(false);
@@ -27,6 +30,7 @@ const Profile = () => {
 	const [formError, setFormError] = useState(signUpForm[userType]);
 	const [changePassword, setChangePassword] = useState(passwordForm);
 	const [passwordFormError, setPasswordFormError] = useState(passwordForm);
+	const [redirect, setRedirect] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [userPic, setUserPic] = useState(
 		userForm.profile || '/assest/images/pro.png'
@@ -55,6 +59,37 @@ const Profile = () => {
 				break;
 		}
 		setFormError({ ...formError, ...errors });
+	};
+	const deleteAccount = () => {
+		Alert({
+			title: 'Are you sure?',
+			text: 'Once deleted, you will not be able recover account!',
+			icon: 'warning',
+			buttons: true,
+			dangerMode: true,
+		}).then((willDelete) => {
+			setLoading(true);
+			if (willDelete) {
+				removeAccount()
+					.then(() => {
+						removeAuth();
+						setRedirect(true);
+						Alert('Poof! Your imaginary file has been deleted!', {
+							icon: 'success',
+						});
+					})
+					.catch(({ message }) => {
+						notify.addNotification(
+							alertMessage({ title: 'error', message, type: 'danger' })
+						);
+					})
+					.finally(() => {
+						setLoading(false);
+					});
+			} else {
+				Alert('Your imaginary you is safe!');
+			}
+		});
 	};
 	const checkAllField = () => {
 		const errors = checkAllRequiredFieldsWithKey(
@@ -156,8 +191,10 @@ const Profile = () => {
 	};
 	return (
 		<>
+			{redirect && <Redirect to='/' />}
 			{!isEdit ? (
 				<section className='mender_details prfile animate__animated animate__zoomIn container-all'>
+					<ReactLoading isShow={loading} />
 					<div className='container'>
 						<div className='card'>
 							<div className='card-body'>
@@ -198,6 +235,15 @@ const Profile = () => {
 								</div>
 							</div>
 						</div>
+					</div>
+					<div className='delete-account'>
+						<button
+							type='button'
+							onClick={deleteAccount}
+							className='btn btn-danger et'
+						>
+							Delete Account
+						</button>
 					</div>
 				</section>
 			) : (

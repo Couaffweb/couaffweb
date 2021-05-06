@@ -8,3 +8,4 @@ export const logout = 'logout';
 export const topRated = 'top-rated';
 export const service = 'services';
 export const providerDetails = (id) => `massager/services/${id}`;
+export const deleteAccount = 'user-delete';

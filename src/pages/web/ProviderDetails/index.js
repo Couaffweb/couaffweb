@@ -347,7 +347,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 										Reviews
 									</h2>
 									<div className='purify_2X3G2Tw7_2Y0cGb7aNmwFg purify_Y1prq6mbHtuK9nWzbTqF9 purify_264bF_d7zMnGqSAM6litJ_'>
-										Reviews are no joke! Booksy values authentic reviews and
+										Reviews are no joke! Couaff values authentic reviews and
 										only verifies them if we know the reviewer has visited this
 										business.
 									</div>
@@ -571,7 +571,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 										</div>
 										<div className='purify_2hl-U9Yi40L_luyHbfOS6Z aa'>
 											<div className='purify_3NyHwUfUZdJ6aXn9_MQ7jS purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
-												Verified by Booksy
+												Verified by Couaff
 												<div
 													mode='default'
 													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_3LuOxxVZw04CKZgGLCicVW'

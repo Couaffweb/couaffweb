@@ -1,7 +1,6 @@
 import { create } from 'axios';
 import { apiURl as baseURL, getAuthKey } from 'utils';
 import { serverErrors } from './handleServerError';
-
 export const axios = create({
 	baseURL,
 	headers: {

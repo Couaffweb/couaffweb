@@ -30,6 +30,11 @@ img {
 .service-detail-image{
 	width:50%
 }
+.delete-account {
+	display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
 .pac-container { 
     z-index: 10000 !important;
 }

@@ -1,5 +1,9 @@
-import { POST } from 'utils';
-import { editProfile, changePassword } from 'constants/apiEndpoint';
+import { POST, Delete } from 'utils';
+import {
+	editProfile,
+	changePassword,
+	deleteAccount,
+} from 'constants/apiEndpoint';
 export const updateProfile = (data) => {
 	const formData = new FormData();
 	formData.append('name', data.name);
@@ -13,3 +17,4 @@ export const updateProfile = (data) => {
 	return POST(editProfile, formData);
 };
 export const updatePassword = (data) => POST(changePassword, data);
+export const removeAccount = () => Delete(deleteAccount);

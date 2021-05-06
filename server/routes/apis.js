@@ -30,6 +30,7 @@ router.post('/change-password', Apiresponse(user.changePassword));
 router.post('/forgot-password', Apiresponse(user.forgotPassword));
 router.post('/logout', Apiresponse(user.logout));
 router.post('/user/add-image', Apiresponse(user.addImage));
+router.delete('/user-delete', Apiresponse(user.removeAccount));
 router.delete(
 	'/user/remove-image/:imageId([0-9]+)',
 	Apiresponse(user.removeImage)

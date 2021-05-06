@@ -319,6 +319,15 @@ class UserController extends ApiController {
 			data: [],
 		};
 	}
+	async removeAccount(Request) {
+		const { user_id } = Request.body;
+		await DB.first(`delete from users where id = ${user_id}`);
+		await DB.first(`delete from services where userId = ${user_id}`);
+		return {
+			message: 'User Logout successfully',
+			data: [],
+		};
+	}
 	async favMassager({ body: { user_id, massagerId } }) {
 		const checkMessagerId = await DB.find('users', 'first', {
 			conditions: {

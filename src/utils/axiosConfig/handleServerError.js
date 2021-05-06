@@ -7,7 +7,7 @@ export const serverErrors = ({
 } = {}) => {
 	switch (true) {
 		case status === 401:
-			window.localStorage.removeItem('authUser');
+			window.localStorage.removeItem('authKey');
 			return window.location.replace('/');
 		case response && data && status >= 400 && status <= 499:
 			return returnErrorObject(
