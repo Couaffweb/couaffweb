@@ -1,8 +1,9 @@
 import React, { memo, useState, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { Image } from 'component';
+import { Image, ReactLoading } from 'component';
+import Alert from 'sweetalert';
 import { getUserType } from 'utils';
-import { getAllBookings } from './apis';
+import { getAllBookings, bookingStatusUpdate } from './apis';
 const Bookings = () => {
 	const userType = getUserType();
 	const [loading, setLoading] = useState(false);
@@ -17,7 +18,6 @@ const Bookings = () => {
 		setLoading(true);
 		getAllBookings(status)
 			.then(({ data: { bookings = [] } }) => {
-				console.log(bookings);
 				setMyService(bookings);
 			})
 			.catch()
@@ -27,15 +27,28 @@ const Bookings = () => {
 	};
 	const updateBooking = (id, status, index) => {
 		setReactLoading(true);
-		if (status !== 1) {
-			myService.splice(index, 1);
-		}
+		bookingStatusUpdate({ bookingId: id, status })
+			.then(() => {
+				if (status !== 1) {
+					myService.splice(index, 1);
+				} else {
+					myService[index].bookingInfo.status = 1;
+				}
+				Alert('Infomation', 'Information updated successfully', 'success');
+			})
+			.catch(({ message }) => {
+				Alert('Error', message, 'error');
+			})
+			.finally(() => {
+				setReactLoading(false);
+			});
 	};
 	return (
 		<div className='container container-all'>
 			<div className='row'>
 				<div className='container-fluid'>
 					<div className='row'>
+						<ReactLoading isShow={reactLoading} />
 						<div className='col-lg-12 mt-3'>
 							<h2>{userType === 1 ? 'Booking Request' : 'My Bookings'}</h2>
 							<div className='booking-tabs'>
@@ -178,7 +191,7 @@ const Bookings = () => {
 													</p>
 												</div>
 												<div class='card-footer'>
-													{userType === 1 && (status === 0 || status === 1) && (
+													{userType === 1 && status === 0 && (
 														<div className='d-flex justify-content-center'>
 															<button
 																className='btn btn-success'

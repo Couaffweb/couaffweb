@@ -96,13 +96,18 @@ const makeBookingArray = (data) => {
 	);
 };
 
-const checkBookingId = async (id, massagerId) => {
-	const bookingInfo = await DB.find('bookServices', 'first', {
+const checkBookingId = async (id, massagerId, userType) => {
+	const condition = {
 		conditions: {
 			id,
-			massagerId,
 		},
-	});
+	};
+	if (userType === 0) {
+		Object.assign(condition, { userId: massagerId });
+	} else {
+		Object.assign(condition, { massagerId });
+	}
+	const bookingInfo = await DB.find('bookServices', 'first', condition);
 	if (!bookingInfo) throw new ApiError('Invaild booking id', 422);
 	if (bookingInfo.serviceDetails) {
 		bookingInfo.serviceDetails = JSON.parse(bookingInfo.serviceDetails);
@@ -148,13 +153,20 @@ exports.bookService = async ({
 	};
 };
 
-exports.acceptBooking = async ({ body: { bookingId, status, user_id } }) => {
+exports.acceptBooking = async ({
+	body: {
+		bookingId,
+		status,
+		user_id,
+		userInfo: { userType },
+	},
+}) => {
 	await helper.vaildation({
 		bookingId,
 		status,
 	});
-	const bookingInfo = await checkBookingId(bookingId, user_id);
-	if ([1, 2, 3].indexOf(parseInt(status)) === -1)
+	const bookingInfo = await checkBookingId(bookingId, user_id, userType);
+	if ([1, 2, 3, 4].indexOf(parseInt(status)) === -1)
 		throw new ApiError('Please select the correct status type');
 	let message =
 		'Booking request accepted. Please do payment for further proccess';

@@ -11,3 +11,4 @@ export const providerDetails = (id) => `massager/services/${id}`;
 export const deleteAccount = 'user-delete';
 export const bookService = 'service/book';
 export const bookings = 'booked/services';
+export const bookingActions = 'service/action';
