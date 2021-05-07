@@ -12,3 +12,4 @@ export const deleteAccount = 'user-delete';
 export const bookService = 'service/book';
 export const bookings = 'booked/services';
 export const bookingActions = 'service/action';
+export const ratings = (id = 0) => `rating/${id}`;

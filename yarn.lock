@@ -9760,11 +9760,6 @@ react-notifications-component@^3.1.0:
   resolved "https://registry.yarnpkg.com/react-notifications-component/-/react-notifications-component-3.1.0.tgz#c676b7897a3fb10c554b69dba25fe2a9da6170e2"
   integrity sha512-qq+zgqVIa2zhlw+RvO2QSPk7xHLvZWTHl9VKRO56sMUef/UrcUTqOswL0DSJtRIpZYZhclquQUfDxD6H2w8aWA==
 
-react-otp-input@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/react-otp-input/-/react-otp-input-2.3.0.tgz#2457b47540e2de2751c3a3e14311452b0c8313a8"
-  integrity sha512-xzljlohVaPkUqO4H61x4r7KMRSq2ZPYFFZeSqqVXid+kJNL1UekSBP1xPafvI0eGNpus/PA1447jYZf2EJRY0A==
-
 react-rating-stars-component@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-rating-stars-component/-/react-rating-stars-component-2.2.0.tgz#e947c6a1f59278e6fea1098453f43cb15d077c14"

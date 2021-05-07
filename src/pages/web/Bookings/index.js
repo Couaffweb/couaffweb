@@ -1,15 +1,17 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useCallback, useState, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { Image, ReactLoading } from 'component';
+import { Image, ReactLoading, RatingModal } from 'component';
 import Alert from 'sweetalert';
 import { getUserType } from 'utils';
-import { getAllBookings, bookingStatusUpdate } from './apis';
+import { getAllBookings, bookingStatusUpdate, giveRatings } from './apis';
 const Bookings = () => {
 	const userType = getUserType();
 	const [loading, setLoading] = useState(false);
 	const [reactLoading, setReactLoading] = useState(false);
 	const [myService, setMyService] = useState([]);
 	const [status, setStatus] = useState('0,1');
+	const [showRatingPopup, setShowRatingPopUp] = useState(false);
+	const [localInfo, setLocalInfo] = useState({});
 	useEffect(() => {
 		getServicesData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,12 +48,31 @@ const Bookings = () => {
 				setReactLoading(false);
 			});
 	};
+	const handleRating = useCallback(
+		(value) => {
+			myService[value.index].bookingInfo.isReview = 1;
+			giveRatings(value)
+				.then(({ message }) => {
+					Alert('Success', message, 'success');
+				})
+				.catch(() => {});
+		},
+		[myService]
+	);
 	return (
 		<div className='container container-all'>
 			<div className='row'>
 				<div className='container-fluid'>
 					<div className='row'>
 						<ReactLoading isShow={reactLoading} />
+						{showRatingPopup && (
+							<RatingModal
+								isShow={showRatingPopup}
+								onSubmit={handleRating}
+								onClose={() => setShowRatingPopUp(false)}
+								{...localInfo}
+							/>
+						)}
 						<div className='col-lg-12 mt-3'>
 							<h2>{userType === 1 ? 'Booking Request' : 'My Bookings'}</h2>
 							<div className='booking-tabs'>
@@ -136,6 +157,8 @@ const Bookings = () => {
 												paymentStatus,
 												serviceDetails = [],
 												date,
+												isReview = 0,
+												massagerId,
 											},
 										},
 										index
@@ -239,6 +262,24 @@ const Bookings = () => {
 																disabled={reactLoading}
 															>
 																Complete Payment
+															</button>
+														</div>
+													)}
+													{userType === 0 && status === 4 && !isReview && (
+														<div className='d-flex justify-content-center'>
+															<button
+																onClick={() => {
+																	setLocalInfo({
+																		bookingId: id,
+																		index,
+																		massagerId,
+																	});
+																	showRatingPopup(true);
+																}}
+																className='btn btn-info'
+																disabled={reactLoading}
+															>
+																Give Rating
 															</button>
 														</div>
 													)}
