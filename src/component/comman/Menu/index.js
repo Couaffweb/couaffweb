@@ -59,6 +59,13 @@ const Menu = ({ logoutUser }) => {
 								>
 									My Services
 								</Link>
+								<Link
+									className='dropdown-item'
+									onClick={() => setShowProfile(!showProfile)}
+									to='/working-pics'
+								>
+									My work Images
+								</Link>
 							</>
 						)}
 						<Link
