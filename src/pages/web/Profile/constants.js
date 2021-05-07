@@ -8,7 +8,6 @@ export const signUpForm = {
 	0: {
 		name: '',
 		email: '',
-
 		phone: '',
 	},
 	1: {
@@ -18,5 +17,6 @@ export const signUpForm = {
 		location: '',
 		latitude: 0,
 		longitude: 0,
+		about_us: '',
 	},
 };

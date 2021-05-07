@@ -7,6 +7,7 @@ import {
 	Form,
 	ReactLoading,
 	GoogleAutoComplete,
+	Textarea,
 } from 'component';
 import {
 	checkRequiredField,
@@ -194,6 +195,21 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 																onChange={handleInput}
 															/>
 														</div>
+														{userType === 1 && (
+															<div className='form-group log_iocns'>
+																<label> About you</label>
+																<Textarea
+																	onBlur={checkError}
+																	onFocus={removeError}
+																	isError={formError.about_us}
+																	value={userForm.about_us}
+																	placeholder='About you'
+																	className='form-control'
+																	name='about_us'
+																	onChange={handleInput}
+																/>
+															</div>
+														)}
 														<div className='form-group log_iocns11'>
 															By clicking below you agree to{' '}
 															<Link to='/term-condition'>

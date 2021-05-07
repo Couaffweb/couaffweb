@@ -6,6 +6,7 @@ import {
 	Form,
 	GoogleAutoComplete,
 	ReactLoading,
+	Textarea,
 } from 'component';
 import {
 	checkRequiredField,
@@ -354,7 +355,7 @@ const Profile = () => {
 													{userType === 1 && (
 														<div className='form-group log_iocns'>
 															<label> About you</label>
-															<textarea
+															<Textarea
 																onBlur={checkError}
 																onFocus={removeError}
 																isError={formError.about_us}

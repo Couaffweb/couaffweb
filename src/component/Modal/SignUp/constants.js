@@ -13,5 +13,6 @@ export const signUpForm = {
 		location: '',
 		latitude: '0',
 		longitude: '0',
+		about_us: '',
 	},
 };
