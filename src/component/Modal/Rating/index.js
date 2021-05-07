@@ -45,7 +45,7 @@ const Rating = ({
 	return (
 		<>
 			{isShow && (
-				<div className='modal fade first_modal in show show-popup'>
+				<div className='modal fade first_modal first_modal1 in show show-popup'>
 					<div className='modal-dialog'>
 						<div className='modal-content animate__animated animate__zoomIn'>
 							<button
@@ -66,18 +66,20 @@ const Rating = ({
 												<div className='log-in_form'>
 													<Form onSubmit={handleSubmit}>
 														<div className='form-group log_iocns'>
-															<label> Date </label>
-															<ReactStars
-																count={5}
-																onChange={(value) =>
-																	handleInput({
-																		target: { name: 'rating', value },
-																	})
-																}
-																size={24}
-																activeColor='#ffd700'
-																value={ratingForm.rating}
-															/>
+															<label> Rating </label>
+															<div classNames='d-flex justify-content-center'>
+																<ReactStars
+																	count={5}
+																	onChange={(value) =>
+																		handleInput({
+																			target: { name: 'rating', value },
+																		})
+																	}
+																	size={30}
+																	activeColor='#ffd700'
+																	value={ratingForm.rating}
+																/>
+															</div>
 														</div>
 
 														<div className='form-group log_iocns'>
