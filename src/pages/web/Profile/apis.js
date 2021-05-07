@@ -12,6 +12,7 @@ export const updateProfile = (data) => {
 	formData.append('profile', data.profile);
 	if (parseInt(data.userType) === 1) {
 		formData.append('location', data.location);
+		formData.append('about_us', data.about_us);
 	}
 	formData.append('id', data.id);
 	return POST(editProfile, formData);

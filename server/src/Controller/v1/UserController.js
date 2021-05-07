@@ -210,6 +210,7 @@ class UserController extends ApiController {
 			phone: req.body.phone,
 			location: req.body.location,
 			workingExperience: req.body.workingExperience,
+			about_us: req.body.about_us,
 		};
 		const request_data = await super.vaildation(required, non_required);
 		if (request_data.working_hours) {

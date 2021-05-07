@@ -169,7 +169,9 @@ class ApiController {
 				'userType',
 				'workingExperience',
 				'working_hours',
+				'about_us',
 				`(select IFNULL(round(avg(rating),1),0) as rating from ratings where massagerId=users.id) as totalRating`,
+				`(select count(*) as totalReview from ratings where massagerId=users.id) as totalReview`,
 			],
 		});
 		if (result.profile) {

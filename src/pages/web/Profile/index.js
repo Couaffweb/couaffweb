@@ -223,6 +223,11 @@ const Profile = () => {
 													<strong>Address :</strong> {userForm.location}
 												</p>
 											)}
+											{userType === 1 && (
+												<p>
+													<strong>About you :</strong> {userForm.about_us}
+												</p>
+											)}
 											<button
 												type='button'
 												onClick={() => setEdit(!isEdit)}
@@ -346,6 +351,22 @@ const Profile = () => {
 															onChange={handleInput}
 														/>
 													</div>
+													{userType === 1 && (
+														<div className='form-group log_iocns'>
+															<label> About you</label>
+															<textarea
+																onBlur={checkError}
+																onFocus={removeError}
+																isError={formError.about_us}
+																value={userForm.about_us}
+																placeholder='Add information about you'
+																className='form-control'
+																name='about_us'
+																onAddress={selectLocation}
+																onChange={handleInput}
+															/>
+														</div>
+													)}
 												</div>
 												<div className='Explore_all_services'>
 													<button type='submit' className='btn btn-secondary'>

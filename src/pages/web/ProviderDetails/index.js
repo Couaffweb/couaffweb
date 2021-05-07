@@ -102,7 +102,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 									{providerInfo.totalRating}
 								</div>
 								<div className='purify_jYSVgwzoOcOfpiyrJrJSX purify_1MN_nIJ2zinOn-c26cMHl1'>
-									75 reviews
+									{providerInfo.totalReview} reviews
 								</div>
 							</div>
 						</div>
@@ -398,7 +398,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 												</div>
 											</div>
 											<div className='purify_AhojriMtGGWEpdGeIdJFE purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-												{0} reviews
+												{providerInfo.totalReview} reviews
 											</div>
 										</div>
 										<ul className='purify_12NB-KoHvfjsnMl6F-Ge7_'>
@@ -607,35 +607,9 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 							/>
 						</div>
 						<div className='aboutaa'>
-							<h4 className='title4'>About Us</h4>
-							<p>
-								http://Luxe Barber & Shave Lounge is an upscale experience,
-								where we blend old school charm and new school freshness to
-								truly groom our clients. Our barbershop is located in The Palmer
-								House, a Hilton
-							</p>
+							<h4 className='title4'>About Provider</h4>
+							<p>{providerInfo.about_us}</p>
 						</div>
-						<div className='Staffers'>
-							<h4 className='title4'>Staffers</h4>
-							<ul>
-								<li>
-									<Link to=''>
-										<Image url='/assest/images/b2.JPEG' />
-									</Link>
-								</li>
-								<li>
-									<Link to=''>
-										<Image url='/assest/images/b2.JPEG' />
-									</Link>
-								</li>
-								<li>
-									<Link to=''>
-										<Image url='/assest/images/b2.JPEG' />
-									</Link>
-								</li>
-							</ul>
-						</div>
-
 						<div className='Contactusiness'>
 							<h4 className='title4'>Contact & Business hours</h4>
 							<div className='con'>
