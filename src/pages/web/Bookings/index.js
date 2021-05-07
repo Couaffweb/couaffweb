@@ -274,7 +274,7 @@ const Bookings = () => {
 																		index,
 																		massagerId,
 																	});
-																	showRatingPopup(true);
+																	setShowRatingPopUp(true);
 																}}
 																className='btn btn-info'
 																disabled={reactLoading}
