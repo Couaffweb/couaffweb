@@ -64,7 +64,7 @@ const Menu = ({ logoutUser }) => {
 									onClick={() => setShowProfile(!showProfile)}
 									to='/working-pics'
 								>
-									My work Images
+									My Work Images
 								</Link>
 							</>
 						)}

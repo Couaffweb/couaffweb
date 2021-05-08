@@ -1,19 +1,41 @@
 import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
+import ReactStars from 'react-rating-stars-component';
 import { Link } from 'react-router-dom';
-import { Image, MAP, BookService } from 'component';
-import { providerService } from './apis';
+import { Image, MAP, BookService, Input } from 'component';
+import { useDebounce } from 'hooks';
+import { providerService, getRatings } from './apis';
 const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 	const [providerInfo, setProviderInfo] = useState(state.info || {});
 	const [services, setServices] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
+	const [search, setSearch] = useState('');
+	const [providerRating, setProviderRating] = useState({
+		loading: false,
+		userRatings: [],
+	});
+	const debouncedSearchTerm = useDebounce(search, 500);
 	useEffect(() => {
 		fetchData();
+		getProviderRating();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [params.id]);
-	const fetchData = () => {
-		providerService(params.id)
+	useEffect(() => {
+		fetchData(search);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [debouncedSearchTerm]);
+	const getProviderRating = () => {
+		setProviderRating({ ...providerRating, loading: true });
+		getRatings(params.id)
+			.then(({ data: { result = [] } }) => {
+				setProviderRating({ userRatings: result, loading: false });
+			})
+			.catch();
+	};
+	const fetchData = (search = '') => {
+		setLoading(true);
+		providerService(params.id, search)
 			.then(({ data: { services, massagerInfo } }) => {
 				setProviderInfo(massagerInfo);
 				setServices(services.result);
@@ -143,7 +165,9 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 									>
 										<div className='purify_2BjQo2x5lZgAUDswjCcd8_ purify_391_SXUf6kTrP1fzafcEJU purify_1bVBor9L1Nal5qAEUca1vS purify_2LKEPV2U5S_LcccI6-gGBp purify_1pt98fHyv-ddtlHlR7ZSoM'>
 											<div>
-												<input
+												<Input
+													onChange={({ target: { value } }) => setSearch(value)}
+													value={search}
 													type='search'
 													aria-label='Search for service'
 													placeholder='Search for service'
@@ -168,6 +192,9 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 
 						<div className='acordina'>
 							<div id='accordion'>
+								{!loading && services.length === 0 && (
+									<div className='error-text'>No service found</div>
+								)}
 								{loading
 									? [1, 2, 3, 4].map((val) => (
 											<div className='card' key={val}>
@@ -259,48 +286,6 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 									  ))}
 							</div>
 						</div>
-
-						<div className='venue'>
-							<h4>Venue Health and Safety Rules</h4>
-							<ul>
-								<li>
-									{' '}
-									<i className='fa fa-circle-o'></i> No walk-ins
-								</li>
-								<li>
-									{' '}
-									<i className='fa fa-circle-o'></i> Employees wear masks
-								</li>
-								<li>
-									{' '}
-									<i className='fa fa-circle-o'></i>Employees wear disposable
-									glovess
-								</li>
-								<li>
-									{' '}
-									<i className='fa fa-circle-o'></i>Employee temperature checks
-								</li>
-								<li>
-									{' '}
-									<i className='fa fa-circle-o'></i> No walk-ins
-								</li>
-								<li>
-									{' '}
-									<i className='fa fa-circle-o'></i> Employees wear masks
-								</li>
-								<li>
-									{' '}
-									<i className='fa fa-circle-o'></i>Employees wear disposable
-									glovess
-								</li>
-								<li>
-									{' '}
-									<i className='fa fa-circle-o'></i>Employee temperature checks
-								</li>
-							</ul>
-							<Link to='#'>Show me All Rules (15)</Link>
-						</div>
-
 						<div className='venue See '>
 							<h4>See Our Work</h4>
 							<div className='row'>
@@ -335,9 +320,8 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 									</Link>
 								</div>
 							</div>
-							<Link to='#'>See All</Link>
+							<hr />
 						</div>
-
 						<div className='revie'>
 							<div className='purify_3nJh_zj15_yteEfXQai8_E'>
 								<div className='purify_pbi2yi0foJGfKM4uiJhtE'>
@@ -360,51 +344,22 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 													/5
 												</span>
 											</div>
-											<div className='purify_1zyl9HeT-UsSF6ESnsKN9T'>
-												<div
-													mode='default'
-													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
-													style={{ width: '22px', height: '22px' }}
-												>
-													<i className='fa fa-star' aria-hidden='true'></i>
-												</div>
-												<div
-													mode='default'
-													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
-													style={{ width: '22px', height: '22px' }}
-												>
-													<i className='fa fa-star' aria-hidden='true'></i>
-												</div>
-												<div
-													mode='default'
-													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
-													style={{ width: '22px', height: '22px' }}
-												>
-													<i className='fa fa-star' aria-hidden='true'></i>
-												</div>
-												<div
-													mode='default'
-													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
-													style={{ width: '22px', height: '22px' }}
-												>
-													<i className='fa fa-star' aria-hidden='true'></i>
-												</div>
-												<div
-													mode='default'
-													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
-													style={{ width: '22px', height: '22px' }}
-												>
-													<i className='fa fa-star' aria-hidden='true'></i>
-												</div>
-											</div>
+											<ReactStars
+												edit={false}
+												count={5}
+												size={20}
+												activeColor='#ffd700'
+												value={providerInfo.totalRating}
+											/>
 											<div className='purify_AhojriMtGGWEpdGeIdJFE purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
 												{providerInfo.totalReview} reviews
 											</div>
 										</div>
+
 										<ul className='purify_12NB-KoHvfjsnMl6F-Ge7_'>
 											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
 												<div className='purify_2ZJEuBF5oxqLkYyHt7JO41 purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
-													0
+													5
 												</div>
 												<div
 													mode='default'
@@ -419,7 +374,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 													<i style={{ width: '100%' }}></i>
 												</div>
 												<div className='purify_21ErlnIB0xXKqFKFb8FKoD purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
-													74
+													{providerInfo.rating5}
 												</div>
 											</li>
 											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
@@ -439,7 +394,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 													<i style={{ width: '1.35%' }}></i>
 												</div>
 												<div className='purify_21ErlnIB0xXKqFKFb8FKoD purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
-													1
+													{providerInfo.rating4}
 												</div>
 											</li>
 											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
@@ -459,7 +414,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 													<i style={{ width: '0%' }}></i>
 												</div>
 												<div className='purify_21ErlnIB0xXKqFKFb8FKoD purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
-													0
+													{providerInfo.rating3}
 												</div>
 											</li>
 											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
@@ -479,7 +434,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 													<i style={{ width: '0%' }}></i>
 												</div>
 												<div className='purify_21ErlnIB0xXKqFKFb8FKoD purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
-													0
+													{providerInfo.rating2}
 												</div>
 											</li>
 											<li className='purify_gtpPOQvAFuzASPsZxiTm5'>
@@ -499,7 +454,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 													<i style={{ width: '0%' }}></i>
 												</div>
 												<div className='purify_21ErlnIB0xXKqFKFb8FKoD purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
-													0
+													{providerInfo.rating1}
 												</div>
 											</li>
 										</ul>
@@ -507,93 +462,104 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 								</div>
 							</div>
 						</div>
-
+						<hr />
 						<div className='review_section'>
-							<div className='purify_3dF0FXNcrAxxOjRAE0aOsu purify_2Ijx6eI6-t0edptgYNLYbX'>
-								<div className='purify_2ufga5qKONQ261zJK_WBBS'>
-									<div className='purify_1QoAiUxWDSBK8wGfk8vDGQ'>
-										<div className='purify_2hl-U9Yi40L_luyHbfOS6Z'>
-											<div
-												mode='default'
-												className='purify_3otKsdI9lS_D92PQCSq2Lw purify_1fSPSyzOPL3R-eoK09yuB5 purify_1W84gb1Ee49s0ToCV2uUbR'
-												style={{ width: '32px', height: '32px;' }}
-											>
-												<i className='fas fa-user'></i>
-											</div>
-										</div>
-										<div className='purify_2hl-U9Yi40L_luyHbfOS6Z'>
-											<h3>David P…</h3>
+							{providerRating.loading
+								? [1, 2, 3].map((val, index) => (
+										<div
+											className='purify_3dF0FXNcrAxxOjRAE0aOsu purify_2Ijx6eI6-t0edptgYNLYbX'
+											key={val}
+										>
+											<div className='purify_2ufga5qKONQ261zJK_WBBS'>
+												<div className='purify_1QoAiUxWDSBK8wGfk8vDGQ'>
+													<div className='purify_2hl-U9Yi40L_luyHbfOS6Z'>
+														<div
+															mode='default'
+															className='purify_3otKsdI9lS_D92PQCSq2Lw purify_1fSPSyzOPL3R-eoK09yuB5 purify_1W84gb1Ee49s0ToCV2uUbR'
+															style={{ width: '32px', height: '32px;' }}
+														>
+															<i className='fas fa-user'></i>
+														</div>
+													</div>
+													<div
+														className='purify_2hl-U9Yi40L_luyHbfOS6Z'
+														key={val}
+													>
+														<h3>
+															{' '}
+															<Skeleton width={20} />
+														</h3>
 
-											<div className='purify_1-RMaVd8UGDv2TOFLBbhSv purify_1k6778cT50NgxFa37XCsWy'>
-												<div className='purify_1zyl9HeT-UsSF6ESnsKN9T purify_3pVl4aKEjYb-8ZEiWIjbII purify_JAS0fqZBY3uAN-miq-119'>
-													<div
-														mode='default'
-														className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
-														style={{ width: '12px', height: '12px' }}
-													>
-														<i className='fa fa-star' aria-hidden='true'></i>
+														<div className='purify_1-RMaVd8UGDv2TOFLBbhSv purify_1k6778cT50NgxFa37XCsWy'>
+															<div className='purify_1zyl9HeT-UsSF6ESnsKN9T purify_3pVl4aKEjYb-8ZEiWIjbII purify_JAS0fqZBY3uAN-miq-119'>
+																<Skeleton width={30} />
+															</div>
+															<span className='purify_pQ62lLFvRLzEWf0pGOYxm purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
+																<Skeleton width={10} />
+															</span>
+														</div>
 													</div>
-													<div
-														mode='default'
-														className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
-														style={{ width: '12px', height: '12px' }}
-													>
-														<i className='fa fa-star' aria-hidden='true'></i>
+													{index === 0 && (
+														<div className='purify_2hl-U9Yi40L_luyHbfOS6Z aa'>
+															<div className='purify_3NyHwUfUZdJ6aXn9_MQ7jS purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
+																Verified by Couaff{' '}
+																<div
+																	mode='default'
+																	className='purify_3otKsdI9lS_D92PQCSq2Lw purify_3LuOxxVZw04CKZgGLCicVW'
+																	style={{ width: '14px', height: '14px' }}
+																>
+																	<i className='fas fa-check-circle'></i>
+																</div>
+															</div>
+															<span className='purify_27N-FGVWIzdUy-94Bzpcyj purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
+																Report{' '}
+																<div
+																	mode='default'
+																	className='purify_3otKsdI9lS_D92PQCSq2Lw purify_3LuOxxVZw04CKZgGLCicVW'
+																>
+																	<i
+																		className='fa fa-flag'
+																		aria-hidden='true'
+																	></i>
+																</div>
+															</span>
+														</div>
+													)}
+													<div className='purify_3HXjnceCTDjB4HA57RuGnk purify_Y1prq6mbHtuK9nWzbTqF9 purify_264bF_d7zMnGqSAM6litJ_'>
+														<Skeleton width={100} />
 													</div>
-													<div
-														mode='default'
-														className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
-														style={{ width: '12px', height: '12px' }}
-													>
-														<i className='fa fa-star' aria-hidden='true'></i>
-													</div>
-													<div
-														mode='default'
-														className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
-														style={{ width: '12px', height: '12px' }}
-													>
-														<i className='fa fa-star' aria-hidden='true'></i>
-													</div>
-													<div
-														mode='default'
-														className='purify_3otKsdI9lS_D92PQCSq2Lw purify_yeaH9YsvRFAO_BZLAHUp2'
-														style={{ width: '12px', height: '12px' }}
-													>
-														<i className='fa fa-star' aria-hidden='true'></i>
-													</div>
-												</div>{' '}
-												<span className='purify_pQ62lLFvRLzEWf0pGOYxm purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-													Apr 10, 2021
-												</span>
-											</div>
-										</div>
-										<div className='purify_2hl-U9Yi40L_luyHbfOS6Z aa'>
-											<div className='purify_3NyHwUfUZdJ6aXn9_MQ7jS purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
-												Verified by Couaff
-												<div
-													mode='default'
-													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_3LuOxxVZw04CKZgGLCicVW'
-													style={{ width: '14px', height: '14px' }}
-												>
-													<i className='fas fa-check-circle'></i>
 												</div>
 											</div>
-											<span className='purify_27N-FGVWIzdUy-94Bzpcyj purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
-												Report
-												<div
-													mode='default'
-													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_3LuOxxVZw04CKZgGLCicVW'
-												>
-													<i className='fa fa-flag' aria-hidden='true'></i>
-												</div>
-											</span>
 										</div>
-									</div>
-									<div className='purify_3HXjnceCTDjB4HA57RuGnk purify_Y1prq6mbHtuK9nWzbTqF9 purify_264bF_d7zMnGqSAM6litJ_'>
-										Excellent and professional service....
-									</div>
-								</div>
-							</div>
+								  ))
+								: providerRating.userRatings.map(
+										({ id, name, comment, rating, created, profile }) => (
+											<div>
+												<div className='review' key={id}>
+													<div className='user-image'>
+														<Image url={profile || '/assest/images/top1.png'} />
+													</div>
+													<div className='user-review'>
+														<h6>{name}</h6>
+														<ReactStars
+															edit={false}
+															count={5}
+															size={10}
+															activeColor='#ffd700'
+															value={rating}
+														/>
+													</div>
+
+													<div className='last-section'></div>
+												</div>
+												<div className='comment-div'>
+													<div>{comment}</div>
+													<div>{new Date(created * 1000).toUTCString()}</div>
+												</div>
+												<hr />
+											</div>
+										)
+								  )}
 						</div>
 					</div>
 
@@ -655,25 +621,8 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 						<p className='purify_IOiISPWJndtcc4r9FXmCL purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
 							Call {providerInfo.phone} , sundays are strictly appointment only.
 						</p>
-						<div className='sss'>
-							<h4 className='title4'> Social Media & Share</h4>
-							<div className='social'>
-								<Link href=''>
-									<i className='fab fa-facebook-f' aria-hidden='true'></i>
-								</Link>
-								<Link href=''>
-									<i className='fa fa-twitter' aria-hidden='true'></i>
-								</Link>
-								<Link href=''>
-									<i className='fa fa-instagram' aria-hidden='true'></i>
-								</Link>
-								<Link href=''>
-									<i className='fa fa-linkedin' aria-hidden='true'></i>
-								</Link>
-							</div>
-						</div>
 
-						<Link href='#' className='rp'>
+						<Link to='#' className='rp'>
 							Report <i className='fas fa-arrow-right'></i>
 						</Link>
 					</div>

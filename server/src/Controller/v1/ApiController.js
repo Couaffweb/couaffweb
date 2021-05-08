@@ -172,6 +172,11 @@ class ApiController {
 				'about_us',
 				`(select IFNULL(round(avg(rating),1),0) as rating from ratings where massagerId=users.id) as totalRating`,
 				`(select count(*) as totalReview from ratings where massagerId=users.id) as totalReview`,
+				`(select count(*) as totalReview from ratings where rating=1 and massagerId=users.id) as rating1`,
+				`(select count(*) as totalReview from ratings where rating=2 and massagerId=users.id) as rating2`,
+				`(select count(*) as totalReview from ratings where rating=3 and massagerId=users.id) as rating3`,
+				`(select count(*) as totalReview from ratings where rating=4 and massagerId=users.id) as rating4`,
+				`(select count(*) as totalReview from ratings where rating=5 and massagerId=users.id) as rating5`,
 			],
 		});
 		if (result.profile) {

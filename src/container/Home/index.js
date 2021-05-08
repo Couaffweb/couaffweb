@@ -1,8 +1,10 @@
 import React, { useState, useEffect, memo } from 'react';
 import { Image } from 'component';
+import ReactStars from 'react-rating-stars-component';
 import Skeleton from 'react-loading-skeleton';
 import { useHistory } from 'react-router-dom';
 import { TopRatedInfo } from './apis';
+
 const ToRated = () => {
 	const history = useHistory();
 	const [topMassgerRated, setTopMassgerRated] = useState([]);
@@ -56,12 +58,19 @@ const ToRated = () => {
 								</div>
 						  ))
 						: topMassgerRated.map(
-								({ profile, name, id, location, ...rest }) => (
+								({ profile, name, id, location, totalReview, ...rest }) => (
 									<div className='col-md-6 col-lg-3' key={id}>
 										<div className='all_team'>
 											<span
 												onClick={() =>
-													redirect(id, { profile, name, id, location, ...rest })
+													redirect(id, {
+														profile,
+														name,
+														id,
+														location,
+														totalReview,
+														...rest,
+													})
 												}
 											>
 												<div className='team_Image'>
@@ -74,12 +83,14 @@ const ToRated = () => {
 													<h2>{name}</h2>
 													<h1>{location}</h1>
 													<p>
-														<i className='fas fa-star' aria-hidden='true'></i>
-														<i className='fas fa-star' aria-hidden='true'></i>
-														<i className='fas fa-star' aria-hidden='true'></i>
-														<i className='fas fa-star' aria-hidden='true'></i>
-														<i className='fas fa-star' aria-hidden='true'></i>0
-														Reviews
+														<ReactStars
+															edit={false}
+															count={5}
+															size={12}
+															activeColor='#ffd700'
+															value={rest.totalRating}
+														/>
+														{totalReview} Reviews
 													</p>
 												</div>
 											</span>

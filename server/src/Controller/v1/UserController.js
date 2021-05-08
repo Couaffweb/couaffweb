@@ -545,6 +545,7 @@ class UserController extends ApiController {
 				'ratings.rating',
 				'ratings.comment',
 				'ratings.bookingId',
+				'ratings.created',
 			],
 			limit: [offset, limit],
 			order: ['ratings.id desc'],
