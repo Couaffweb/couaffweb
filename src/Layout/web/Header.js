@@ -9,7 +9,7 @@ import {
 	Menu,
 } from 'component';
 import { SearchBox } from 'container';
-import { isUserLogin, removeAuth } from 'utils';
+import { isUserLogin, removeAuth, getUserType } from 'utils';
 import { popUps } from './constants';
 const Header = () => {
 	const history = useHistory();
@@ -151,53 +151,92 @@ const Header = () => {
 									>
 										<ul className='navbar-nav nav_custom'>
 											<li className='nav-item'>
-												<Link className='nav-link active ' to='/'>
+												<Link
+													className={`nav-link ${
+														pathname === '/' ? 'active' : ''
+													}`}
+													to='/'
+												>
 													{' '}
 													Home{' '}
 												</Link>
 											</li>
-											<li className='nav-item'>
-												<a className='nav-link ' href='About.html'>
-													{' '}
+											<li>
+												<Link
+													className={`nav-link ${
+														pathname === '/about-us' ? 'active' : ''
+													}`}
+													to='/'
+												>
 													About Us
-												</a>
+												</Link>
 											</li>
+
+											{getUserType() === 1 && (
+												<li className='nav-item'>
+													<Link
+														className={`nav-link ${
+															pathname === '/services' ? 'active' : ''
+														}`}
+														to='/services'
+													>
+														Service
+													</Link>
+												</li>
+											)}
 											<li className='nav-item'>
-												<a className='nav-link ' href='Services.html'>
-													{' '}
-													Services
-												</a>
-											</li>
-											<li className='nav-item'>
-												<a className='nav-link ' href='Contact.html'>
-													{' '}
+												<Link
+													className={`nav-link ${
+														pathname === '/contact-us' ? 'active' : ''
+													}`}
+													to='/contact-us'
+												>
 													Contact Us
-												</a>
+												</Link>
 											</li>
 											<li className='nav-item'>
-												<a className='nav-link ' href='Contact.html'>
-													{' '}
-													Contact Us
-												</a>
+												<Link
+													className={`nav-link ${
+														pathname === '/term-conditions' ? 'active' : ''
+													}`}
+													to='/term-conditions'
+												>
+													Term&Conditions
+												</Link>
 											</li>
 											<li className='nav-item'>
-												<a className='nav-link ' href='Contact.html'>
-													{' '}
-													Contact Us
-												</a>
+												<Link
+													className={`nav-link ${
+														pathname === '/faq' ? 'active' : ''
+													}`}
+													to='/faq'
+												>
+													FAQ
+												</Link>
 											</li>
-											<li className='nav-item'>
-												<a className='nav-link ' href='Contact.html'>
-													{' '}
-													Contact Us
-												</a>
-											</li>
-											<li className='nav-item'>
-												<a className='nav-link ' href='Contact.html'>
-													{' '}
-													Contact Us
-												</a>
-											</li>
+											{isLogin && (
+												<li className='nav-item'>
+													<Link
+														className={`nav-link ${
+															pathname === '/profile' ? 'active' : ''
+														}`}
+														to='/profile'
+													>
+														Profile
+													</Link>
+												</li>
+											)}
+											{isLogin && (
+												<li className='nav-item'>
+													<Link
+														className='nav-link'
+														onClick={logoutUser}
+														to='#'
+													>
+														Logout
+													</Link>
+												</li>
+											)}
 										</ul>
 									</div>
 								</nav>

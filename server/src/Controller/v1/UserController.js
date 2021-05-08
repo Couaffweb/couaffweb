@@ -508,28 +508,28 @@ class UserController extends ApiController {
 	}) {
 		const offset = (page - 1) * limit;
 		let conditions = {
-			userId: massagerId,
-			'ratings.userType': userType,
+			massagerId,
+			//'ratings.userType': userType,
 		};
-		if (userType === 0) {
-			conditions = {
-				massagerId,
-				'ratings.userType': userType,
-			};
-		}
-		if (id === parseInt(massagerId)) {
-			if (userType === 1) {
-				conditions = {
-					massagerId,
-					'ratings.userType': userType,
-				};
-			} else {
-				conditions = {
-					userId: massagerId,
-					'ratings.userType': userType,
-				};
-			}
-		}
+		// if (userType === 0) {
+		// 	conditions = {
+		// 		massagerId,
+		// 		'ratings.userType': userType,
+		// 	};
+		// }
+		// if (id === parseInt(massagerId)) {
+		// 	if (userType === 1) {
+		// 		conditions = {
+		// 			massagerId,
+		// 			'ratings.userType': userType,
+		// 		};
+		// 	} else {
+		// 		conditions = {
+		// 			userId: massagerId,
+		// 			'ratings.userType': userType,
+		// 		};
+		// 	}
+		// }
 		const condition = {
 			conditions,
 			join: ['users on (users.id=ratings.userId)'],
