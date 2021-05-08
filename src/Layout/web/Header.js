@@ -166,7 +166,7 @@ const Header = () => {
 													className={`nav-link ${
 														pathname === '/about-us' ? 'active' : ''
 													}`}
-													to='/'
+													to='/about-us'
 												>
 													About Us
 												</Link>

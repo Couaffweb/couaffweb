@@ -4,6 +4,7 @@ import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import { WebLayout } from 'Layout';
 import { AuthRoute, AuthProviderRoute } from 'utils';
+import WebContent from './WebInfo';
 const Home = React.lazy(() => import(/* webpackChunkName: "home" */ './Home'));
 const Profile = React.lazy(() =>
 	import(/* webpackChunkName: "profile" */ './Profile')
@@ -44,6 +45,10 @@ const WebRoutes = () => (
 				<AuthProviderRoute path='/add-service' component={AddService} />
 				<AuthProviderRoute path='/services' component={Services} />
 				<AuthProviderRoute path='/working-pics' component={Images} />
+				<Route path='/about-us' component={WebContent} />
+				<Route path='/faq' component={WebContent} />
+				<Route path='/contact-us' component={WebContent} />
+				<Route path='/term-conditions' component={WebContent} />
 				<Route path='/' component={Home} />
 			</Switch>
 		</Suspense>
