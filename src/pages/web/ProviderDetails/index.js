@@ -288,37 +288,30 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 						</div>
 						<div className='venue See '>
 							<h4>See Our Work</h4>
+							<br />
 							<div className='row'>
-								<div className='  col-md-4 col-sm-6 mb-3'>
-									<Link to='#'>
-										<Image url='/assest/images/b.JPEG' />
-									</Link>
-								</div>
-								<div className='  col-md-4 col-sm-6 mb-3'>
-									<Link to='#'>
-										<Image url='/assest/images/b2.JPEG' />
-									</Link>
-								</div>
-								<div className='  col-md-4 col-sm-6 mb-3'>
-									<Link to='#'>
-										<Image url='/assest/images/b1.JPEG' />
-									</Link>
-								</div>
-								<div className='  col-md-4 col-sm-6 mb-3'>
-									<Link to='#'>
-										<Image url='/assest/images/b5.JPEG' />
-									</Link>
-								</div>
-								<div className='  col-md-4 col-sm-6 mb-3'>
-									<Link to='#'>
-										<Image url='/assest/images/b4.JPEG' />
-									</Link>
-								</div>
-								<div className='  col-md-4 col-sm-6 mb-3'>
-									<Link to='#'>
-										<Image url='/assest/images/b.JPEG' />
-									</Link>
-								</div>
+								{providerInfo?.userImages?.length === 0 && (
+									<h4 className='error-text'>No Image Provide By Provider</h4>
+								)}
+								{loading
+									? [1, 2, 3].map((id) => (
+											<div className='col-md-4 col-sm-6 mb-3' key={id}>
+												<Link to='#'>
+													<Skeleton height='181px' />
+												</Link>
+											</div>
+									  ))
+									: providerInfo?.userImages?.map(({ id, image }) => (
+											<div className='col-md-4 col-sm-6 mb-3' key={id}>
+												<Link to='#'>
+													<Image
+														className='provider-work-image'
+														url={image || '/assest/images/b.JPEG'}
+														height='181px'
+													/>
+												</Link>
+											</div>
+									  ))}
 							</div>
 							<hr />
 						</div>

@@ -588,6 +588,29 @@ class UserController extends ApiController {
 		};
 	}
 
+	async getImages({ query: { page = 1, limit = 20 }, body: { user_id } }) {
+		const offset = (page - 1) * limit;
+		const condition = {
+			conditions: {
+				user_id,
+			},
+			limit: [offset, limit],
+			orderBy: ['id desc'],
+		};
+		const allImages = await DB.find('user_images', 'all', condition);
+		return {
+			message: 'Provider Images',
+			data: {
+				pagination: await super.Paginations(
+					'user_images',
+					condition,
+					page,
+					limit
+				),
+				result: app.addUrl(allImages, 'image'),
+			},
+		};
+	}
 	mails({ email, phone, name, authorization_key, otp }) {
 		const mail = {
 			to: email,

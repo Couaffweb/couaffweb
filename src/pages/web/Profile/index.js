@@ -69,8 +69,8 @@ const Profile = () => {
 			buttons: true,
 			dangerMode: true,
 		}).then((willDelete) => {
-			setLoading(true);
 			if (willDelete) {
+				setLoading(true);
 				removeAccount()
 					.then(() => {
 						removeAuth();
