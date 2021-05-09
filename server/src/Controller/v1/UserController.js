@@ -488,7 +488,7 @@ class UserController extends ApiController {
 				`(select count(*) as totalReview from ratings where massagerId=users.id) as totalReview`,
 			],
 			limit: [offset, limit],
-			orderBy: ['totalRating desc'],
+			orderBy: ['id desc'],
 		};
 		const allMassager = await DB.find('users', 'all', condition);
 		return {
