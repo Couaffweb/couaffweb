@@ -21,6 +21,8 @@ const MAP = React.memo(
 				const map = new google.maps.Map(mapDiv, {
 					center: { lat, lng },
 					zoom,
+					draggable: false,
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
 				});
 				const infowindow = new google.maps.InfoWindow({
 					content: name,
