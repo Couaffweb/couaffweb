@@ -2,6 +2,7 @@ import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import ReactStars from 'react-rating-stars-component';
+import SimpleImageSlider from 'react-simple-image-slider';
 import { Link } from 'react-router-dom';
 import { Image, MAP, BookService, Input } from 'component';
 import { useDebounce } from 'hooks';
@@ -11,6 +12,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 	const [services, setServices] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [search, setSearch] = useState('');
+	const [silderImages, setSilderImages] = useState([]);
 	const [providerRating, setProviderRating] = useState({
 		loading: false,
 		userRatings: [],
@@ -31,7 +33,9 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 			.then(({ data: { result = [] } }) => {
 				setProviderRating({ userRatings: result, loading: false });
 			})
-			.catch();
+			.catch(() => {
+				setProviderRating({ ...providerRating, loading: false });
+			});
 	};
 	const fetchData = (search = '') => {
 		setLoading(true);
@@ -39,6 +43,15 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 			.then(({ data: { services, massagerInfo } }) => {
 				setProviderInfo(massagerInfo);
 				setServices(services.result);
+				const newImages = [
+					{
+						url: massagerInfo?.profile || '/assest/images/top1.png',
+					},
+				];
+				massagerInfo.userImages.forEach(({ image }) => {
+					newImages.push({ url: image });
+				});
+				setSilderImages(newImages);
 			})
 			.catch()
 			.finally(() => {
@@ -56,68 +69,28 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 								className='carousel slide'
 								data-ride='carousel'
 							>
-								<ol className='carousel-indicators'>
-									<li
-										data-target='#carouselExampleIndicators'
-										data-slide-to='0'
-										className='active'
-									></li>
-									<li
-										data-target='#carouselExampleIndicators'
-										data-slide-to='1'
-									></li>
-									<li
-										data-target='#carouselExampleIndicators'
-										data-slide-to='2'
-									></li>
-								</ol>
-								<div className='carousel-inner'>
-									<div className='carousel-item active'>
-										<Image
-											className='d-block w-100'
-											url={providerInfo.profile || '/assest/images/barber.PNG'}
-											alt='First slide'
-										/>
+								{silderImages.length > 0 ? (
+									<SimpleImageSlider
+										showBullets
+										showNavs
+										useGPURender
+										height={450}
+										width='100%'
+										images={silderImages}
+									/>
+								) : (
+									<div className='carousel-inner'>
+										<div className='carousel-item active'>
+											<Image
+												className='d-block w-100'
+												url={
+													providerInfo.profile || '/assest/images/barber.PNG'
+												}
+												alt='First slide'
+											/>
+										</div>
 									</div>
-									<div className='carousel-item'>
-										<Image
-											className='d-block w-100'
-											url='/assest/images/barber1.jpeg'
-											alt='Second slide'
-										/>
-									</div>
-									<div className='carousel-item'>
-										<Image
-											className='d-block w-100'
-											url='/assest/images/barber2.jpeg'
-											alt='Third slide'
-										/>
-									</div>
-								</div>
-								<Link
-									className='carousel-control-prev'
-									href='#carouselExampleIndicators'
-									role='button'
-									data-slide='prev'
-								>
-									<span
-										className='carousel-control-prev-icon'
-										aria-hidden='true'
-									></span>
-									<span className='sr-only'>Previous</span>
-								</Link>
-								<a
-									className='carousel-control-next'
-									href='#carouselExampleIndicators'
-									role='button'
-									data-slide='next'
-								>
-									<span
-										className='carousel-control-next-icon'
-										aria-hidden='true'
-									></span>
-									<span className='sr-only'>Next</span>
-								</a>
+								)}
 							</div>
 							<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
 								<div className='purify_VrJ1HpsSCzC1b15frK5BF purify_2nAP5JlzNYqAL942vfvJrt purify_1rkZUT9Q222TF1-HRC0qWi'>
@@ -144,7 +117,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 									className='purify_3otKsdI9lS_D92PQCSq2Lw purify_bcGIHqRb-2k3e0m3uLOFA purify_3dd8BXoCuu778Lk9arqv--'
 									style={{ width: '36px', height: '36px' }}
 								>
-									<Link href='#'>
+									<Link to='#'>
 										<i className='fa fa-heart' aria-hidden='true'></i>
 									</Link>
 								</div>
@@ -196,7 +169,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 									<div className='error-text'>No service found</div>
 								)}
 								{loading
-									? [1, 2, 3, 4].map((val) => (
+									? [77, 23, 35, 44].map((val) => (
 											<div className='card' key={val}>
 												<div className='card-header'>
 													<span
@@ -438,7 +411,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 													mode='default'
 													className='purify_3otKsdI9lS_D92PQCSq2Lw purify_URcswKAGNgCBtv_eN2-e'
 													icon='star'
-													style={{ width: '9px', height: '9px;' }}
+													style={{ width: '9px', height: '9px' }}
 												>
 													<i className='fa fa-star' aria-hidden='true'></i>
 												</div>
@@ -458,77 +431,38 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 						<hr />
 						<div className='review_section'>
 							{providerRating.loading
-								? [1, 2, 3].map((val, index) => (
-										<div
-											className='purify_3dF0FXNcrAxxOjRAE0aOsu purify_2Ijx6eI6-t0edptgYNLYbX'
-											key={val}
-										>
-											<div className='purify_2ufga5qKONQ261zJK_WBBS'>
-												<div className='purify_1QoAiUxWDSBK8wGfk8vDGQ'>
-													<div className='purify_2hl-U9Yi40L_luyHbfOS6Z'>
-														<div
-															mode='default'
-															className='purify_3otKsdI9lS_D92PQCSq2Lw purify_1fSPSyzOPL3R-eoK09yuB5 purify_1W84gb1Ee49s0ToCV2uUbR'
-															style={{ width: '32px', height: '32px;' }}
-														>
-															<i className='fas fa-user'></i>
-														</div>
-													</div>
-													<div
-														className='purify_2hl-U9Yi40L_luyHbfOS6Z'
-														key={val}
-													>
-														<h3>
-															{' '}
-															<Skeleton width={20} />
-														</h3>
+								? [11, 22, 33].map((val) => (
+										<div key={val}>
+											<div className='review'>
+												<div className='user-image'>
+													<Skeleton
+														height={30}
+														width={30}
+														circle
+														className='img-skel'
+													/>
+												</div>
+												<div className='user-review'>
+													<h6>
+														<Skeleton width='50px' />
+													</h6>
+													<Skeleton width='90px' />
+												</div>
 
-														<div className='purify_1-RMaVd8UGDv2TOFLBbhSv purify_1k6778cT50NgxFa37XCsWy'>
-															<div className='purify_1zyl9HeT-UsSF6ESnsKN9T purify_3pVl4aKEjYb-8ZEiWIjbII purify_JAS0fqZBY3uAN-miq-119'>
-																<Skeleton width={30} />
-															</div>
-															<span className='purify_pQ62lLFvRLzEWf0pGOYxm purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-																<Skeleton width={10} />
-															</span>
-														</div>
-													</div>
-													{index === 0 && (
-														<div className='purify_2hl-U9Yi40L_luyHbfOS6Z aa'>
-															<div className='purify_3NyHwUfUZdJ6aXn9_MQ7jS purify_3k1NnTEGO6TSunXbY5Zrkx purify_1MN_nIJ2zinOn-c26cMHl1'>
-																Verified by Couaff{' '}
-																<div
-																	mode='default'
-																	className='purify_3otKsdI9lS_D92PQCSq2Lw purify_3LuOxxVZw04CKZgGLCicVW'
-																	style={{ width: '14px', height: '14px' }}
-																>
-																	<i className='fas fa-check-circle'></i>
-																</div>
-															</div>
-															<span className='purify_27N-FGVWIzdUy-94Bzpcyj purify_Y1prq6mbHtuK9nWzbTqF9 purify_1MN_nIJ2zinOn-c26cMHl1'>
-																Report{' '}
-																<div
-																	mode='default'
-																	className='purify_3otKsdI9lS_D92PQCSq2Lw purify_3LuOxxVZw04CKZgGLCicVW'
-																>
-																	<i
-																		className='fa fa-flag'
-																		aria-hidden='true'
-																	></i>
-																</div>
-															</span>
-														</div>
-													)}
-													<div className='purify_3HXjnceCTDjB4HA57RuGnk purify_Y1prq6mbHtuK9nWzbTqF9 purify_264bF_d7zMnGqSAM6litJ_'>
-														<Skeleton width={100} />
-													</div>
+												<div className='last-section'></div>
+											</div>
+											<div className='comment-div'>
+												<div>
+													<Skeleton width='290px' />
 												</div>
 											</div>
+											<hr />
 										</div>
 								  ))
 								: providerRating.userRatings.map(
 										({ id, name, comment, rating, created, profile }) => (
-											<div>
-												<div className='review' key={id}>
+											<div key={id}>
+												<div className='review'>
 													<div className='user-image'>
 														<Image url={profile || '/assest/images/top1.png'} />
 													</div>
@@ -559,10 +493,10 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 					<div className='col-md-4'>
 						<div className='mp'>
 							<MAP
-								lat={providerInfo.latitude}
-								lng={providerInfo.lognitude}
+								lat={providerInfo.latitude || 0}
+								lng={providerInfo.longitude || 0}
 								name={providerInfo.name}
-								height='200px;'
+								heigth='160px'
 							/>
 						</div>
 						<div className='aboutaa'>

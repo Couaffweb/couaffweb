@@ -162,6 +162,9 @@ img {
     border: 1px solid #d4caca;
     margin: 15px 10px 8px 0;
 }
+.user-image .img-skel {
+    margin: 15px 10px 8px 0;
+}
 .user-review {
 	display: flex;
   flex-direction: column;
@@ -2764,6 +2767,7 @@ section.baner.inn.fx + .cart1 {
 .purify_L83AzFuVDcsMUGu-iworl {
     display: flex;
     align-items: center;
+		margin-top: 30px;
 }
 .purify_1NZ8fvAg5iM_eHIylYQgHS {
     display: flex;

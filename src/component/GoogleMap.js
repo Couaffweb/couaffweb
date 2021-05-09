@@ -1,52 +1,62 @@
-import React, { memo } from 'react';
-import ProTypes from 'prop-types';
-import GoogleMapReact from 'google-map-react';
-const AnyReactComponent = ({ text }) => (
-	<div
-		style={{
-			color: 'white',
-			background: 'grey',
-			padding: '15px 10px',
-			display: 'inline-flex',
-			textAlign: 'center',
-			alignItems: 'center',
-			justifyContent: 'center',
-			borderRadius: '100%',
-			transform: 'translate(-50%, -50%)',
-		}}
-	>
-		{text}
-	</div>
+import React, { memo, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+const MAP = React.memo(
+	({
+		lat,
+		lng,
+		zoom = 13,
+		className = '',
+		width = '100%',
+		heigth = '100px',
+		name,
+	}) => {
+		const mapRef = useRef(null);
+		useEffect(() => {
+			const initMap = () => {
+				const { google } = window;
+				if (!google) {
+					return alert('google not define');
+				}
+				const mapDiv = mapRef.current;
+				const map = new google.maps.Map(mapDiv, {
+					center: { lat, lng },
+					zoom,
+				});
+				const infowindow = new google.maps.InfoWindow({
+					content: name,
+				});
+				const marker = new google.maps.Marker({
+					position: new google.maps.LatLng(lat, lng),
+					map,
+					title: name,
+					draggable: false,
+					label: name,
+				});
+				marker.addListener('click', () => {
+					infowindow.open(map, marker);
+				});
+			};
+
+			initMap();
+		}, [lat, lng, zoom, name]);
+		return (
+			<div
+				className={className}
+				ref={mapRef}
+				style={{
+					height: heigth,
+					width,
+				}}
+			/>
+		);
+	}
 );
-const MAP = ({
-	lat = 0,
-	lng = 0,
-	zoom = 11,
-	name = 'here',
-	height = '100vh',
-	width = '100%',
-}) => (
-	<div style={{ height, width }}>
-		<GoogleMapReact
-			defaultCenter={{
-				center: {
-					lat,
-					lng,
-				},
-			}}
-			defaultZoom={zoom}
-		>
-			<AnyReactComponent lat={lat} lng={lng} text={name} />
-		</GoogleMapReact>
-	</div>
-);
-MAP.propType = {
-	lat: ProTypes.number,
-	lng: ProTypes.number,
-	zoom: ProTypes.number,
-	name: ProTypes.string,
-	height: ProTypes.string,
-	width: ProTypes.string,
+
+MAP.proptypes = {
+	lat: PropTypes.any.isRequired,
+	lng: PropTypes.any.isRequired,
+	zoom: PropTypes.number,
+	className: PropTypes.string,
 };
 
 export default memo(MAP);
