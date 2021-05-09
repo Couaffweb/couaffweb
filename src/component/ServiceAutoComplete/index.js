@@ -49,9 +49,9 @@ const ServiceAutoComplete = ({ onSelectService }) => {
 								setShowList(false);
 								onSelectService({ id, name, ...rest });
 							}}
-							className='list-group-item'
+							className='list-group-item pac-item-query pac-item'
 						>
-							{name}
+							<i className='pac-icon' aria-hidden='true'></i> {name}
 						</li>
 					))}
 				</ul>
