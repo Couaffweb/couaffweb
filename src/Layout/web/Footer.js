@@ -56,20 +56,10 @@ const Footer = () => (
 					</ul>
 				</div>
 				<div className='col-lg-3 col-sm-6'>
-					<h2 className='footer_hnd'>Our Service</h2>
-
+					<h2 className='footer_hnd'>Contact with us </h2>
 					<ul className='cont'>
 						<li>
-							<Link to=''>Home</Link>
-						</li>
-						<li>
-							<Link to=''>About Us</Link>
-						</li>
-						<li>
-							<Link to=''>Services</Link>
-						</li>
-						<li>
-							<Link to=''>Lorem</Link>
+							<Link to='/contact-us'>Contact Us</Link>
 						</li>
 					</ul>
 				</div>
@@ -78,16 +68,16 @@ const Footer = () => (
 
 					<ul className='cont'>
 						<li>
-							<Link to=''>Home</Link>
+							<Link to='/'>Home</Link>
 						</li>
 						<li>
-							<Link to=''>About Us</Link>
+							<Link to='/about-us'>About Us</Link>
 						</li>
 						<li>
-							<Link to=''>Services</Link>
+							<Link to='/faq'>FAQ</Link>
 						</li>
 						<li>
-							<Link to=''>Lorem</Link>
+							<Link to='/term-conditions'>Term & condition</Link>
 						</li>
 					</ul>
 				</div>

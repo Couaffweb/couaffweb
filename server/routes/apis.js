@@ -55,6 +55,7 @@ router.put(
 	Apiresponse(ServiceController.editService)
 );
 router.get('/user/servcies', Apiresponse(ServiceController.userAddServices));
+router.get('/service-search', Apiresponse(ServiceController.searchServices));
 router.get(
 	'/services/massager/:ServiceId([0-9]+)',
 	Apiresponse(ServiceController.getServicesByServiceId)

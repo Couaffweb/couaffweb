@@ -1,9 +1,18 @@
 import React, { memo, useState, useCallback } from 'react';
-import { GoogleAutoComplete } from 'component';
+import { useHistory } from 'react-router-dom';
+import { GoogleAutoComplete, ServiceAutoComplete } from 'component';
 const SearchBox = ({ onSelectAddress }) => {
+	const history = useHistory();
 	const [address, setAddress] = useState('');
 	// eslint-disable-next-line no-unused-vars
 	const [addressDetails, setAddressDetails] = useState({});
+	const [serviceDetails, setServiceDetails] = useState({});
+	const startSearch = () => {
+		history.push('/search-details', {
+			...serviceDetails,
+			...addressDetails,
+		});
+	};
 	const selectAddress = useCallback(
 		(val) => {
 			setAddressDetails({ ...val });
@@ -14,13 +23,7 @@ const SearchBox = ({ onSelectAddress }) => {
 	);
 	return (
 		<form>
-			<div className='left_input'>
-				<input className='one' type='text' placeholder=' Search Services' />
-				<button>
-					{' '}
-					<i className='fa fa-search' aria-hidden='true'></i>{' '}
-				</button>
-			</div>
+			<ServiceAutoComplete onSelectService={(val) => setServiceDetails(val)} />
 			<div className='left_input left_input1'>
 				<GoogleAutoComplete
 					value={address}
@@ -31,7 +34,7 @@ const SearchBox = ({ onSelectAddress }) => {
 					placeholder=' Enter City and Zip Code'
 				/>
 				<i className='fa fa-map-marker' aria-hidden='true'></i>
-				<button>
+				<button onClick={() => startSearch()}>
 					{' '}
 					<i className='fa fa-paper-plane' aria-hidden='true'></i>{' '}
 				</button>

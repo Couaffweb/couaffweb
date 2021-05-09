@@ -157,6 +157,23 @@ module.exports = {
 			data: result,
 		};
 	},
+	searchServices: async ({ query: { limit = 20, page = 1, search = '' } }) => {
+		if (!search) {
+			throw new ApiError('Search field is required', 400);
+		}
+		const offset = (page - 1) * limit;
+		const conditions = ` and name like '%${search}%' `;
+		const query = `select services.* from services join user_services on (user_services.serviceId = services.id) where  services.status=1 ${conditions} order by id desc limit ${offset}, ${limit}`;
+		const total = `select count(*) as total from services join user_services on (user_services.serviceId = services.id) where services.status=1 ${conditions}`;
+		const data = {
+			pagination: await apis.QueryPaginations(total, offset, limit),
+			result: app.addUrl(await DB.first(query), 'image'),
+		};
+		return {
+			message: 'search listing',
+			data,
+		};
+	},
 	getServicesByServiceId: async ({
 		body: { user_id },
 		params: { ServiceId },
