@@ -12,6 +12,13 @@ a:hover, a:focus {
 img {
 	transition: all 0.3s ease;
 }
+.btn-primary {
+	background: #000 !important;
+	border-color: #000 !important;
+}
+.card-img-top{
+	height: 250px;
+}
 /** google autocomplete **/
 
 .pac-container {
@@ -139,6 +146,7 @@ img {
 }
 .btn-info{
 	background-color: #051e4a !important;
+	border-style: #051e4a !important;
 }
 .provider-work-image{
 	object-fit: cover;

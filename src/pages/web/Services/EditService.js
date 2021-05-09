@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 import { ReactLoading, AddServiceForm } from 'component';
 import {
 	checkRequiredField,
@@ -7,12 +8,17 @@ import {
 } from 'utils';
 import { store as notify } from 'react-notifications-component';
 import { serviceValue } from './constants';
-import { addService } from './apis';
-const AddService = () => {
-	const [service, setService] = useState(serviceValue);
-	const [serviceImage, setServiceImage] = useState();
+import { updateService } from './apis';
+const EditService = ({ location }) => {
+	const { serviceDetails } = location.state;
+	const history = useHistory();
+	const [service, setService] = useState({ ...serviceDetails });
+	const [serviceImage, setServiceImage] = useState(serviceDetails.image);
 	const [formError, setFormError] = useState(serviceValue);
 	const [loading, setLoading] = useState(false);
+	if (!location.state) {
+		return <Redirect to='/services' />;
+	}
 	const handleFile = ({ target: { name, files } }) => {
 		setService({ ...service, [name]: files[0] });
 		setServiceImage(URL.createObjectURL(files[0]));
@@ -35,7 +41,7 @@ const AddService = () => {
 		event.preventDefault();
 		if (!checkAllField()) {
 			setLoading(true);
-			addService(service)
+			updateService(service)
 				.then(({ message }) => {
 					notify.addNotification(
 						alertMessage({
@@ -43,8 +49,7 @@ const AddService = () => {
 							message,
 						})
 					);
-					setService({ ...serviceValue });
-					setServiceImage('');
+					history.push('/services');
 				})
 				.catch(({ message }) => {
 					notify.addNotification(
@@ -64,7 +69,7 @@ const AddService = () => {
 					<div className='card'>
 						<div className='card-body'>
 							<h1 className='d-flex justify-content-center'>
-								+ Add your Service
+								Update Service ({service.name})
 							</h1>
 							<hr className='line' />
 							<div className='row'>
@@ -78,6 +83,7 @@ const AddService = () => {
 										handleInput={handleInput}
 										handleSubmit={handleSubmit}
 										serviceImage={serviceImage}
+										isEdit
 									/>
 								</div>
 							</div>
@@ -89,4 +95,4 @@ const AddService = () => {
 	);
 };
 
-export default memo(AddService);
+export default memo(EditService);

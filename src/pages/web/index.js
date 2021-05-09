@@ -18,6 +18,9 @@ const SearchResult = React.lazy(() =>
 const AddService = React.lazy(() =>
 	import(/* webpackChunkName: "add-service" */ './Services/AddService')
 );
+const UpdateService = React.lazy(() =>
+	import(/* webpackChunkName: "edit-service" */ './Services/EditService')
+);
 const Services = React.lazy(() =>
 	import(/* webpackChunkName: "service" */ './Services')
 );
@@ -43,6 +46,7 @@ const WebRoutes = () => (
 				<AuthRoute path='/profile' component={Profile} />
 				<AuthRoute path='/bookings' component={Bookings} />
 				<AuthProviderRoute path='/add-service' component={AddService} />
+				<AuthProviderRoute path='/edit-service' component={UpdateService} />
 				<AuthProviderRoute path='/services' component={Services} />
 				<AuthProviderRoute path='/working-pics' component={Images} />
 				<Route path='/about-us' component={WebContent} />

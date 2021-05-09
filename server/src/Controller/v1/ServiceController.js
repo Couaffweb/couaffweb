@@ -89,6 +89,9 @@ module.exports = {
 		await DB.first(
 			`delete from services where id=${serviceId} and userId=${user_id}`
 		);
+		console.log(
+			`delete from services where id=${serviceId} and userId=${user_id}`
+		);
 		return {
 			message: 'Remove the service successfully',
 			data: [],

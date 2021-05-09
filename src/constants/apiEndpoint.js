@@ -17,3 +17,5 @@ export const addImageProvider = 'user/add-image';
 export const removeProviderImage = (id) => `user/remove-image/${id}`;
 export const getProviderImages = 'user/images';
 export const searchService = 'service-search';
+export const removeService = (id) => `remove-service/${id}`;
+export const editService = (id) => `edit-service/${id}`;
