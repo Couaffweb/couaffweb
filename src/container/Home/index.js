@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo, useRef } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Image, HorizontalImageScoller } from 'component';
 import ReactStars from 'react-rating-stars-component';
 import Skeleton from 'react-loading-skeleton';
@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 import { TopRatedInfo } from './apis';
 
 const ToRated = () => {
-	const devRef = useRef();
 	const history = useHistory();
 	const [topMassgerRated, setTopMassgerRated] = useState([]);
 	const [loading, setLoading] = useState(true);
