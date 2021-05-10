@@ -219,7 +219,7 @@ exports.getBookings = async ({
 			'massager.working_hours as massagerWorkingHour',
 			'massager.workingExperience as massagerWorkingExperience',
 			`(select round(avg(rating),1) as rating from ratings where massagerId=massager.id) as totalRating`,
-			`(select count(*) as rating from ratings where bookingId=bookServices.id and userType = ${userType}) as isReviewed`,
+			`(select count(*) as rating from ratings where bookingId=bookServices.id and userId = ${id}) as isReview`,
 			'users.name as userName',
 			'users.email as userEmail',
 			'users.phone as userPhone',
