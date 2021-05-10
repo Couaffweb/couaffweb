@@ -125,6 +125,7 @@ class ApiController {
 		delete condition.limit;
 		delete condition.orderBy;
 		const totalRecord = await DB.find(table, 'count', condition);
+		console.log(totalRecord, 'as');
 		const totalResult =
 			totalRecord && totalRecord[0] && totalRecord[0].totalRecord
 				? totalRecord[0].totalRecord
