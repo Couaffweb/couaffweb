@@ -163,7 +163,7 @@ const SearchResult = ({
 												<div className='col-md-3'>
 													<Link
 														to={{
-															pathname: `provider-details/${providerInfo.id}`,
+															pathname: `/provider-details/${providerInfo.id}`,
 															state: { info: providerInfo },
 														}}
 													>
@@ -189,7 +189,7 @@ const SearchResult = ({
 													<div className='top_hnd'>
 														<Link
 															to={{
-																pathname: `provider-details/${providerInfo.id}`,
+																pathname: `/provider-details/${providerInfo.id}`,
 																state: { info: providerInfo },
 															}}
 														>
