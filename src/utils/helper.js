@@ -15,6 +15,12 @@ export const isUserLogin = () => {
 	}
 	return false;
 };
+export const parseUrl = (queryParameter, key = '') => {
+	if (key) {
+		return new URLSearchParams(queryParameter).get(key);
+	}
+	return new URLSearchParams(queryParameter);
+};
 
 export const authInfo = () => {
 	let info = window.localStorage.getItem('authUser');
