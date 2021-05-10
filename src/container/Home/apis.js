@@ -1,3 +1,3 @@
 import { GET } from 'utils';
 import { topRated } from 'constants/apiEndpoint';
-export const TopRatedInfo = () => GET(topRated, { limit: 4 });
+export const TopRatedInfo = () => GET(topRated, { limit: 20 });

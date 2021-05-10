@@ -587,7 +587,50 @@ section{
     border: 0px solid #e6e1e1;
     border-radius: 4px;
     transition: all 0.3s ease;
+		cursor: pointer;
+}
+.image-container{
+  display: flex;
+  overflow-x: auto;
+	-ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+	animation: floatText 25s infinite linear;
+}
+
+.image-silde-main{
+	position: relative;
+}
+.prev{
+	background: white;
+    position: absolute;
+    z-index: 99;
+    top: 26%;
+    left: 0;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    border: 1px solid black;
+		cursor: pointer;
+}
+.prev > i {
+	margin: -1px;
+}
+.next{
+	position: absolute;
+	top: 26%;
+	right: 0;
+	z-index: 99;
+	border-radius: 50%;
+	height: 32px;
+	width: 32px;
+	border: 1px solid black;
 	cursor: pointer;
+}
+.next > i {
+	margin: -1px;
+}
+.image-container::-webkit-scrollbar {
+  display: none;
 }
 .team_text p b {
 	color: #414141;

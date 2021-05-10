@@ -1,11 +1,12 @@
-import React, { useState, useEffect, memo } from 'react';
-import { Image } from 'component';
+import React, { useState, useEffect, memo, useRef } from 'react';
+import { Image, HorizontalImageScoller } from 'component';
 import ReactStars from 'react-rating-stars-component';
 import Skeleton from 'react-loading-skeleton';
 import { useHistory } from 'react-router-dom';
 import { TopRatedInfo } from './apis';
 
 const ToRated = () => {
+	const devRef = useRef();
 	const history = useHistory();
 	const [topMassgerRated, setTopMassgerRated] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -37,27 +38,29 @@ const ToRated = () => {
 							<h2 className='title2'>Top Rated Professionals </h2>
 						</div>
 					</div>
-					{loading
-						? [1, 2, 3, 4].map((val) => (
-								<div className='col-md-6 col-lg-3' key={val}>
-									<div className='all_team'>
-										<span>
-											<div className='team_Image'>
-												<Skeleton height={150} />
-											</div>
-											<div className='team_text'>
-												<h2>
-													<Skeleton width={140} />
-												</h2>
-												<h1>
-													<Skeleton width={70} />
-												</h1>
-											</div>
-										</span>
-									</div>
+					{loading ? (
+						[1, 2, 3, 4].map((val) => (
+							<div className='col-md-6 col-lg-3' key={val}>
+								<div className='all_team'>
+									<span>
+										<div className='team_Image'>
+											<Skeleton height={150} />
+										</div>
+										<div className='team_text'>
+											<h2>
+												<Skeleton width={140} />
+											</h2>
+											<h1>
+												<Skeleton width={70} />
+											</h1>
+										</div>
+									</span>
 								</div>
-						  ))
-						: topMassgerRated.map(
+							</div>
+						))
+					) : (
+						<HorizontalImageScoller>
+							{topMassgerRated.map(
 								({ profile, name, id, location, totalReview, ...rest }) => (
 									<div className='col-md-6 col-lg-3' key={id}>
 										<div className='all_team'>
@@ -97,7 +100,9 @@ const ToRated = () => {
 										</div>
 									</div>
 								)
-						  )}
+							)}
+						</HorizontalImageScoller>
+					)}
 				</div>
 			</div>
 		</section>
