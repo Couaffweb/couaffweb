@@ -599,13 +599,14 @@ section{
 
 .image-silde-main{
 	position: relative;
+	width:100%;
 }
 .prev{
 	background: white;
     position: absolute;
     z-index: 99;
     top: 26%;
-    left: 0;
+    left: -19px;
     border-radius: 50%;
     height: 32px;
     width: 32px;
@@ -618,7 +619,7 @@ section{
 .next{
 	position: absolute;
 	top: 26%;
-	right: 0;
+	right: -19px;
 	z-index: 99;
 	border-radius: 50%;
 	height: 32px;
