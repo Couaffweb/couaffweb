@@ -78,4 +78,5 @@ router.get(
 );
 router.put('/service/action', Apiresponse(BookingController.acceptBooking));
 router.put('/payment/done', Apiresponse(PaymentController.donePayment));
+router.get('/categories', Apiresponse(ServiceController.getAllCategories));
 module.exports = router;

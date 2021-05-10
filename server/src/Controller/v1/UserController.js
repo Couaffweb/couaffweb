@@ -209,6 +209,8 @@ class UserController extends ApiController {
 			email: req.body.email,
 			phone: req.body.phone,
 			location: req.body.location,
+			latitude: req.body.latitude,
+			longitude: req.body.longitude,
 			workingExperience: req.body.workingExperience,
 			working_hours: req.body.working_hours,
 			about_us: req.body.about_us,
@@ -421,12 +423,13 @@ class UserController extends ApiController {
 			search = '',
 			page = 1,
 			limit = 20,
+			serviceId = 0,
 		},
 	}) {
 		const offset = (page - 1) * limit;
 		const condition = {
 			conditions: {
-				status: 1,
+				'users.status': 1,
 				userType: 1,
 				raw: [
 					`round(( 6371 * acos( cos( radians(${latitude}) ) * cos( radians(latitude) ) * cos( radians( longitude ) - radians(${longitude}) ) + sin( radians(${latitude}) ) * sin(radians(latitude)) ) ),0) < ${distance}`,
@@ -445,11 +448,20 @@ class UserController extends ApiController {
 				'users.working_hours',
 				`(select count(*) from favourite_services where userId=${user_id} and massagerId=users.id) as isFav`,
 				`(select IFNULL(round(avg(rating),1),0) as rating from ratings where massagerId=users.id) as totalRating`,
+				`(select count(*) as totalReview from ratings where massagerId=users.id) as totalReview`,
 				`round(( 6371 * acos( cos( radians(${latitude}) ) * cos( radians(latitude) ) * cos( radians( longitude ) - radians(${longitude}) ) + sin( radians(${latitude}) ) * sin(radians(latitude)) ) ),0) as totalDistance`,
 			],
 			limit: [offset, limit],
 			order: ['totalDistance asc'],
 		};
+		if (parseInt(serviceId) !== 0) {
+			Object.assign(condition, {
+				join: [`services on (users.id = services.userId)`],
+			});
+			Object.assign(condition.conditions, {
+				'services.id': serviceId,
+			});
+		}
 		if (search) {
 			Object.assign(condition.conditions, {
 				like: {

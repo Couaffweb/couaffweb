@@ -12,6 +12,8 @@ export const updateProfile = (data) => {
 	formData.append('profile', data.profile);
 	if (parseInt(data.userType) === 1) {
 		formData.append('location', data.location);
+		formData.append('latitude', data.latitude);
+		formData.append('longitude', data.longitude);
 		formData.append('about_us', data.about_us);
 	}
 	formData.append('id', data.id);

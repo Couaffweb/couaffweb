@@ -40,7 +40,7 @@ module.exports = {
 	},
 	editService: async ({
 		files = {},
-		body: { name, price, description, user_id },
+		body: { name, price, description, user_id, category_id },
 		params: { serviceId },
 	}) => {
 		const data = await apis.vaildation(
@@ -51,6 +51,7 @@ module.exports = {
 				description,
 				userId: user_id,
 				isAdmin: 0,
+				category_id,
 			}
 		);
 		const checkService = await DB.find('services', 'first', {
@@ -175,6 +176,19 @@ module.exports = {
 		return {
 			message: 'search listing',
 			data,
+		};
+	},
+	getAllCategories: async ({ query: { limit = 20, page = 1 } }) => {
+		const offset = (page - 1) * limit;
+		const query = `select * from categoires limit ${offset}, ${limit}`;
+		const total = `select count(*) as total from categoires`;
+		const result = {
+			pagination: await apis.QueryPaginations(total, offset, limit),
+			result: await DB.first(query),
+		};
+		return {
+			message: 'categoires listing',
+			data: result,
 		};
 	},
 	getServicesByServiceId: async ({

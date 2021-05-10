@@ -43,7 +43,7 @@ const WebRoutes = () => (
 					render={(props) => <ProviderDetails {...props} />}
 				/>
 				<Route
-					path='/search-details'
+					path='/search-details/:category_id?'
 					render={(props) => <SearchResult {...props} />}
 				/>
 				<AuthRoute path='/profile' component={Profile} />

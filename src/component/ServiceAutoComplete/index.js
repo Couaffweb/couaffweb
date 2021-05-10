@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { useDebounce } from 'hooks';
 import { Input } from 'component';
 import { searchAllServices } from './apis';
-const ServiceAutoComplete = ({ onSelectService }) => {
-	const [searchInput, setSearchInput] = useState();
+const ServiceAutoComplete = ({ onSelectService, value = '' }) => {
+	const [searchInput, setSearchInput] = useState(value);
 	const [serviceList, setServiceList] = useState([]);
 	const [showList, setShowList] = useState(false);
-	const [selectFromList, setSelectFromList] = useState(false);
+	const [selectFromList, setSelectFromList] = useState(true);
 	const debouncedSearchTerm = useDebounce(searchInput, 500);
 
 	useEffect(() => {
@@ -74,5 +74,6 @@ const ServiceAutoComplete = ({ onSelectService }) => {
 };
 ServiceAutoComplete.propTypes = {
 	onSelectService: PropTypes.func.isRequired,
+	value: PropTypes.string,
 };
 export default memo(ServiceAutoComplete);

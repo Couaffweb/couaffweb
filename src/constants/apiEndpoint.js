@@ -19,3 +19,5 @@ export const getProviderImages = 'user/images';
 export const searchService = 'service-search';
 export const removeService = (id) => `remove-service/${id}`;
 export const editService = (id) => `edit-service/${id}`;
+export const searchAllServiceAndProvider = '/near-massager';
+export const getAllCategories = '/categories';

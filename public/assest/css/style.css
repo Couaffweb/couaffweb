@@ -609,6 +609,9 @@ section{
 	animation: floatText 25s infinite linear;
 	scroll-behavior: smooth;
 }
+.loading{
+	height: '100vh';
+}
 
 .image-silde-main{
 	position: relative;
@@ -2672,7 +2675,7 @@ a.mor {
     top: 15px;
     color: #999;
 }
-.booknow a {
+.booknow span {
     background: rgba(0,0,0,.5);
     display: inline-block;
     padding: 8px 40px;
@@ -2680,6 +2683,7 @@ a.mor {
     color: #fff;
     border: 1px solid #fff;
     border-radius: 11px;
+		cursor: pointer;
 }
 .booknow {
     text-align: center;
@@ -3723,7 +3727,7 @@ section.payment.ediprofile1 h3.title3 {
 		text-align: center;
 		margin: 14px 0 0 0;
 	}
-	.booknow a {
+.booknow-button{
 		background: rgba(0,0,0,.5);
 		display: inline-block;
 		padding: 6px 16px;
@@ -3732,6 +3736,7 @@ section.payment.ediprofile1 h3.title3 {
 		border: 1px solid #fff;
 		border-radius: 6px;
 		font-size: 10px;
+		cursor: pointer;
 	}
 	.banner_text p {
 		margin: 0 0 12px;

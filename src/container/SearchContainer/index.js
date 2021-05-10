@@ -1,10 +1,12 @@
 import React, { memo, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { GoogleAutoComplete, ServiceAutoComplete } from 'component';
-const SearchBox = ({ onSelectAddress }) => {
+const SearchBox = ({
+	onSelectAddress = () => {},
+	onSelectServiceInfo = () => {},
+}) => {
 	const history = useHistory();
 	const [address, setAddress] = useState('');
-	// eslint-disable-next-line no-unused-vars
 	const [addressDetails, setAddressDetails] = useState({});
 	const [serviceDetails, setServiceDetails] = useState({});
 	const startSearch = () => {
@@ -16,14 +18,25 @@ const SearchBox = ({ onSelectAddress }) => {
 	const selectAddress = useCallback(
 		(val) => {
 			setAddressDetails({ ...val });
-			//onSelectAddress(val);
+			onSelectAddress(val);
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[setAddressDetails]
 	);
+	const onSelectService = useCallback(
+		(val) => {
+			setServiceDetails(val);
+			onSelectServiceInfo(val);
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[setServiceDetails]
+	);
 	return (
 		<form>
-			<ServiceAutoComplete onSelectService={(val) => setServiceDetails(val)} />
+			<ServiceAutoComplete
+				onSelectService={onSelectService}
+				value={serviceDetails.name}
+			/>
 			<div className='left_input left_input1'>
 				<GoogleAutoComplete
 					value={address}
@@ -34,7 +47,7 @@ const SearchBox = ({ onSelectAddress }) => {
 					placeholder=' Enter City and Zip Code'
 				/>
 				<i className='fa fa-map-marker' aria-hidden='true'></i>
-				<button onClick={() => startSearch()}>
+				<button type='button' onClick={() => startSearch()}>
 					{' '}
 					<i className='fa fa-paper-plane' aria-hidden='true'></i>{' '}
 				</button>

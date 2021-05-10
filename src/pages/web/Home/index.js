@@ -1,8 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { Image } from 'component';
-import { SearchBox, TopRated } from 'container';
+import { SearchBox, TopRated, CategoryList } from 'container';
 const Home = () => {
+	const history = useHistory();
+	const [addressDetails, setAddressDetails] = useState({});
+	const [serviceDetails, setServiceDetails] = useState({});
+	const goToSearch = () => {
+		history.push('/search-details', {
+			...serviceDetails,
+			...addressDetails,
+		});
+	};
 	return (
 		<>
 			<section className='baner'>
@@ -19,16 +28,14 @@ const Home = () => {
 					<div className='row'>
 						<div className='col-lg-9 mx-auto'>
 							<div className='banner_text_left1'>
-								<SearchBox />
+								<SearchBox
+									onSelectAddress={(val) => setAddressDetails(val)}
+									onSelectServiceInfo={(val) => setServiceDetails(val)}
+								/>
 								<div className='booknow'>
-									<Link
-										to={{
-											pathname: '/search-details',
-											state: {},
-										}}
-									>
+									<span className='booknow-button' onClick={() => goToSearch()}>
 										Book Now
-									</Link>
+									</span>
 								</div>
 							</div>
 						</div>
@@ -36,123 +43,7 @@ const Home = () => {
 				</div>
 			</section>
 			<TopRated />
-			<section className='serch_here'>
-				<div className='container'>
-					<div className='serch_here1'>
-						<div className='row'>
-							<div className='col-md-6'>
-								<div className='serch_here2'>
-									<div className='round1'>
-										<Link className='round2 co1'>
-											<Image
-												url='/assest/images/Icon1.png'
-												className='cat-image'
-												aria-hidden='true'
-											/>
-											<p>Nails</p>
-										</Link>
-									</div>
-									<div className='round1'>
-										<Link className='round2 co2'>
-											<Image
-												url='/assest/images/icon2.png'
-												className='cat-image'
-												aria-hidden='true'
-											/>
-											<p>Make up</p>
-										</Link>
-									</div>
-									<div className='round1'>
-										<Link className='round2 co3'>
-											<Image
-												url='/assest/images/icon3.png'
-												className='cat-image'
-												aria-hidden='true'
-											/>
-											<p>Massage</p>
-										</Link>
-									</div>
-									<div className='round1'>
-										<Link className='round2 co4'>
-											<Image
-												url='/assest/images/Icon4.png'
-												className='cat-image'
-												aria-hidden='true'
-											/>
-											<p>Beauty Salon</p>
-										</Link>
-									</div>
-									<div className='round1'>
-										<Link className='round2 co5'>
-											<Image
-												url='/assest/images/icon5.png'
-												className='cat-image'
-												aria-hidden='true'
-											/>
-											<p>Haircuts</p>
-										</Link>
-									</div>
-									<div className='round1'>
-										<Link className='round2 co6'>
-											<Image
-												url='/assest/images/icon6.png'
-												className='cat-image'
-												aria-hidden='true'
-											/>
-											<p>Afro Braiding</p>
-										</Link>
-									</div>
-									<div className='round1'>
-										<Link className='round2 co7'>
-											<Image
-												url='/assest/images/Icon7.png'
-												className='cat-image'
-												aria-hidden='true'
-											/>
-											<p>Braids</p>
-										</Link>
-									</div>
-									<div className='round1'>
-										<Link className='round2 co8'>
-											<Image
-												url='/assest/images/Icon8.png'
-												className='cat-image'
-												aria-hidden='true'
-											/>
-											<p>Barbershop</p>
-										</Link>
-									</div>
-									<div className='round1'>
-										<Link className='round2 co9'>
-											<Image
-												url='/assest/images/Icon9.png'
-												className='cat-image'
-												aria-hidden='true'
-											/>
-											<p>Eyelashes</p>
-										</Link>
-									</div>
-									<Link href='' className='mor'>
-										{' '}
-										& More
-									</Link>
-								</div>
-							</div>
-							<div className='col-md-6'>
-								<div className='serch_here21'>
-									<h2>This will be the header</h2>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Duis malesuada tortor quis consectetur convallis. Integer
-										quis maximus libero.
-									</p>
-									<Link href=''>Search Here</Link>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			<CategoryList />
 			<section className='downlod'>
 				<div className='container'>
 					<div className='row'>
