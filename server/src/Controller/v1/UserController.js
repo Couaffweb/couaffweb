@@ -705,6 +705,7 @@ const setUserService = async (data = [], category_id, service_id) => {
 					'price',
 					`IF(image, concat('${global.appURL}uploads/',image), '') as image`,
 				],
+				limit: 5,
 			});
 			return {
 				providerInfo,
