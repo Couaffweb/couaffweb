@@ -1,37 +1,37 @@
 export const workingHours = [
 	{
-		openTime: '',
-		closeTime: '',
+		openTime: '9:00',
+		closeTime: '17:00',
 		day: 'Sunday',
 	},
 	{
-		openTime: '',
-		closeTime: '',
+		openTime: '9:00',
+		closeTime: '17:00',
 		day: 'Monday',
 	},
 	{
-		openTime: '',
-		closeTime: '',
+		openTime: '9:00',
+		closeTime: '17:00',
 		day: 'Tuesday',
 	},
 	{
-		openTime: '',
-		closeTime: '',
+		openTime: '9:00',
+		closeTime: '17:00',
 		day: 'Wednesday',
 	},
 	{
-		openTime: '',
-		closeTime: '',
+		openTime: '9:00',
+		closeTime: '17:00',
 		day: 'Thursday',
 	},
 	{
-		openTime: '',
-		closeTime: '',
+		openTime: '9:00',
+		closeTime: '17:00',
 		day: 'Friday',
 	},
 	{
-		openTime: '',
-		closeTime: '',
+		openTime: '9:00',
+		closeTime: '17:00',
 		day: 'Saturday',
 	},
 ];
