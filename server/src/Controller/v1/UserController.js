@@ -453,6 +453,7 @@ class UserController extends ApiController {
 			],
 			limit: [offset, limit],
 			orderBy: ['totalDistance asc'],
+			groupBy: [' services.userId '],
 		};
 		if (parseFloat(latitude) !== 0 && parseFloat(longitude) !== 0) {
 			Object.assign(condition.conditions, {
