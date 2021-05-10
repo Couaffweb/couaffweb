@@ -134,7 +134,7 @@ class ApiController {
 		return {
 			currentPage: page + 1,
 			totalPage,
-			totalRecord: totalRecord[0].totalRecord,
+			totalRecord: totalResult,
 			limit: parseInt(limit),
 		};
 	}
