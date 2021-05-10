@@ -1,5 +1,5 @@
 import React, { useState, memo, useCallback } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import {
 	Image,
 	Input,
@@ -25,6 +25,7 @@ import { store as notify } from 'react-notifications-component';
 import { signUpForm, passwordForm } from './constants';
 import { updatePassword, updateProfile, removeAccount } from './apis';
 const Profile = () => {
+	const history = useHistory();
 	const userType = getUserType();
 	const [isEdit, setEdit] = useState(false);
 	const [userForm, setUserForm] = useState(authInfo());
@@ -243,6 +244,16 @@ const Profile = () => {
 						</div>
 					</div>
 					<div className='delete-account'>
+						{userType === 1 && (
+							<button
+								type='button'
+								onClick={() => history.push('/working-hours')}
+								className='btn btn-primary mr-4'
+							>
+								Update Working Hours
+							</button>
+						)}
+
 						<button
 							type='button'
 							onClick={deleteAccount}
