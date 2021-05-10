@@ -16,7 +16,7 @@ const SearchResult = ({
 			latitude: 0,
 			longitude: 0,
 			name: 'Providers',
-			address: 'Near me',
+			address: 'My Current Location',
 		},
 	},
 }) => {
@@ -93,7 +93,7 @@ const SearchResult = ({
 						<div className='col-md-12'>
 							<h3 className='title3'>
 								{searchInfo.name || 'Providers'} In (
-								{searchInfo.address || 'Near me'})
+								{searchInfo.address || 'My Current Location'})
 							</h3>
 							<div className='sortb'>
 								<div className='dropdown'>
