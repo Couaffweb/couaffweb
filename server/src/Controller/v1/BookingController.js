@@ -41,7 +41,7 @@ const makeBookingArray = (data) => {
 			userProfile,
 			massagerWorkingExperience,
 			massagerWorkingHour,
-			isReviewed,
+			isReview,
 		}) => {
 			if (serviceDetails) {
 				serviceDetails = JSON.parse(serviceDetails);
@@ -89,7 +89,7 @@ const makeBookingArray = (data) => {
 					userId,
 					massagerId,
 					date,
-					isReviewed,
+					isReview,
 				},
 			};
 		}
