@@ -5,7 +5,7 @@ const ImageScoller = ({
 	children,
 	onLeftClick = () => {},
 	onRightClick = () => {},
-	animateTime = 100,
+	animateTime = 140,
 	className = 'image-container align-items-center h-100',
 }) => {
 	const divRef = useRef();
