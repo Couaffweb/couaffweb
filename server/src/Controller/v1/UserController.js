@@ -3,6 +3,7 @@ const app = require('../../../libary/CommanMethod');
 const Db = require('../../../libary/sqlBulider');
 const ApiError = require('../../Exceptions/ApiError');
 const { lang } = require('../../../config');
+const { object } = require('prop-types');
 const DB = new Db();
 
 class UserController extends ApiController {
@@ -424,6 +425,7 @@ class UserController extends ApiController {
 			page = 1,
 			limit = 20,
 			serviceId = 0,
+			categoryId = 0,
 		},
 	}) {
 		const offset = (page - 1) * limit;
@@ -431,10 +433,8 @@ class UserController extends ApiController {
 			conditions: {
 				'users.status': 1,
 				userType: 1,
-				raw: [
-					`round(( 6371 * acos( cos( radians(${latitude}) ) * cos( radians(latitude) ) * cos( radians( longitude ) - radians(${longitude}) ) + sin( radians(${latitude}) ) * sin(radians(latitude)) ) ),0) < ${distance}`,
-				],
 			},
+			join: [`services on (users.id = services.userId)`],
 			fields: [
 				'users.id',
 				'users.name',
@@ -452,12 +452,21 @@ class UserController extends ApiController {
 				`round(( 6371 * acos( cos( radians(${latitude}) ) * cos( radians(latitude) ) * cos( radians( longitude ) - radians(${longitude}) ) + sin( radians(${latitude}) ) * sin(radians(latitude)) ) ),0) as totalDistance`,
 			],
 			limit: [offset, limit],
-			order: ['totalDistance asc'],
+			orderBy: ['totalDistance asc'],
 		};
-		if (parseInt(serviceId) !== 0) {
-			Object.assign(condition, {
-				join: [`services on (users.id = services.userId)`],
+		if (parseFloat(latitude) !== 0 && parseFloat(longitude) !== 0) {
+			Object.assign(condition.conditions, {
+				raw: [
+					`round(( 6371 * acos( cos( radians(${latitude}) ) * cos( radians(latitude) ) * cos( radians( longitude ) - radians(${longitude}) ) + sin( radians(${latitude}) ) * sin(radians(latitude)) ) ),0) < ${distance}`,
+				],
 			});
+		}
+		if (parseInt(categoryId) !== 0) {
+			Object.assign(condition.conditions, {
+				'services.category_id': categoryId,
+			});
+		}
+		if (parseInt(serviceId) !== 0) {
 			Object.assign(condition.conditions, {
 				'services.id': serviceId,
 			});
@@ -474,7 +483,7 @@ class UserController extends ApiController {
 			message: 'Near me massager',
 			data: {
 				pagination: await super.Paginations('users', condition, page, limit),
-				result: app.addUrl(allMassager, 'profile'),
+				result: await setUserService(allMassager, categoryId, serviceId),
 			},
 		};
 	}
@@ -647,3 +656,62 @@ class UserController extends ApiController {
 }
 
 module.exports = UserController;
+
+const setUserService = async (data = [], category_id, service_id) => {
+	const withService = data.map(
+		async ({
+			id,
+			name,
+			email,
+			phone,
+			longitude,
+			latitude,
+			location,
+			profile,
+			workingExperience,
+			working_hours,
+			totalReview,
+			totalRating,
+			isFav,
+		}) => {
+			if (working_hours) {
+				working_hours = JSON.parse(working_hours);
+			}
+			if (profile) {
+				profile = global.appURL + 'uploads/' + profile;
+			}
+			const providerInfo = {
+				id,
+				name,
+				email,
+				phone,
+				longitude,
+				latitude,
+				location,
+				profile,
+				workingExperience,
+				working_hours,
+				totalReview,
+				totalRating,
+				isFav,
+			};
+			const service = await DB.find('services', 'all', {
+				conditions: {
+					userId: id,
+				},
+				fields: [
+					'id',
+					'name',
+					'price',
+					`IF(image, concat('${global.appURL}uploads/',image), '') as image`,
+				],
+			});
+			return {
+				providerInfo,
+				service,
+			};
+		}
+	);
+
+	return Promise.all(withService);
+};

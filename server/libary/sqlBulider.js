@@ -136,8 +136,9 @@ class Query {
 				query += ' having ';
 				query += condition.having.join();
 			}
-			if (typeof condition.group != 'undefined') {
-				// ADD LOGIIC THERE
+			if (typeof condition.groupBy != 'undefined') {
+				query += ' group by ';
+				query += condition.groupBy.join();
 			}
 			if (typeof condition.orderBy != 'undefined') {
 				query += ' order by ';
