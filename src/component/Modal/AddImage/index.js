@@ -80,6 +80,7 @@ const AddImage = ({ onClose, isShow, onSubmit }) => {
 															{image.previewImage && (
 																<Image
 																	className='provider-work-image'
+																	height='181px'
 																	url={
 																		image.previewImage ||
 																		'/assest/images/time.png'
