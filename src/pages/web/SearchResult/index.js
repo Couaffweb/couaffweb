@@ -24,6 +24,7 @@ const SearchResult = ({
 	const [searchResult, setSearchResult] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [categories, setCategoires] = useState([]);
+	const [categoryLoading, setCategoryLoading] = useState(true);
 	const [currentPage, setCurrentPage] = useState(
 		parseInt(parseUrl(history.location.search, 'page')) || 1
 	);
@@ -38,8 +39,11 @@ const SearchResult = ({
 		categoriesList(9)
 			.then(({ data: { result = [] } }) => {
 				setCategoires(result);
+				setCategoryLoading(false);
 			})
-			.catch(() => {});
+			.catch(() => {
+				setCategoryLoading(false);
+			});
 	}, []);
 	useEffect(() => {
 		fetchData();
@@ -55,6 +59,7 @@ const SearchResult = ({
 			serviceId: id,
 			page: currentPage,
 			categoryId: category_id,
+			limit: 10,
 		})
 			.then(({ data: { result, pagination } }) => {
 				setSearchResult(result);
@@ -87,7 +92,8 @@ const SearchResult = ({
 					<div className='row'>
 						<div className='col-md-12'>
 							<h3 className='title3'>
-								{searchInfo.name} In ({searchInfo.address || ''})
+								{searchInfo.name || 'Providers'} In (
+								{searchInfo.address || 'Near me'})
 							</h3>
 							<div className='sortb'>
 								<div className='dropdown'>
@@ -256,7 +262,7 @@ const SearchResult = ({
 							<h3 className='title3'>Most Popular Treatments</h3>
 							<div className='Treatments1'>
 								<div className='row'>
-									{loading
+									{categoryLoading
 										? [1, 2, 3].map((val) => (
 												<div className='col-lg-4 col-md-6' key={val}>
 													<div className=''>
