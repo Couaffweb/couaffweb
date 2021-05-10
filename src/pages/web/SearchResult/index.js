@@ -30,7 +30,7 @@ const SearchResult = ({
 	);
 	const [totalPage, setTotalPage] = useState(1);
 	useEffect(() => {
-		if (category_id !== 0) {
+		if (parseInt(category_id) !== 0) {
 			fetchData();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
