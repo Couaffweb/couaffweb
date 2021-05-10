@@ -43,7 +43,7 @@ const OTP = ({ onClose, isShow, onSuccess }) => {
 					onClose();
 					onSuccess();
 					if (data.userType === 1) {
-						history.push('/add-service');
+						history.push('/working-hours');
 					}
 				})
 				.catch(({ message }) => {

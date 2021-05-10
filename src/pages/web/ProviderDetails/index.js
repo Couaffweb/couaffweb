@@ -515,34 +515,23 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 						</div>
 
 						<div className='busins'>
-							<div className='business-time'>
-								<div className='days1'>Sunday</div>
-								<div className='timeing'>10:00 AM - 10:00 PM</div>
-							</div>
-							<div className='business-time'>
-								<div className='days1'>Sunday</div>
-								<div className='timeing'>10:00 AM - 10:00 PM</div>
-							</div>
-							<div className='business-time'>
-								<div className='days1'>Sunday</div>
-								<div className='timeing'>10:00 AM - 10:00 PM</div>
-							</div>
-							<div className='business-time'>
-								<div className='days1'>Sunday</div>
-								<div className='timeing'>10:00 AM - 10:00 PM</div>
-							</div>
-							<div className='business-time'>
-								<div className='days1'>Sunday</div>
-								<div className='timeing'>10:00 AM - 10:00 PM</div>
-							</div>
-							<div className='business-time'>
-								<div className='days1'>Sunday</div>
-								<div className='timeing'>10:00 AM - 10:00 PM</div>
-							</div>
-							<div className='business-time'>
-								<div className='days1'>Sunday</div>
-								<div className='timeing'>10:00 AM - 10:00 PM</div>
-							</div>
+							{providerInfo.working_hours &&
+							Array.isArray(JSON.parse(providerInfo.working_hours)) ? (
+								[...JSON.parse(providerInfo.working_hours)].map(
+									({ day, openTime, closeTime }) => (
+										<div className='business-time'>
+											<div className='days1'>{day}</div>
+											<div className='timeing'>
+												{openTime} - {closeTime}
+											</div>
+										</div>
+									)
+								)
+							) : (
+								<h6 className='error-text d-flex justify-content-center'>
+									No working hour provided
+								</h6>
+							)}
 						</div>
 
 						<p className='purify_IOiISPWJndtcc4r9FXmCL purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
