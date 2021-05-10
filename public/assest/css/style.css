@@ -19,6 +19,10 @@ img {
 .card-img-top{
 	height: 250px;
 }
+.signup-model-content{
+	overflow-y: auto;
+	height: 100vh;
+}
 /** google autocomplete **/
 
 .pac-container {

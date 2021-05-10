@@ -26,7 +26,7 @@ const Images = () => {
 	const removeSingleImage = (id, index) => {
 		Alert({
 			title: 'Are you sure?',
-			text: 'Once deleted, you will not be able recover account!',
+			text: 'Once deleted , you wont be able to recover it!',
 			icon: 'warning',
 			buttons: true,
 			dangerMode: true,

@@ -100,7 +100,11 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 				>
 					<ReactLoading isShow={loading} />
 					<div className='modal-dialog'>
-						<div className='modal-content animate__animated animate__zoomIn'>
+						<div
+							className={`modal-content ${
+								userType === 1 ? 'signup-model-content' : ''
+							}  animate__animated animate__zoomIn`}
+						>
 							<button type='button' className='close' onClick={onClose}>
 								<Image url='/assest/images/cross.png' />
 							</button>
