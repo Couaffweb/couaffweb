@@ -125,7 +125,8 @@ class ApiController {
 		delete condition.limit;
 		delete condition.orderBy;
 		const totalRecord = await DB.find(table, 'count', condition);
-		let totalPage = Math.round(totalRecord[0]?.totalRecord ?? 0 / limit, 0);
+		const totalResult = totalRecord[0] ? totalRecord[0].totalRecord : 0;
+		let totalPage = Math.round(totalResult || 0 / limit, 0);
 		if (totalPage === 0) {
 			totalPage = 1;
 		}
