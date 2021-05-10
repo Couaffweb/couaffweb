@@ -1,9 +1,13 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 const WebContent = () => {
+	const currentRef = useRef();
 	const { pathname } = useLocation();
+	useEffect(() => {
+		currentRef.current.scrollIntoView({ behavior: 'smooth' });
+	}, []);
 	return (
-		<div className='container container-all'>
+		<div className='container container-all' ref={currentRef}>
 			<div className='row'>
 				<div className='container-fluid'>
 					<div className='row'>
