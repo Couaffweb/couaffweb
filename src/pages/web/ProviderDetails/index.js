@@ -546,7 +546,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 						</div>
 
 						<p className='purify_IOiISPWJndtcc4r9FXmCL purify_Y1prq6mbHtuK9nWzbTqF9 purify_jEiYoKzkRbjQsWvwUztCr'>
-							Call {providerInfo.phone} , sundays are strictly appointment only.
+							Call {providerInfo.phone} , for appointment.
 						</p>
 
 						<Link to='#' className='rp'>
