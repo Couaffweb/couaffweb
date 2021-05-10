@@ -14,6 +14,7 @@ const missingRoutes = {
 	'top-rated': 'GET',
 	'massager/services': 'GET',
 	'service-search': 'GET',
+	'near-massager': 'GET',
 };
 const AuthSkip = (Req, res, next) => {
 	res.auth = true;
