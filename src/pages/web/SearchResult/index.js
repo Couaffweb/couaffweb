@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState, useEffect } from 'react';
+import React, { memo, useCallback, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import { Image, BookService, Paginations } from 'component';
@@ -20,6 +20,7 @@ const SearchResult = ({
 		},
 	},
 }) => {
+	const divWapper = useRef();
 	const [searchInfo] = useState({ ...state });
 	const [searchResult, setSearchResult] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -64,6 +65,10 @@ const SearchResult = ({
 			.then(({ data: { result, pagination } }) => {
 				setSearchResult(result);
 				setTotalPage(pagination.totalPage);
+				divWapper.current.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start',
+				});
 			})
 			.catch()
 			.finally(() => {
@@ -87,7 +92,7 @@ const SearchResult = ({
 					</div>
 				</div>
 			</section>
-			<section className='recommended_slider listing11'>
+			<section className='recommended_slider listing11' ref={divWapper}>
 				<div className='container'>
 					<div className='row'>
 						<div className='col-md-12'>
