@@ -184,7 +184,7 @@ const SearchResult = ({
 															<Image
 																url={
 																	providerInfo.profile ||
-																	'/assest/images/l1.jpg'
+																	'/assest/images/top1.png'
 																}
 															/>
 															<div className='purify_3ptYO5CmcnzEW5HyFwvqSC purify_Y1prq6mbHtuK9nWzbTqF9 purify_3tt1vpW-yWSKbxaT7g_D6I purify_UF-uFFAoy8SzamnNLWdSo purify_1tSY3I40rjqWWnGR4fy8Wc'>
