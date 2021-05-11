@@ -19,6 +19,10 @@ const SearchBox = ({
 		(val) => {
 			setAddressDetails({ ...val });
 			onSelectAddress(val);
+			history.push('/search-details', {
+				...val,
+				...serviceDetails,
+			});
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[setAddressDetails]
@@ -27,6 +31,10 @@ const SearchBox = ({
 		(val) => {
 			setServiceDetails(val);
 			onSelectServiceInfo(val);
+			history.push('/search-details', {
+				...val,
+				...addressDetails,
+			});
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[setServiceDetails]
