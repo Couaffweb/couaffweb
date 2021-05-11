@@ -227,7 +227,7 @@ exports.getBookings = async ({
 			'bookServices.*',
 		],
 		limit: [offset, limit],
-		order: ['bookServices.id desc'],
+		orderBy: ['bookServices.id desc'],
 	};
 	if (userType === 1) {
 		Object.assign(condition.conditions, {
