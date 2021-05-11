@@ -65,10 +65,12 @@ const SearchResult = ({
 			.then(({ data: { result, pagination } }) => {
 				setSearchResult(result);
 				setTotalPage(pagination.totalPage);
-				divWapper.current.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start',
-				});
+				if (parseInt(category_id) !== 0) {
+					divWapper.current.scrollIntoView({
+						behavior: 'smooth',
+						block: 'start',
+					});
+				}
 			})
 			.catch()
 			.finally(() => {
@@ -83,7 +85,7 @@ const SearchResult = ({
 	);
 	return (
 		<>
-			<section className='recommended_slider'>
+			<section className='recommended_slider' ref={divWapper}>
 				<div className='container'>
 					<div className='row'>
 						<div className='col-md-12'>
@@ -92,7 +94,7 @@ const SearchResult = ({
 					</div>
 				</div>
 			</section>
-			<section className='recommended_slider listing11' ref={divWapper}>
+			<section className='recommended_slider listing11'>
 				<div className='container'>
 					<div className='row'>
 						<div className='col-md-12'>
