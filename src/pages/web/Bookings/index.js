@@ -33,9 +33,9 @@ const Bookings = () => {
 				setLoading(false);
 			});
 	};
-	const updateBooking = (id, status, index) => {
+	const updateBooking = (id, status, index, payload) => {
 		setReactLoading(true);
-		bookingStatusUpdate({ bookingId: id, status })
+		bookingStatusUpdate({ bookingId: id, status, paymentDetails: payload })
 			.then(() => {
 				if (status !== 1) {
 					myService.splice(index, 1);
@@ -83,7 +83,10 @@ const Bookings = () => {
 							<StripePaymentModal
 								isShow={showPaymentModel}
 								onClose={() => setShowPaymentModel(false)}
-								onPayment={() => {}}
+								onPayment={({ id, index, status, payload }) => {
+									setShowPaymentModel(false);
+									updateBooking(id, status, index, payload);
+								}}
 								{...localInfo}
 							/>
 						)}
@@ -277,6 +280,8 @@ const Bookings = () => {
 																		index,
 																		massagerId,
 																		price: serviceDetails[0].price,
+																		massagerStripeId:
+																			massagerInfo.massagerStripeId,
 																	});
 																	setShowPaymentModel(true);
 																}}

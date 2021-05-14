@@ -22,3 +22,4 @@ export const editService = (id) => `edit-service/${id}`;
 export const searchAllServiceAndProvider = 'near-massager';
 export const getAllCategories = 'categories';
 export const stripeConnect = 'stripe-connect';
+export const stripePaymentToken = 'stripe-token';

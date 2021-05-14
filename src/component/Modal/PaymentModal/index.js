@@ -7,7 +7,7 @@ import CheckOutForm from './CheckOut';
 const stripePromise = loadStripe(
 	'pk_test_51IpQS6AplERnGLwpLTjC8zaIX1SebuG8bY9rhL6K9clUcuKOt7rtEvIlljY2LVo2nRdfKmzzGkUeqhZy4zKkzK1Y00ZGXnWYC0'
 );
-const StripePaymentModal = ({ onClose, isShow, onPayment, price }) => {
+const StripePaymentModal = ({ onClose, isShow, onPayment, price, ...rest }) => {
 	return (
 		<>
 			<Elements stripe={stripePromise}>
@@ -23,7 +23,7 @@ const StripePaymentModal = ({ onClose, isShow, onPayment, price }) => {
 									Please add your card details for complete payment
 								</p>
 								<div className='modal-body'>
-									<CheckOutForm onPayment={onPayment} price={price} />
+									<CheckOutForm onPayment={onPayment} price={price} {...rest} />
 								</div>
 							</div>
 						</div>

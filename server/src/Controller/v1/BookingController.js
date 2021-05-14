@@ -161,6 +161,7 @@ exports.acceptBooking = async ({
 		status,
 		user_id,
 		userInfo: { userType },
+		paymentDetails = null,
 	},
 }) => {
 	await helper.vaildation({
@@ -170,6 +171,7 @@ exports.acceptBooking = async ({
 	const bookingInfo = await checkBookingId(bookingId, user_id, userType);
 	if ([1, 2, 3, 4].indexOf(parseInt(status)) === -1)
 		throw new ApiError('Please select the correct status type');
+	const bookingObject = { id: bookingId, status };
 	let message =
 		'Booking request accepted. Please do payment for further proccess';
 	let notification_code = 2;
@@ -178,13 +180,17 @@ exports.acceptBooking = async ({
 		message = 'Request delete';
 	}
 	if (parseInt(status) === 3) {
+		if (paymentDetails) {
+			Object.assign(bookingObject, {
+				paymentDetails: JSON.stringify(paymentDetails),
+				paymentStatus: 1,
+			});
+		}
 		notification_code = 4;
 		message = 'Booking complete';
 	}
-	await DB.save('bookServices', {
-		id: bookingId,
-		status,
-	});
+
+	await DB.save('bookServices', bookingObject);
 	bookingInfo.status = status;
 	setTimeout(() => {
 		const { userId } = bookingInfo;
