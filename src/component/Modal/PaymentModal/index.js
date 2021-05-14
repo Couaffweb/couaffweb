@@ -4,9 +4,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { Image } from 'component';
 import CheckOutForm from './CheckOut';
-const stripePromise = loadStripe(
-	'pk_test_51IpQS6AplERnGLwpLTjC8zaIX1SebuG8bY9rhL6K9clUcuKOt7rtEvIlljY2LVo2nRdfKmzzGkUeqhZy4zKkzK1Y00ZGXnWYC0'
-);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 const StripePaymentModal = ({ onClose, isShow, onPayment, price, ...rest }) => {
 	return (
 		<>
