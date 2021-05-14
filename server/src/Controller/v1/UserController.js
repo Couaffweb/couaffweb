@@ -3,7 +3,6 @@ const app = require('../../../libary/CommanMethod');
 const Db = require('../../../libary/sqlBulider');
 const ApiError = require('../../Exceptions/ApiError');
 const { lang } = require('../../../config');
-const { object } = require('prop-types');
 const DB = new Db();
 
 class UserController extends ApiController {
