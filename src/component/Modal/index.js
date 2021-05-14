@@ -5,3 +5,4 @@ export { default as OtpModal } from './Otp';
 export { default as BookingModal } from './BookingModal';
 export { default as RatingModal } from './Rating';
 export { default as AddImage } from './AddImage';
+export { default as StripePaymentModal } from './PaymentModal';

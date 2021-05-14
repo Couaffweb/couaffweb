@@ -49,6 +49,22 @@ img {
     width: 200px;
     margin-top: 70px;
 }
+
+.payment-model{
+	margin-top: 40px;
+	
+}
+.payment-div{
+	border: 1px solid #b7b7b7;
+  padding: 12px;
+}
+.Form {
+  animation: fade 200ms ease-out;
+}
+.btn-pay {
+    width: 100%;
+    margin-top: 40px;
+}
 /** google autocomplete **/
 
 .pac-container {

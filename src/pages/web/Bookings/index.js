@@ -1,6 +1,11 @@
 import React, { memo, useCallback, useState, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { Image, ReactLoading, RatingModal } from 'component';
+import {
+	Image,
+	ReactLoading,
+	RatingModal,
+	StripePaymentModal,
+} from 'component';
 import Alert from 'sweetalert';
 import { getUserType } from 'utils';
 import { getAllBookings, bookingStatusUpdate, giveRatings } from './apis';
@@ -12,6 +17,7 @@ const Bookings = () => {
 	const [status, setStatus] = useState('0,1');
 	const [showRatingPopup, setShowRatingPopUp] = useState(false);
 	const [localInfo, setLocalInfo] = useState({});
+	const [showPaymentModel, setShowPaymentModel] = useState(false);
 	useEffect(() => {
 		getServicesData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,6 +76,14 @@ const Bookings = () => {
 								isShow={showRatingPopup}
 								onSubmit={handleRating}
 								onClose={() => setShowRatingPopUp(false)}
+								{...localInfo}
+							/>
+						)}
+						{showPaymentModel && (
+							<StripePaymentModal
+								isShow={showPaymentModel}
+								onClose={() => setShowPaymentModel(false)}
+								onPayment={() => {}}
 								{...localInfo}
 							/>
 						)}
@@ -257,7 +271,15 @@ const Bookings = () => {
 													{userType === 0 && status === 1 && (
 														<div className='d-flex justify-content-center'>
 															<button
-																onClick={() => updateBooking(id, 3, index)}
+																onClick={() => {
+																	setLocalInfo({
+																		bookingId: id,
+																		index,
+																		massagerId,
+																		price: serviceDetails[0].price,
+																	});
+																	setShowPaymentModel(true);
+																}}
 																className='btn btn-info'
 																disabled={reactLoading}
 															>
