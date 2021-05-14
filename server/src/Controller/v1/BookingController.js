@@ -42,6 +42,7 @@ const makeBookingArray = (data) => {
 			massagerWorkingExperience,
 			massagerWorkingHour,
 			isReview,
+			massagerStripeId,
 		}) => {
 			if (serviceDetails) {
 				serviceDetails = JSON.parse(serviceDetails);
@@ -76,6 +77,7 @@ const makeBookingArray = (data) => {
 					totalRating,
 					massagerWorkingExperience,
 					massagerWorkingHour,
+					massagerStripeId,
 				},
 				bookingInfo: {
 					serviceDetails,
@@ -217,6 +219,7 @@ exports.getBookings = async ({
 			'massager.profile as massagerProfile',
 			'massager.location as massagerLocation',
 			'massager.working_hours as massagerWorkingHour',
+			'massager.stripe_id as massagerStripeId',
 			'massager.workingExperience as massagerWorkingExperience',
 			`(select round(avg(rating),1) as rating from ratings where massagerId=massager.id) as totalRating`,
 			`(select count(*) as rating from ratings where bookingId=bookServices.id and userId = ${id}) as isReview`,
@@ -275,6 +278,7 @@ exports.bookingDetails = async ({
 			'massager.profile as massagerProfile',
 			'massager.location as massagerLocation',
 			'massager.working_hours as massagerWorkingHour',
+			'massager.stripe_id as massagerStripeId',
 			'massager.workingExperience as massagerWorkingExperience',
 			`(select round(avg(rating),1) as rating from ratings where massagerId=massager.id) as totalRating`,
 			`(select count(*) as rating from ratings where bookingId=bookServices.id and userType = ${userType}) as isReviewed`,

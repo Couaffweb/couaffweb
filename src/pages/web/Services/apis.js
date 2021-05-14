@@ -1,5 +1,10 @@
 import { POST, GET, Delete, PUT } from 'utils';
-import { service, removeService, editService } from 'constants/apiEndpoint';
+import {
+	service,
+	removeService,
+	editService,
+	stripeConnect,
+} from 'constants/apiEndpoint';
 export const addService = (data) => {
 	const formData = new FormData();
 	formData.append('name', data.name);
@@ -19,3 +24,5 @@ export const updateService = (data) => {
 	formData.append('image', data.image);
 	return PUT(editService(data.id), formData);
 };
+
+export const stripeConnectSuccess = (data) => POST(stripeConnect, data);

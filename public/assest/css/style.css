@@ -31,6 +31,24 @@ img {
 .react-time-picker__wrapper{
 	border: none !important;
 }
+.strip-account-div{
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+	height: 50vh;
+	flex-direction: column;
+	align-items: center;
+}
+.strip-account-div h2 {
+	font-size: larger;
+  font-weight: 700;
+  color: red;
+}
+.strip-account-div a {
+	  height: 200px;
+    width: 200px;
+    margin-top: 70px;
+}
 /** google autocomplete **/
 
 .pac-container {

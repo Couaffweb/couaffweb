@@ -2,7 +2,7 @@ require('dotenv').config();
 const ApiError = require('../../Exceptions/ApiError');
 const stripKey =
 	process.env.STRIP_KEY ||
-	'sk_test_51HfdiTF3AXDMk73RYM38v6B1BccV0hS2NDMxqGQSnf1mb74WZ4X3dZAP5aH6u7MSaetjQVILhKpYgm8sS6GNT5VE00UkGVmOQl';
+	'sk_test_51IpQS6AplERnGLwpukZb5qQfEUL0jBUpHiHnH4n5ygyS1f72mSzS1SEsxulGeMIApMOpFWQvNZXWACYWez9Bu8BB006hmYtzRX';
 const stripe = require('stripe')(stripKey);
 const Db = require('../../../libary/sqlBulider');
 const ApiController = require('./ApiController');
@@ -154,6 +154,23 @@ module.exports = {
 		} catch (error) {
 			throw new ApiError(error);
 		}
+	},
+	connectStripeWeb: async ({ body: { code, user_id } }) => {
+		const result = await stripe.oauth.token({
+			grant_type: 'authorization_code',
+			code,
+		});
+		if (result.stripe_user_id) {
+			await DB.save('users', {
+				id: user_id,
+				stripe_id: result.stripe_user_id,
+				stripe_connect: true,
+			});
+		}
+		return {
+			message: 'Connceted successfully',
+			data: await helper.userDetails(user_id, true),
+		};
 	},
 	oauthConnect: async (Request) => {
 		const { code, state } = Request.query;

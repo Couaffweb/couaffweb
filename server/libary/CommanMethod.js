@@ -17,6 +17,8 @@ const https = require('https');
 const url = require('url');
 const twilio = require('twilio');
 const { Mail } = require('./mails');
+const { accountSid, authToken, sendNumber } = SMS[SMS.default];
+const client = new twilio(accountSid, authToken);
 module.exports = {
 	send_mail: function (object) {
 		const Sendmails = new Mail(mails[mails.default]);
@@ -124,8 +126,6 @@ module.exports = {
 	stripe: async function () {},
 	brain_tree: async function () {},
 	sendSMS: (data) => {
-		const { accountSid, authToken, sendNumber } = SMS[SMS.default];
-		const client = new twilio(accountSid, authToken);
 		client.messages
 			.create({
 				body: data.message,

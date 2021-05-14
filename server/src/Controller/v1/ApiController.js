@@ -172,6 +172,8 @@ class ApiController {
 				'workingExperience',
 				'working_hours',
 				'about_us',
+				'stripe_id',
+				'stripe_connect',
 				`(select IFNULL(round(avg(rating),1),0) as rating from ratings where massagerId=users.id) as totalRating`,
 				`(select count(*) as totalReview from ratings where massagerId=users.id) as totalReview`,
 				`(select count(*) as totalReview from ratings where rating=1 and massagerId=users.id) as rating1`,
