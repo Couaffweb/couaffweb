@@ -3690,6 +3690,14 @@ section.payment.ediprofile1 h3.title3 {
     text-align: center;
     margin: 0 0 30px;
 }
+.modal {
+    
+    overflow: auto;
+   
+}
+div#signup-modal_1 {
+    padding: 0;
+}
 @media(max-width:1199px)
 {
 	.back_fruits {
@@ -3767,6 +3775,12 @@ section.payment.ediprofile1 h3.title3 {
 	.venue ul li {
 		width: 100%;
 	}
+	.modal-dialog {
+    max-width: 740px;
+    min-width: 740px;
+    width: 740px;
+}
+	
 }
 @media(max-width:767px)
 {
@@ -3851,6 +3865,14 @@ section.payment.ediprofile1 h3.title3 {
 		flex-basis: 100%;
 		margin-right: 30px;
 	}
+	.sing_image {
+    display: none;
+}
+.modal-dialog {
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+}
 }
 @media(max-width:567px)
 {
