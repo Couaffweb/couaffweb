@@ -4107,3 +4107,6 @@ section.serch_here {
     overflow: hidden;
 }
 }
+button.navbar-toggler {
+    display: none;
+}
