@@ -4102,4 +4102,8 @@ header#navbar {
 	.image-container .col-md-6.col-lg-3 {
     flex: 0 0 80%;
 }
+section.serch_here {
+    padding: 0;
+    overflow: hidden;
+}
 }
