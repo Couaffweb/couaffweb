@@ -51,6 +51,7 @@ router
 			error: true,
 			success: true,
 			message: 'Something Went Wrong',
+			isredirect: false,
 		};
 		const checkAuth = await DB.find('users', 'first', {
 			conditions: {
@@ -75,7 +76,8 @@ router
 		});
 		successData.success = true;
 		successData.error = false;
-		successData.message = `New Password updated Successfully. Please Login in the web <a href="/">Click Here to login</a>`;
+		successData.message = `New Password updated Successfully. Please Login in the web`;
+		successData.isredirect = true;
 		return res.render('changepassword', successData);
 	});
 router.get('/share/:post_id', function ({ params: { post_id } }, res) {
