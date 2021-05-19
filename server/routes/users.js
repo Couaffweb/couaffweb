@@ -76,7 +76,7 @@ router
 		successData.success = true;
 		successData.error = false;
 		successData.message =
-			'New Password updated Successfully. Please Login in app';
+			'New Password updated Successfully. Please Login in the web';
 		return res.render('changepassword', successData);
 	});
 router.get('/share/:post_id', function ({ params: { post_id } }, res) {
