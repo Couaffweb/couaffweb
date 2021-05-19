@@ -75,8 +75,7 @@ router
 		});
 		successData.success = true;
 		successData.error = false;
-		successData.message =
-			'New Password updated Successfully. Please Login in the web';
+		successData.message = `New Password updated Successfully. Please Login in the web <a href="/">Click Here to login</a>`;
 		return res.render('changepassword', successData);
 	});
 router.get('/share/:post_id', function ({ params: { post_id } }, res) {

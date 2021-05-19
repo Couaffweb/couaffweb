@@ -43,7 +43,7 @@ class Mail {
 						const transporter = nodemailer.createTransport(this.oauth);
 						const mailOptions = {
 							to: this.to,
-							from: 'admin@rousocial.com',
+							from: process.env.FORMEMAIL,
 							subject: this.subject,
 							html: data,
 						};
