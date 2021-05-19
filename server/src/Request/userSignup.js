@@ -18,7 +18,7 @@ module.exports = async (Request, res, next) => {
 		latitude: Request.body.latitude,
 		about_us: Request.body.about_us,
 		authorization_key: app.createToken(),
-		otp: 1111, //app.randomNumber(),
+		otp: app.randomNumber(),
 	};
 	try {
 		// if (parseInt(requried.userType) === 1) {
