@@ -37,6 +37,7 @@ router
 			error: false,
 			success: false,
 			message: 'Create New Password',
+			isredirect: false,
 		};
 
 		if (!checkAuth) {
