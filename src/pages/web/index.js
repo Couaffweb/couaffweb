@@ -5,6 +5,7 @@ import 'react-notifications-component/dist/theme.css';
 import { WebLayout } from 'Layout';
 import { AuthRoute, AuthProviderRoute } from 'utils';
 import WebContent from './WebInfo';
+import NOTFOUND from './NotFound';
 const Home = React.lazy(() => import(/* webpackChunkName: "home" */ './Home'));
 const Profile = React.lazy(() =>
 	import(/* webpackChunkName: "profile" */ './Profile')
@@ -57,7 +58,8 @@ const WebRoutes = () => (
 				<Route path='/faq' component={WebContent} />
 				<Route path='/contact-us' component={WebContent} />
 				<Route path='/term-conditions' component={WebContent} />
-				<Route path='/' component={Home} />
+				<Route exact path='/' component={Home} />
+				<Route component={NOTFOUND} />
 			</Switch>
 		</Suspense>
 	</WebLayout>
