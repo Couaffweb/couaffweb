@@ -63,6 +63,7 @@ const WorkingHours = () => {
 														<div className='mob'>
 															<label className='text-grey mr-1'>From</label>{' '}
 															<TimePicker
+																disableClock
 																amPmAriaLabel={'Select AM/PM'}
 																className='form-control'
 																type='time'
