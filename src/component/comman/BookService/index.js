@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react';
 import PorpTypes from 'prop-types';
-import { isUserLogin, alertMessage, authInfo } from 'utils';
+import { getUserType, isUserLogin, alertMessage } from 'utils';
 import { BookingModal, ReactLoading } from 'component';
 import { store as notify } from 'react-notifications-component';
 import Alert from 'sweetalert';
@@ -11,6 +11,7 @@ const BookService = ({
 	price,
 	className = 'purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr',
 }) => {
+	const userType = getUserType();
 	const [bookingPop, setBookingPop] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const bookService = () => {
@@ -71,7 +72,7 @@ const BookService = ({
 				/>
 			)}
 			<ReactLoading isShow={loading} />
-			{(authInfo().id !== massagerId || !isUserLogin()) && (
+			{(userType === 0 || !isUserLogin()) && (
 				<button className={className} onClick={bookService}>
 					Book
 				</button>
