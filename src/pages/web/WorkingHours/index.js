@@ -63,10 +63,12 @@ const WorkingHours = () => {
 														<div className='mob'>
 															<label className='text-grey mr-1'>From</label>{' '}
 															<TimePicker
+																disableClock
 																amPmAriaLabel={'Select AM/PM'}
 																className='form-control'
 																type='time'
 																name='from'
+																format='hh:mm:ss a'
 																value={openTime}
 																onChange={(value) =>
 																	handleInput(value, 'openTime', index)
@@ -76,6 +78,8 @@ const WorkingHours = () => {
 														<div className='mob mb-1'>
 															<label className='text-grey mr-4'>To</label>{' '}
 															<TimePicker
+																disableClock
+																format='hh:mm:ss a'
 																amPmAriaLabel={'Select AM/PM'}
 																className='form-control'
 																type='time'
