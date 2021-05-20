@@ -27,7 +27,6 @@ const SearchBox = ({
 					},
 				});
 				window.dispatchEvent(event);
-				return false;
 			}
 			history.push('/search-details', {
 				...val,
@@ -49,7 +48,6 @@ const SearchBox = ({
 					},
 				});
 				window.dispatchEvent(event);
-				return false;
 			}
 			history.push('/search-details', {
 				...val,
