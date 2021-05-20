@@ -113,7 +113,7 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 									<div className='col-md-6'>
 										<h2 className='head1'> Welcome To Couaff</h2>
 										<p className='head2'>
-											Please enter your detail for Registeration
+											Please enter your details for registration
 										</p>
 
 										<div className='tab-content12'>
@@ -216,8 +216,8 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 														)}
 														<div className='form-group log_iocns11'>
 															By clicking below you agree to{' '}
-															<Link to='/term-condition'>
-																Cuaf terms & conditions
+															<Link to='/term-conditions'>
+																Couaff terms & conditions
 															</Link>
 														</div>
 
