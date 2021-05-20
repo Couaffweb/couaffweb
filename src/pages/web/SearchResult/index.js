@@ -21,7 +21,7 @@ const SearchResult = ({
 	},
 }) => {
 	const divWapper = useRef();
-	const [searchInfo] = useState({ ...state });
+	const [searchInfo, setSeachInfo] = useState({ ...state });
 	const [searchResult, setSearchResult] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [categories, setCategoires] = useState([]);
@@ -37,6 +37,11 @@ const SearchResult = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [category_id]);
 	useEffect(() => {
+		const getInfo = ({ detail }) => {
+			setSeachInfo({ ...detail });
+		};
+		window.addEventListener('searchTrigger', getInfo);
+
 		categoriesList(9)
 			.then(({ data: { result = [] } }) => {
 				setCategoires(result);
@@ -45,6 +50,9 @@ const SearchResult = ({
 			.catch(() => {
 				setCategoryLoading(false);
 			});
+		return () => {
+			window.removeEventListener('searchTrigger', getInfo);
+		};
 	}, []);
 	useEffect(() => {
 		fetchData();

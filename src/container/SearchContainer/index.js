@@ -19,6 +19,16 @@ const SearchBox = ({
 		(val) => {
 			setAddressDetails({ ...val });
 			onSelectAddress(val);
+			if (typeof window.CustomEvent === 'function') {
+				const event = new CustomEvent('searchTrigger', {
+					detail: {
+						...val,
+						...serviceDetails,
+					},
+				});
+				window.dispatchEvent(event);
+				return false;
+			}
 			history.push('/search-details', {
 				...val,
 				...serviceDetails,
@@ -31,6 +41,16 @@ const SearchBox = ({
 		(val) => {
 			setServiceDetails(val);
 			onSelectServiceInfo(val);
+			if (typeof window.CustomEvent === 'function') {
+				const event = new CustomEvent('searchTrigger', {
+					detail: {
+						...val,
+						...addressDetails,
+					},
+				});
+				window.dispatchEvent(event);
+				return false;
+			}
 			history.push('/search-details', {
 				...val,
 				...addressDetails,

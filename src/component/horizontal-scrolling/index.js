@@ -28,7 +28,7 @@ const ImageScoller = ({
 					onLeftClick();
 				}}
 			>
-				<i class='fas fa-chevron-circle-left fa-2x'></i>
+				<i className='fas fa-chevron-circle-left fa-2x'></i>
 			</span>
 			<span
 				className='next'
@@ -37,7 +37,7 @@ const ImageScoller = ({
 					onRightClick();
 				}}
 			>
-				<i class='fas fa-chevron-circle-right fa-2x'></i>
+				<i className='fas fa-chevron-circle-right fa-2x'></i>
 			</span>
 			<div className={className} ref={divRef}>
 				{children}
