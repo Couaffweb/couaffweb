@@ -415,7 +415,7 @@ class UserController extends ApiController {
 	}
 
 	async getMassagerAccordingtoLocation({
-		body: { user_id },
+		body: { user_id = 0 },
 		query: {
 			latitude,
 			longitude,
