@@ -45,6 +45,7 @@ const BookService = ({
 			};
 			serviceBookProvide(bookingObj)
 				.then(({ message, data }) => {
+					setBookingPop(false);
 					Alert(
 						'success',
 						`${message}. Your booking ID is ${data.id}`,
@@ -52,6 +53,7 @@ const BookService = ({
 					);
 				})
 				.catch(({ message }) => {
+					Alert('error', message, 'error');
 					notify.addNotification(
 						alertMessage({ title: 'error', message, type: 'danger' })
 					);

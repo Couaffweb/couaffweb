@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import 'configurable-date-input-polyfill';
 import { Image, Input, Form } from 'component';
-
 import { checkRequiredField, checkAllRequiredFieldsWithKey } from 'utils';
 const form = {
 	date: '',
@@ -29,7 +29,6 @@ const BookingModal = ({ onClose, isShow, onSubmit }) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (!checkAllField()) {
-			onClose();
 			onSubmit(bookingForm);
 		}
 	};

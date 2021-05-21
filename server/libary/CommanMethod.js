@@ -225,15 +225,8 @@ module.exports = {
 	},
 	UserToken: function (id, req) {
 		const clientIp = req.connection.remoteAddress;
-		const {
-			isMobile,
-			isDesktop,
-			browser,
-			version,
-			os,
-			platform,
-			source,
-		} = req.useragent;
+		const { isMobile, isDesktop, browser, version, os, platform, source } =
+			req.useragent;
 		let token =
 			id +
 			clientIp +
@@ -257,6 +250,19 @@ module.exports = {
 	},
 	unixTimeStamp(date) {
 		return Math.round(new Date(date).getTime() / 1000, 0);
+	},
+	getCurrentDay(date) {
+		const allDays = [
+			'Sunday',
+			'Monday',
+			'Tuesday',
+			'Wednesday',
+			'Thursday',
+			'Friday',
+			'Saturday',
+		];
+		const today = new Date(date * 1000).getDay();
+		return allDays[today];
 	},
 };
 

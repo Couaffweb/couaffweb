@@ -1,6 +1,7 @@
 const ApiController = require('./ApiController');
 const Db = require('../../../libary/sqlBulider');
 const ApiError = require('../../Exceptions/ApiError');
+const app = require('../../../libary/CommanMethod');
 const helper = new ApiController();
 const DB = new Db();
 
@@ -12,9 +13,53 @@ const findMassagerById = async (id) => {
 		},
 	});
 	if (!users) throw new ApiError('Invaild massager id', 422);
+	if (users.working_hours) {
+		users.working_hours = JSON.parse(users.working_hours);
+	}
 	return users;
 };
 
+const checkingBookingSlots = async (massagerId, date) => {
+	const getBookingByDate = await DB.find('bookServices', 'all', {
+		conditions: {
+			massagerId,
+			raw: [
+				`from_unixtime(date, "%y%d%m") = from_unixtime(${date}, "%y%d%m") and status in (0,1,3)`,
+			],
+		},
+		fields: ['bookServices.date+3000 as date'],
+	});
+	getBookingByDate.forEach((val) => {
+		if (val.date > date) {
+			throw new ApiError('Selected slot is not free', 403);
+		}
+	});
+};
+
+const checkingWorkingHours = (workingHours = [], bookingDate) => {
+	workingHours = JSON.parse(workingHours);
+	if (!workingHours.length) {
+		throw new ApiError('Working hours not avaiable');
+	}
+	const todayWorkingHour = workingHours.find(
+		(val) => val.day === app.getCurrentDay(bookingDate)
+	);
+	const openTime = new Date(bookingDate * 1000);
+	const openHours = todayWorkingHour.openTime.split(':');
+	openTime.setHours(openHours[0], openHours[1], 0);
+	const openUnixTime = Math.round(openTime.getTime() / 1000, 0);
+	const closeTime = new Date(bookingDate * 1000);
+	const closeHours = todayWorkingHour.closeTime.split(':');
+	closeTime.setHours(closeHours[0], closeHours[1], 0);
+	const closeUnixTime = Math.round(closeTime.getTime() / 1000, 0);
+	console.log({ openUnixTime, closeUnixTime, bookingDate });
+	if (openUnixTime > bookingDate || bookingDate > closeUnixTime - 3600) {
+		throw new ApiError(
+			'Provider not provide the service on your selecting time. Please choise different one',
+			400
+		);
+	}
+};
 const makeBookingArray = (data) => {
 	return data.map(
 		({
@@ -139,7 +184,9 @@ exports.bookService = async ({
 		price,
 		date,
 	});
-	await findMassagerById(massagerId);
+	const { working_hours = [] } = await findMassagerById(massagerId);
+	await checkingWorkingHours(working_hours, date);
+	await checkingBookingSlots(massagerId, date);
 	Object.assign(data, { serviceDetails: await checkAllServices(services_ids) });
 	data.id = await DB.save('bookServices', data);
 	setTimeout(() => {
