@@ -15,24 +15,10 @@ const BookService = ({
 	const [bookingPop, setBookingPop] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const bookService = () => {
-		if (!isUserLogin()) {
-			if (typeof window.CustomEvent === 'function') {
-				const event = new CustomEvent('isLogin', {
-					detail: {
-						isLogin: true,
-					},
-				});
-				window.dispatchEvent(event);
-				return false;
-			}
-			Alert('Login first to book service');
-			return false;
-		}
 		setBookingPop(!bookingPop);
 	};
 	const hanldeSubmit = useCallback(
 		(val) => {
-			setLoading(true);
 			const date = Math.round(
 				new Date(`${val.date} ${val.time}`).getTime() / 1000,
 				0
@@ -43,6 +29,21 @@ const BookService = ({
 				price,
 				date,
 			};
+			if (!isUserLogin()) {
+				setBookingPop(false);
+				if (typeof window.CustomEvent === 'function') {
+					const event = new CustomEvent('isLogin', {
+						detail: {
+							...bookingObj,
+						},
+					});
+					window.dispatchEvent(event);
+					return false;
+				}
+				Alert('Login first to book service');
+				return false;
+			}
+			setLoading(true);
 			serviceBookProvide(bookingObj)
 				.then(({ message, data }) => {
 					setBookingPop(false);

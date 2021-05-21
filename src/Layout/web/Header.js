@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
+import Alert from 'sweetalert';
+import { store as notify } from 'react-notifications-component';
 import {
 	Image,
 	LoginModal,
@@ -7,10 +9,13 @@ import {
 	SignUpModal,
 	OtpModal,
 	Menu,
+	ReactLoading,
 } from 'component';
+import { serviceBookProvide } from 'component/comman/BookService/apis';
 import { SearchBox } from 'container';
-import { isUserLogin, removeAuth, getUserType } from 'utils';
+import { isUserLogin, removeAuth, getUserType, alertMessage } from 'utils';
 import { popUps } from './constants';
+
 const Header = () => {
 	const history = useHistory();
 	const { pathname } = useLocation();
@@ -18,10 +23,13 @@ const Header = () => {
 	const [showPopup, setShowPopup] = useState(popUps);
 	const [userType, setUserType] = useState(0);
 	const [isLogin, setIsLogin] = useState(isUserLogin());
+	const [bookingInfo, setBookingInfo] = useState({});
+	const [loading, setLoading] = useState(false);
 	useEffect(() => {
 		const header = document.getElementById('myHeader');
-		window.addEventListener('isLogin', () => {
+		const handleLogin = window.addEventListener('isLogin', ({ detail }) => {
 			setShowPopup({ ...showPopup, login: true });
+			setBookingInfo({ ...detail });
 		});
 		if (header && !isHome) {
 			const sticky = header.offsetTop;
@@ -34,6 +42,7 @@ const Header = () => {
 			});
 			return () => {
 				window.removeEventListener('scroll', scrollCallBack);
+				window.removeEventListener('isLogin', handleLogin);
 			};
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,6 +61,27 @@ const Header = () => {
 	);
 	const onLogin = () => {
 		setIsLogin(true);
+		if (bookingInfo.massagerId && getUserType() === 0) {
+			setLoading(true);
+			serviceBookProvide(bookingInfo)
+				.then(({ message, data }) => {
+					setBookingInfo({});
+					Alert(
+						'success',
+						`${message}. Your booking ID is ${data.id}`,
+						'success'
+					);
+				})
+				.catch(({ message }) => {
+					Alert('error', message, 'error');
+					notify.addNotification(
+						alertMessage({ title: 'error', message, type: 'danger' })
+					);
+				})
+				.finally(() => {
+					setLoading(false);
+				});
+		}
 	};
 	const closePopUp = useCallback(() => {
 		setShowPopup({ ...popUps });
@@ -245,6 +275,7 @@ const Header = () => {
 					</div>
 				</div>
 			</header>
+			<ReactLoading isShow={loading} />
 			{!isHome && (
 				<section className='baner inn' id='myHeader'>
 					<div className=' back_fruits'>

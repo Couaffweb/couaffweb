@@ -263,7 +263,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 							<h4>See Our Work</h4>
 							<br />
 							<div className='row'>
-								{providerInfo?.userImages?.length === 0 && (
+								{!loading && providerInfo?.userImages?.length === 0 && (
 									<h4 className='error-text'>No Image Provide By Provider</h4>
 								)}
 								{loading
