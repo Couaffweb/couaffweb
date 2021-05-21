@@ -39,10 +39,10 @@ const checkingBookingSlots = async (massagerId, date) => {
 };
 
 const checkingWorkingHours = (workingHours = [], bookingDate) => {
-	workingHours = JSON.parse(workingHours);
-	if (!workingHours.length) {
+	if (!workingHours) {
 		throw new ApiError('Working hours not avaiable');
 	}
+	workingHours = JSON.parse(workingHours);
 	const todayWorkingHour = workingHours.find(
 		(val) => val.day === app.getCurrentDay(bookingDate)
 	);
