@@ -27,10 +27,13 @@ const checkingBookingSlots = async (massagerId, date) => {
 				`from_unixtime(date, "%y%d%m") = from_unixtime(${date}, "%y%d%m") and status in (0,1,3)`,
 			],
 		},
-		fields: ['bookServices.date+3000 as date'],
+		fields: [
+			'bookServices.date+3600 as endTime, bookServices.date as startTime',
+		],
 	});
 	getBookingByDate.forEach((val) => {
-		if (val.date > date) {
+		console.log(val.startTime, date, val.endTime);
+		if (val.startTime >= date || date < val.endTime) {
 			throw new ApiError('Selected slot is not free', 403);
 		}
 	});
@@ -52,7 +55,6 @@ const checkingWorkingHours = (workingHours = [], bookingDate) => {
 	const closeHours = todayWorkingHour.closeTime.split(':');
 	closeTime.setHours(closeHours[0], closeHours[1], 0);
 	const closeUnixTime = Math.round(closeTime.getTime() / 1000, 0);
-	console.log({ openUnixTime, closeUnixTime, bookingDate });
 	if (openUnixTime > bookingDate || bookingDate > closeUnixTime - 3600) {
 		throw new ApiError(
 			'Provider not provide the service on your selecting time. Please choise different one',
