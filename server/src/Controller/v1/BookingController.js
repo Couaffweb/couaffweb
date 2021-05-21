@@ -32,7 +32,6 @@ const checkingBookingSlots = async (massagerId, date) => {
 		],
 	});
 	getBookingByDate.forEach((val) => {
-		console.log(val.startTime, date, val.endTime);
 		if (val.startTime >= date || date < val.endTime) {
 			throw new ApiError('Selected slot is not free', 403);
 		}
