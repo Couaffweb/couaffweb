@@ -58,6 +58,9 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 				setLoading(false);
 			});
 	};
+	const openPhone = (phone) => {
+		window.open(`tel:+${phone}`, '_blank');
+	};
 	return (
 		<section className='Business_details'>
 			<div className='container'>
@@ -509,7 +512,9 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 								<div className='con1'>
 									<i className='fa fa-phone' aria-hidden='true'></i>
 									{providerInfo.phone}
-									<button>Call</button>
+									<button onClick={() => openPhone(providerInfo.phone)}>
+										Call
+									</button>
 								</div>
 							</div>
 						</div>
@@ -538,9 +543,11 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 							Call {providerInfo.phone} , for appointment.
 						</p>
 
-						<Link to='#' className='rp'>
-							Report <i className='fas fa-arrow-right'></i>
-						</Link>
+						{false && (
+							<Link to='#' className='rp'>
+								Report <i className='fas fa-arrow-right'></i>
+							</Link>
+						)}
 					</div>
 				</div>
 			</div>
