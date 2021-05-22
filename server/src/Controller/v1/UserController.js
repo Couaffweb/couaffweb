@@ -645,7 +645,7 @@ class UserController extends ApiController {
 			},
 		};
 		const countryCode = phone.charAt(0);
-		if (parseInt(countryCode, 10) !== 1) {
+		if (parseInt(countryCode, 10) !== 1 && phone.length === 10) {
 			phone = `1${phone}`;
 		}
 		try {
