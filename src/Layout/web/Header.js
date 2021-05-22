@@ -61,7 +61,7 @@ const Header = () => {
 	);
 	const onLogin = () => {
 		setIsLogin(true);
-		if (bookingInfo.massagerId && getUserType() === 0) {
+		if (bookingInfo.massagerId && parseInt(getUserType()) === 0) {
 			setLoading(true);
 			serviceBookProvide(bookingInfo)
 				.then(({ message, data }) => {
