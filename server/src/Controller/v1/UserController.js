@@ -644,6 +644,10 @@ class UserController extends ApiController {
 				url: global.appURL + 'users/verify/' + authorization_key,
 			},
 		};
+		const countryCode = phone.charAt(0);
+		if (parseInt(countryCode, 10) !== 1) {
+			phone = `1${phone}`;
+		}
 		try {
 			app.sendSMS({
 				to: phone,
