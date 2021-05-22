@@ -54,6 +54,7 @@ const checkingWorkingHours = (workingHours = [], bookingDate) => {
 	const closeHours = todayWorkingHour.closeTime.split(':');
 	closeTime.setHours(closeHours[0], closeHours[1], 0);
 	const closeUnixTime = Math.round(closeTime.getTime() / 1000, 0);
+	console.log(openUnixTime, closeUnixTime, bookingDate);
 	if (openUnixTime > bookingDate || bookingDate > closeUnixTime - 3600) {
 		throw new ApiError(
 			'Provider not provide the service on your selecting time. Please choise different one',
