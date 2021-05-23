@@ -113,8 +113,15 @@ const ProviderEarning = ({ location, history }) => {
 				<div className='col-lg-12'>
 					{authInfo().stripe_id ? (
 						<div className='strip-account-div'>
-							<h5>Click on withdrawal button to withdrawal Amount</h5>
-							<button onClick={withdrawalFund} className='btn btn-primary'>
+							<h5>
+								<br /> You can only withdrawal amount when you have more then 10
+								$
+							</h5>
+							<button
+								disabled={totalBalance < 10}
+								onClick={withdrawalFund}
+								className='btn btn-primary'
+							>
 								Withdrawal Amount
 							</button>
 						</div>
