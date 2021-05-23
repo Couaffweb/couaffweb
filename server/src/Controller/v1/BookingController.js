@@ -147,7 +147,6 @@ const makeBookingArray = (data) => {
 const addTransectionInfo = async (data) => {
 	const percent = (10 / 100) * data.amount;
 	data.amount = data.amount - percent;
-	await DB.save('transactions', data);
 	const providerInfo = await DB.find('users', 'first', {
 		conditions: {
 			id: data.userId,
@@ -155,9 +154,11 @@ const addTransectionInfo = async (data) => {
 		fields: ['id', 'walletAmount'],
 	});
 	const { walletAmount, id } = providerInfo;
+	data.totalBalance = parseFloat(walletAmount + data.amount);
+	await DB.save('transactions', data);
 	await DB.save('users', {
 		id,
-		walletAmount: walletAmount + data.amount,
+		walletAmount: data.totalBalance,
 	});
 };
 const checkBookingId = async (id, massagerId, userType) => {

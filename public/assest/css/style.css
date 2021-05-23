@@ -3556,6 +3556,14 @@ section.recommended_slider {
 .list_img .purify_3tt1vpW-yWSKbxaT7g_D6I .purify_jYSVgwzoOcOfpiyrJrJSX {
     font-size: 9px;
 }
+.pagination-div{
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+.td-center{
+	text-align: center;
+}
 .pagination2 {
     text-align: center;
     margin: 20px 0 0;

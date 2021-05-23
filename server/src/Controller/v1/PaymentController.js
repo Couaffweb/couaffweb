@@ -230,7 +230,10 @@ module.exports = {
 		}
 	},
 	getTransection: async ({
-		body: { user_id, walletAmount },
+		body: {
+			user_id,
+			userInfo: { walletAmount = 0 },
+		},
 		query: { page = 1, limit = 20, search = '' },
 	}) => {
 		const offset = (page - 1) * limit;

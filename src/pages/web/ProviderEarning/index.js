@@ -1,10 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { ReactLoading, Image } from 'component';
+import React, { useState, useEffect, useCallback } from 'react';
 import { store as notify } from 'react-notifications-component';
-import { authInfo, alertMessage, setUserInfo } from 'utils';
-import { stripeConnectSuccess } from './apis';
+import { ReactLoading, Image, Paginations } from 'component';
+import {
+	authInfo,
+	alertMessage,
+	setUserInfo,
+	parseUrl,
+	dateFormate,
+	priceFormate,
+} from 'utils';
+import { stripeConnectSuccess, getTransectionHistory } from './apis';
 const ProviderEarning = ({ location, history }) => {
 	const [loading, setLoading] = useState(false);
+	const [tranSectionList, setTranSectionList] = useState([]);
+	const [totalBalance, setTotalBalance] = useState(0);
+	const [currentPage, setCurrentPage] = useState(
+		parseInt(parseUrl(history.location.search, 'page')) || 1
+	);
+	const [totalPage, setTotalPage] = useState(1);
+	useEffect(() => {
+		getTransections();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [currentPage]);
 	useEffect(() => {
 		if (location.search) {
 			const code = new URLSearchParams(location.search).get('code');
@@ -28,6 +45,33 @@ const ProviderEarning = ({ location, history }) => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location.search]);
+	const getTransections = () => {
+		setLoading(true);
+		getTransectionHistory({ page: currentPage, limit: 20 })
+			.then(
+				({
+					data: { walletAmount = 0, allTransection = [], pagination = {} },
+				}) => {
+					setTotalBalance(walletAmount);
+					setTotalPage(pagination.totalPage);
+					setTranSectionList(allTransection);
+				}
+			)
+			.catch(({ message }) => {
+				notify.addNotification(
+					alertMessage({ title: 'error', message, type: 'danger' })
+				);
+			})
+			.finally(() => {
+				setLoading(false);
+			});
+	};
+	const handlePage = useCallback(
+		(pageNo) => {
+			setCurrentPage(pageNo);
+		},
+		[setCurrentPage]
+	);
 	return (
 		<div className='container container-all'>
 			<ReactLoading isShow={loading} />
@@ -54,10 +98,84 @@ const ProviderEarning = ({ location, history }) => {
 						<div className='card-header card-header-fix'>
 							<div>My Transection</div>
 							<div>
-								<strong>Amount Avaiable : $100 </strong>
+								<strong>Amount Avaiable : {priceFormate(totalBalance)} </strong>
 							</div>
 						</div>
-						<div className='card-body'></div>
+						<div className='card-body'>
+							<table className='table table-striped'>
+								<thead className='thead-dark'>
+									<tr>
+										<th scope='col' className='td-center'>
+											#
+										</th>
+										<th scope='col' className='td-center'>
+											Booking Id
+										</th>
+										<th scope='col' className='td-center'>
+											Amount
+										</th>
+										<th scope='col' className='td-center'>
+											Transection Type
+										</th>
+										<th scope='col' className='td-center'>
+											Total Balance
+										</th>
+										<th scope='col' className='td-center'>
+											Date
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{tranSectionList.map(
+										(
+											{
+												id,
+												bookingId,
+												created,
+												amount,
+												transactionType,
+												totalBalance,
+											},
+											index
+										) => (
+											<tr key={id}>
+												<th scope='row'>{index + 1}</th>
+												<td className='td-center'>{bookingId}</td>
+												<td className='td-center'>{priceFormate(amount)}</td>
+												<td className='td-center'>
+													{transactionType === 0 ? 'Credit' : 'Withdrawal'}
+													<i
+														className={`ml-1 fa fa-arrow-${
+															transactionType === 0 ? 'up' : 'down'
+														}`}
+														aria-hidden='true'
+													></i>
+												</td>
+												<td className='td-center'>
+													{priceFormate(totalBalance)}
+												</td>
+												<td className='td-center'>{dateFormate(created)}</td>
+											</tr>
+										)
+									)}
+								</tbody>
+							</table>
+
+							{tranSectionList.length === 0 && (
+								<h2 className='error-text d-flex justify-content-center'>
+									No Record found
+								</h2>
+							)}
+							<div className='pagination-div'>
+								<Paginations
+									className='pagination2'
+									currentPage={currentPage}
+									pageRangeDisplayed={5}
+									totalPage={totalPage}
+									onChange={handlePage}
+								/>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
