@@ -20,10 +20,9 @@ const BookService = ({
 	};
 	const hanldeSubmit = useCallback(
 		(val) => {
-			const date = Math.round(
-				new Date(`${val.date} ${val.time}`).getTime() / 1000,
-				0
-			);
+			let date = new Date(val.date);
+			date.setHours(new Date(val.time).getHours());
+			date = Math.round(new Date(date).getTime() / 1000, 0);
 			const bookingObj = {
 				massagerId,
 				services_ids: String(services_ids),

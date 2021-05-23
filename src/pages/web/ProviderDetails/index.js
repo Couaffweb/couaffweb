@@ -530,7 +530,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 							Array.isArray(JSON.parse(providerInfo.working_hours)) ? (
 								[...JSON.parse(providerInfo.working_hours)].map(
 									({ day, openTime, closeTime }) => (
-										<div className='business-time'>
+										<div className='business-time' key={day}>
 											<div className='days1'>{day}</div>
 											<div className='timeing'>
 												{openTime} - {closeTime}
