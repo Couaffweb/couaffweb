@@ -66,7 +66,7 @@ const Header = () => {
 			serviceBookProvide(bookingInfo)
 				.then(({ message, data }) => {
 					setBookingInfo({});
-					Alert(
+					Alert( 	
 						'success',
 						`${message}. Your booking ID is ${data.id}`,
 						'success'

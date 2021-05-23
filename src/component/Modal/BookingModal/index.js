@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import 'configurable-date-input-polyfill';
-import { Image, Input, Form } from 'component';
-import { checkRequiredField, checkAllRequiredFieldsWithKey } from 'utils';
+import { Image, Form, DatePicker } from 'component';
+import {
+	checkRequiredField,
+	checkAllRequiredFieldsWithKey,
+	getCurrentDay,
+} from 'utils';
 const form = {
 	date: '',
 	time: '',
 };
-const BookingModal = ({ onClose, isShow, onSubmit }) => {
-	const [bookingForm, setBookingForm] = useState(form);
+const BookingModal = ({ onClose, isShow, onSubmit, workingHours }) => {
+	const [bookingForm, setBookingForm] = useState({ ...form, date: new Date() });
 	const [formError, setFormError] = useState(form);
 	const handleInput = ({ target: { name, value } }) => {
 		setBookingForm({ ...bookingForm, [name]: value });
@@ -31,6 +34,26 @@ const BookingModal = ({ onClose, isShow, onSubmit }) => {
 		if (!checkAllField()) {
 			onSubmit(bookingForm);
 		}
+	};
+	const handleColor = (time) => {
+		let bookingDate = new Date(bookingForm.date);
+		bookingDate.setHours(time.getHours());
+		bookingDate = Math.round(new Date(bookingDate).getTime() / 1000, 0);
+		const todayWorkingHour = workingHours.find(
+			(val) => val.day === getCurrentDay(bookingDate)
+		);
+		const openTime = new Date(bookingDate * 1000);
+		const openHours = todayWorkingHour.openTime.split(':');
+		openTime.setHours(openHours[0], openHours[1], 0);
+		const openUnixTime = Math.round(openTime.getTime() / 1000, 0);
+		const closeTime = new Date(bookingDate * 1000);
+		const closeHours = todayWorkingHour.closeTime.split(':');
+		closeTime.setHours(closeHours[0], closeHours[1], 0);
+		const closeUnixTime = Math.round(closeTime.getTime() / 1000, 0);
+		if (openUnixTime > bookingDate || bookingDate > closeUnixTime - 3600) {
+			return 'text-error';
+		}
+		return 'text-success';
 	};
 	return (
 		<>
@@ -57,24 +80,30 @@ const BookingModal = ({ onClose, isShow, onSubmit }) => {
 													<Form onSubmit={handleSubmit}>
 														<div className='form-group log_iocns'>
 															<label> Date </label>
-															<Input
-																min={new Date().toISOString().split('T')[0]}
+															<DatePicker
+																minDate={new Date()}
 																onBlur={checkError}
 																onFocus={removeError}
 																isError={formError.date}
 																value={bookingForm.date}
 																placeholder='Date'
-																type='date'
 																className='form-control'
 																name='date'
 																onChange={handleInput}
+																withPortal
+																isClearable
+																calendarClassName='rasta-stripes'
 															/>
 															<Image url='/assest/images/clender.png' />
 														</div>
 
 														<div className='form-group log_iocns'>
 															<label> Time </label>
-															<Input
+
+															<DatePicker
+																showTimeSelect
+																showTimeSelectOnly
+																timeIntervals={60}
 																onBlur={checkError}
 																onFocus={removeError}
 																isError={formError.time}
@@ -84,6 +113,9 @@ const BookingModal = ({ onClose, isShow, onSubmit }) => {
 																className='form-control'
 																name='time'
 																onChange={handleInput}
+																timeCaption='Time'
+																dateFormat='h:mm aa'
+																timeClassName={handleColor}
 															/>
 															<Image url='/assest/images/time.png' />
 														</div>

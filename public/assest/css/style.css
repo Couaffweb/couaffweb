@@ -76,6 +76,17 @@ img {
 .error-details{
 	margin: 20px 0;
 }
+.react-datepicker-wrapper {
+    display: inline-block;
+    padding: 0;
+    border: 0;
+    width: 100%;
+}
+.text-error{
+	color: red;
+	font-size: 12px;
+	pointer-events: none;
+}
 /** google autocomplete **/
 
 .pac-container {

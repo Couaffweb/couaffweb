@@ -67,3 +67,17 @@ export const apiURl =
 	process.env.REACT_APP_IS_DEV === 'true'
 		? `${window.location.origin}/apis/v1`
 		: `http://${window.location.hostname}:4001/apis/v1`;
+
+export const getCurrentDay = (date) => {
+	const allDays = [
+		'Sunday',
+		'Monday',
+		'Tuesday',
+		'Wednesday',
+		'Thursday',
+		'Friday',
+		'Saturday',
+	];
+	const today = new Date(date * 1000).getDay();
+	return allDays[today];
+};

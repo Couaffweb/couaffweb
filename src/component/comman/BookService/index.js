@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from 'react';
-import PorpTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { getUserType, isUserLogin, alertMessage } from 'utils';
 import { BookingModal, ReactLoading } from 'component';
 import { store as notify } from 'react-notifications-component';
@@ -9,6 +9,7 @@ const BookService = ({
 	massagerId,
 	services_ids,
 	price,
+	workingHours = {},
 	className = 'purify_3geqj2n36R8Dg7nylDdXsn purify_22UYJANSsr0z4osYrHmDD4 purify_13fyTWnkyZI2h3hIB4IlUq purify_Tf7q0lyTuYPyoIxLhB6IK purify_1bVBor9L1Nal5qAEUca1vS purify_1rkZUT9Q222TF1-HRC0qWi purify_jEiYoKzkRbjQsWvwUztCr',
 }) => {
 	const userType = getUserType();
@@ -72,6 +73,7 @@ const BookService = ({
 					isShow={bookingPop}
 					onClose={() => setBookingPop(false)}
 					onSubmit={hanldeSubmit}
+					workingHours={workingHours}
 				/>
 			)}
 			<ReactLoading isShow={loading} />
@@ -84,10 +86,11 @@ const BookService = ({
 	);
 };
 BookService.propType = {
-	massagerId: PorpTypes.number.isRequired,
-	services_ids: PorpTypes.number.isRequired,
-	price: PorpTypes.number.isRequired,
-	className: PorpTypes.string,
+	massagerId: PropTypes.number.isRequired,
+	services_ids: PropTypes.number.isRequired,
+	price: PropTypes.number.isRequired,
+	className: PropTypes.string,
+	workingHours: PropTypes.object,
 };
 
 export default memo(BookService);

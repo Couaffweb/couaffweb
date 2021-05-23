@@ -6,4 +6,5 @@ export { default as ReactLoading } from './Loading';
 export { default as BookService } from './BookService';
 export { default as Textarea } from './Input/TextInput';
 export { default as Paginations } from './Pagination';
+export { default as DatePicker } from './DatePicker';
 export * from './Forms';

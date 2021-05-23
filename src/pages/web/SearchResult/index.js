@@ -241,6 +241,12 @@ const SearchResult = ({
 																					services_ids={id}
 																					massagerId={providerInfo.id}
 																					price={price}
+																					workingHours={
+																						providerInfo.working_hours &&
+																						JSON.parse(
+																							providerInfo.working_hours
+																						)
+																					}
 																				/>
 																			</div>
 																		</div>
