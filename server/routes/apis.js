@@ -81,4 +81,5 @@ router.put('/payment/done', Apiresponse(PaymentController.donePayment));
 router.get('/categories', Apiresponse(ServiceController.getAllCategories));
 router.post('/stripe-connect', Apiresponse(PaymentController.connectStripeWeb));
 router.post('/stripe-token', Apiresponse(PaymentController.createStripeSecert));
+router.get('/transections', Apiresponse(PaymentController.getTransection));
 module.exports = router;

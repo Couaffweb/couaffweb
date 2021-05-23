@@ -144,7 +144,22 @@ const makeBookingArray = (data) => {
 		}
 	);
 };
-
+const addTransectionInfo = async (data) => {
+	const percent = (10 / 100) * data.amount;
+	data.amount = data.amount - percent;
+	await DB.save('transactions', data);
+	const providerInfo = await DB.find('users', 'first', {
+		conditions: {
+			id: data.userId,
+		},
+		fields: ['id', 'walletAmount'],
+	});
+	const { walletAmount, id } = providerInfo;
+	await DB.save('users', {
+		id,
+		walletAmount: walletAmount + data.amount,
+	});
+};
 const checkBookingId = async (id, massagerId, userType) => {
 	const condition = {
 		conditions: {
@@ -235,6 +250,12 @@ exports.acceptBooking = async ({
 				paymentStatus: 1,
 			});
 		}
+		addTransectionInfo({
+			userId: bookingInfo.massagerId,
+			bookingId,
+			amount: bookingInfo.price,
+			transactionInfo: JSON.stringify(paymentDetails),
+		});
 		notification_code = 4;
 		message = 'Booking complete';
 	}

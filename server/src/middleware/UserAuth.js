@@ -28,6 +28,7 @@ const UserAuth = async (req, res, next) => {
 				'stripe_id',
 				'stripe_connect',
 				'userType',
+				'walletAmount',
 			],
 		});
 		if (user_details) {

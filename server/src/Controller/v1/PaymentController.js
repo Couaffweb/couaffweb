@@ -229,6 +229,39 @@ module.exports = {
 			return false;
 		}
 	},
+	getTransection: async ({
+		body: { user_id, walletAmount },
+		query: { page = 1, limit = 20, search = '' },
+	}) => {
+		const offset = (page - 1) * limit;
+		const condition = {
+			conditions: {
+				userId: user_id,
+			},
+			orderBy: ['id desc'],
+			limit: [offset, limit],
+		};
+		if (search) {
+			Object.assign(condition.conditions, {
+				raw: [` bookingId like '%${search}% or amount like '%${search}%'`],
+			});
+		}
+		const allTransection = await DB.find('transactions', 'all', condition);
+		const pagination = await helper.Paginations(
+			'transactions',
+			condition,
+			page,
+			limit
+		);
+		return {
+			message: 'Transection list',
+			data: {
+				walletAmount,
+				pagination,
+				allTransection,
+			},
+		};
+	},
 	donePayment: async ({
 		body: { bookingId, user_id, paymentDetails, paymentStatus },
 	}) => {
