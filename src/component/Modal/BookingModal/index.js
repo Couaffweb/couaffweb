@@ -90,7 +90,11 @@ const BookingModal = ({ onClose, isShow, onSubmit, workingHours }) => {
 																className='form-control'
 																name='date'
 																onChange={handleInput}
-																withPortal
+																withPortal={
+																	!/^((?!chrome|android).)*safari/i.test(
+																		navigator.userAgent
+																	)
+																}
 																isClearable
 																calendarClassName='rasta-stripes'
 															/>
