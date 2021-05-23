@@ -335,13 +335,13 @@ module.exports = {
 		if (!stripe_id)
 			throw new ApiError('Your account is not connected with stripe');
 		const transfer = await stripe.transfers.create({
-			amount: walletAmount,
+			amount: parseInt(walletAmount),
 			currency: 'usd',
 			destination: stripe_id,
 			description: 'Withdrawal amount',
 		});
 		const transectionDetails = {
-			amount: parseInt(walletAmount),
+			amount: walletAmount,
 			userId: user_id,
 			transactionType: 1,
 			bookingId: 0,
