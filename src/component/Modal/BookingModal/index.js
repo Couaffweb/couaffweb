@@ -50,7 +50,7 @@ const BookingModal = ({ onClose, isShow, onSubmit, workingHours }) => {
 		const closeHours = todayWorkingHour.closeTime.split(':');
 		closeTime.setHours(closeHours[0], closeHours[1], 0);
 		const closeUnixTime = Math.round(closeTime.getTime() / 1000, 0);
-		if (openUnixTime > bookingDate || bookingDate > closeUnixTime - 3600) {
+		if (openUnixTime > bookingDate || bookingDate >= closeUnixTime - 3600) {
 			return 'text-error';
 		}
 		return 'text-success';
