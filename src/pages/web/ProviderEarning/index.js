@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { store as notify } from 'react-notifications-component';
+import Alert from 'sweetalert';
 import { ReactLoading, Image, Paginations } from 'component';
 import {
 	authInfo,
@@ -9,7 +10,11 @@ import {
 	dateFormate,
 	priceFormate,
 } from 'utils';
-import { stripeConnectSuccess, getTransectionHistory } from './apis';
+import {
+	stripeConnectSuccess,
+	getTransectionHistory,
+	tranferFund,
+} from './apis';
 const ProviderEarning = ({ location, history }) => {
 	const [loading, setLoading] = useState(false);
 	const [tranSectionList, setTranSectionList] = useState([]);
@@ -72,6 +77,35 @@ const ProviderEarning = ({ location, history }) => {
 		},
 		[setCurrentPage]
 	);
+	const withdrawalFund = () => {
+		Alert({
+			title: 'Are you sure want to withdrawal amount?',
+			text: '',
+			icon: 'warning',
+			buttons: true,
+			dangerMode: true,
+		}).then((willDelete) => {
+			if (willDelete) {
+				setLoading(true);
+				tranferFund()
+					.then(({ message, data }) => {
+						tranSectionList.unshift(data);
+						setTotalBalance(0);
+						Alert('success', message, 'success');
+					})
+					.catch(({ message }) => {
+						notify.addNotification(
+							alertMessage({ title: 'error', message, type: 'danger' })
+						);
+					})
+					.finally(() => {
+						setLoading(false);
+					});
+			} else {
+				Alert('Proccess cancel');
+			}
+		});
+	};
 	return (
 		<div className='container container-all'>
 			<ReactLoading isShow={loading} />
@@ -80,7 +114,9 @@ const ProviderEarning = ({ location, history }) => {
 					{authInfo().stripe_id ? (
 						<div className='strip-account-div'>
 							<h5>Click on withdrawal button to withdrawal Amount</h5>
-							<button className='btn btn-primary'>Withdrawal Amount</button>
+							<button onClick={withdrawalFund} className='btn btn-primary'>
+								Withdrawal Amount
+							</button>
 						</div>
 					) : (
 						<div className='strip-account-div'>

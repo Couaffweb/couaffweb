@@ -326,6 +326,38 @@ module.exports = {
 			throw new ApiError(err, 400);
 		}
 	},
+	providerAmountTransfer: async ({
+		body: {
+			user_id,
+			userInfo: { stripe_id, walletAmount },
+		},
+	}) => {
+		if (!stripe_id)
+			throw new ApiError('Your account is not connected with stripe');
+		const transfer = await stripe.transfers.create({
+			amount: walletAmount,
+			currency: 'usd',
+			destination: stripe_id,
+			description: 'Withdrawal amount',
+		});
+		const transectionDetails = {
+			amount: walletAmount,
+			userId: user_id,
+			transactionType: 1,
+			bookingId: 0,
+			totalBalance: 0,
+			transactionInfo: JSON.stringify(transfer),
+		};
+		transectionDetails.id = await DB.save('transactions', transectionDetails);
+		await DB.save('users', {
+			id: user_id,
+			walletAmount: 0,
+		});
+		return {
+			message: 'Amount transfer successfully',
+			data: transectionDetails,
+		};
+	},
 	transfersAmount: ({
 		destination,
 		amount,

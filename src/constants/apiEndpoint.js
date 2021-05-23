@@ -24,3 +24,4 @@ export const getAllCategories = 'categories';
 export const stripeConnect = 'stripe-connect';
 export const stripePaymentToken = 'stripe-token';
 export const getAllTransectionList = 'transections';
+export const amountTranfer = 'amount-transfer';
