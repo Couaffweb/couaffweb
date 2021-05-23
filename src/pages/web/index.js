@@ -3,6 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import { WebLayout } from 'Layout';
+import { ReactLoading } from 'component';
 import { AuthRoute, AuthProviderRoute } from 'utils';
 import WebContent from './WebInfo';
 import NOTFOUND from './NotFound';
@@ -34,10 +35,13 @@ const Images = React.lazy(() =>
 const WorkingHours = React.lazy(() =>
 	import(/* webpackChunkName: "working-hours" */ './WorkingHours')
 );
+const ProviderEarning = React.lazy(() =>
+	import(/* webpackChunkName: "provider-earning" */ './ProviderEarning')
+);
 const WebRoutes = () => (
 	<WebLayout>
 		<ReactNotification />
-		<Suspense fallback={<div className='loading' />}>
+		<Suspense fallback={<ReactLoading type='Rings' />}>
 			<Switch>
 				<Route
 					path='/provider-details/:id?'
@@ -54,6 +58,7 @@ const WebRoutes = () => (
 				<AuthProviderRoute path='/services' component={Services} />
 				<AuthProviderRoute path='/working-pics' component={Images} />
 				<AuthProviderRoute path='/working-hours' component={WorkingHours} />
+				<AuthProviderRoute path='/earning' component={ProviderEarning} />
 				<Route path='/about-us' component={WebContent} />
 				<Route path='/faq' component={WebContent} />
 				<Route path='/contact-us' component={WebContent} />

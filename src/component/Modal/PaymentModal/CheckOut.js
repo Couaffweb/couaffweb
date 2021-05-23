@@ -48,7 +48,6 @@ const CheckOutForm = ({ onPayment, price, ...rest }) => {
 			setProcessing(true);
 		}
 		const cardElement = elements.getElement(CardElement);
-		console.log(cardElement);
 		const payload = await stripe.confirmCardPayment(clientSecret, {
 			payment_method: {
 				card: cardElement,

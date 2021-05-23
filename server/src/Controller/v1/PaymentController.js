@@ -204,10 +204,10 @@ module.exports = {
 				amount,
 				currency,
 				transfer_group: order_id,
-				application_fee_amount,
-				transfer_data: {
-					destination: shop_stripe_id,
-				},
+				// application_fee_amount, // comment for dissble the time
+				// transfer_data: {
+				// 	destination: shop_stripe_id,
+				// },
 			});
 			const clientSecret = paymentIntent.client_secret;
 			return {

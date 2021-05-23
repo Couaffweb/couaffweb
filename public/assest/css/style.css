@@ -34,20 +34,30 @@ img {
 .strip-account-div{
 	display: flex;
 	justify-content: center;
-	margin-top: 50px;
-	height: 50vh;
 	flex-direction: column;
 	align-items: center;
 }
 .strip-account-div h2 {
-	font-size: larger;
-  font-weight: 700;
+  font-weight: 200;
   color: red;
 }
+.strip-account-div h5 {
+  font-weight: 300;
+  color: rgb(63, 61, 61);
+}
 .strip-account-div a {
-	  height: 200px;
+	  height: 50px;
     width: 200px;
-    margin-top: 70px;
+		margin: 12px 0;
+}
+.strip-account-div button {
+		margin: 12px 0;
+}
+.card-header-fix{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
 }
 
 .payment-model{
