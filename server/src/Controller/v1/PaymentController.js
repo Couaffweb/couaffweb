@@ -341,7 +341,7 @@ module.exports = {
 			description: 'Withdrawal amount',
 		});
 		const transectionDetails = {
-			amount: walletAmount,
+			amount: parseInt(walletAmount),
 			userId: user_id,
 			transactionType: 1,
 			bookingId: 0,
