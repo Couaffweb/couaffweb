@@ -334,6 +334,8 @@ module.exports = {
 	}) => {
 		if (!stripe_id)
 			throw new ApiError('Your account is not connected with stripe');
+		if (walletAmount === 0)
+			throw new ApiError(`You haven't insufficient balance withdraw`);
 		const transfer = await stripe.transfers.create({
 			amount: parseInt(walletAmount),
 			currency: 'usd',
