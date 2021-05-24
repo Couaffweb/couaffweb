@@ -3871,7 +3871,7 @@ a.round2.co1 {
 a.mor {
     position: absolute;
     right: -49px;
-    bottom: 46px;
+    bottom: -4px;
 }
 .serch_here21 {
     padding: 45px 14% 40px;
@@ -3912,9 +3912,13 @@ a.mor {
 	}
 a.mor {
     position: relative;
-    right: 0;
-    bottom: 23px;
+    right: -10px;
+    bottom: -30px;
     left: auto;
+}
+.serch_here2 {
+    margin-top: -20px;
+    margin-bottom: 20px;
 }
 	.serch_here21 a {
 		margin: 0 0 40px;
@@ -4022,7 +4026,7 @@ a.mor {
 .serch_here2 {
     display: flex;
     flex-wrap: wrap;
-    transform: rotate(2deg);
+    transform: rotate(0deg);
 }
 }
 @media(max-width:567px)
@@ -4072,6 +4076,10 @@ a.navbar-brand {
 }
 @media(max-width:479px)
 {
+	.serch_here2 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
 	.dwonnlod h3 {
 		font-size: 21px;
 		padding: 41px 0 4px 53px;
@@ -4178,6 +4186,20 @@ section.serch_here {
 .serch_here2 {
     left: -12px;
     position: relative;
+}
+}
+@media(max-width:349px)
+{
+.serch_here2 {
+    left: -19px;
+    position: relative;
+}
+a.mor {
+    position: relative;
+    right: -10px;
+    bottom: -30px;
+    left: auto;
+    box-shadow: 0 0 6px #ccc;
 }
 }
 button.navbar-toggler {
