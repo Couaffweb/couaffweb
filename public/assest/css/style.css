@@ -2650,6 +2650,8 @@ a.mor {
     padding: 10px 8px;
     color: #fb0cbc;
     transform: rotate(-0deg);
+    bottom: -39px;
+    position: relative;
 }
 .serch_here2 {
     display: flex;
@@ -3762,6 +3764,10 @@ div#signup-modal_1 {
     top: 23px;
     position: relative;
 }
+.serch_here2 {
+    margin-top: -34px;
+    margin-bottom: 35px;
+}
 @media(max-width:1199px)
 {
 	.back_fruits {
@@ -3772,11 +3778,11 @@ div#signup-modal_1 {
 		padding: 0 30px;
 		bottom: 80px;
 	}
-	a.mor {
-		position: absolute;
-		right: -30px;
-		bottom: 80px;
-	}
+a.mor {
+    position: absolute;
+    right: -30px;
+    bottom: 30px;
+}
 	.revie .purify_3nJh_zj15_yteEfXQai8_E {
 		display: flex;
 		flex-wrap: wrap;
