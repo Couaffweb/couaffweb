@@ -2649,20 +2649,21 @@ a.mor {
     border-radius: 100px;
     padding: 10px 8px;
     color: #fb0cbc;
-    transform: rotate(-12deg);
+    transform: rotate(-0deg);
 }
 .serch_here2 {
     display: flex;
     flex-wrap: wrap;
-    transform: rotate(12deg);
+    transform: rotate(0deg);
 }
 .round1 {
     padding: 20px;
     width: 124px;
     clear: both;
+    position: relative;
 }
 .round2 {
-    transform: rotate(-12deg);
+    transform: rotate(-0deg);
     font-size: 10px;
     width: 100%;
     height: 93px;
@@ -2675,6 +2676,25 @@ a.mor {
     box-shadow: 0 0 4px #ccc;
     display: inline-block;
 	border-left: 4px solid #494949;
+}
+.round1:nth-child(2) {
+    top: 23px;
+}
+.round1:nth-child(3) {
+    top: 50px;
+}
+.round1:nth-child(5) {
+    top: 23px;
+    /* position: relative; */
+}
+.round1:nth-child(6) {
+    top: 50px;
+}
+.round1:nth-child(8) {
+    top: 23px;
+}
+.round1:nth-child(9) {
+    top: 50px;
 }
 .round2 p{
 	color:black
@@ -3738,6 +3758,10 @@ section.payment.ediprofile1 h3.title3 {
 div#signup-modal_1 {
     padding: 0;
 }
+.round1:nth-child(2) {
+    top: 23px;
+    position: relative;
+}
 @media(max-width:1199px)
 {
 	.back_fruits {
@@ -3830,7 +3854,7 @@ a.round2.co1 {
     clear: both;
 }
 .round2 {
-    transform: rotate(-12deg);
+     
     font-size: 10px;
     width: 100%;
     height: 73px;
@@ -3995,6 +4019,11 @@ a.mor {
     border: 1px solid black;
     cursor: pointer;
 }
+.serch_here2 {
+    display: flex;
+    flex-wrap: wrap;
+    transform: rotate(2deg);
+}
 }
 @media(max-width:567px)
 {
@@ -4145,6 +4174,10 @@ header#navbar {
 section.serch_here {
     padding: 0;
     overflow: hidden;
+}
+.serch_here2 {
+    left: -12px;
+    position: relative;
 }
 }
 button.navbar-toggler {
