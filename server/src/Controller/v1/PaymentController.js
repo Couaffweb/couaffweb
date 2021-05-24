@@ -337,7 +337,7 @@ module.exports = {
 		if (walletAmount < 10)
 			throw new ApiError(`You haven't insufficient balance withdraw`);
 		const transfer = await stripe.transfers.create({
-			amount: parseInt(walletAmount),
+			amount: parseInt(walletAmount) * 100,
 			currency: 'usd',
 			destination: stripe_id,
 			description: 'Withdrawal amount',
