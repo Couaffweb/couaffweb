@@ -54,6 +54,11 @@ const checkingWorkingHours = (workingHours = [], bookingDate, timeZone) => {
 	const closeHours = todayWorkingHour.closeTime.split(':');
 	closeTime.setHours(closeHours[0], closeHours[1], 0);
 	const closeUnixTime = Math.round(closeTime.getTime() / 1000, 0);
+	bookingDate = Math.round(
+		app.convertTimeZone(new Date(bookingDate * 1000), timeZone).getTime() /
+			1000,
+		0
+	);
 	console.log(openUnixTime, closeUnixTime, bookingDate);
 	if (openUnixTime > bookingDate || bookingDate > closeUnixTime - 3600) {
 		throw new ApiError(
@@ -202,8 +207,8 @@ exports.bookService = async ({
 		price,
 		date,
 	});
-	await findMassagerById(massagerId);
-	//await checkingWorkingHours(working_hours, date, timeZone);
+	const { working_hours = [] } = await findMassagerById(massagerId);
+	await checkingWorkingHours(working_hours, date, timeZone);
 	await checkingBookingSlots(massagerId, date);
 	Object.assign(data, { serviceDetails: await checkAllServices(services_ids) });
 	data.id = await DB.save('bookServices', data);
