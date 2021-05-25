@@ -28,6 +28,7 @@ const BookService = ({
 				services_ids: String(services_ids),
 				price,
 				date,
+				timeZone: val.timeZone,
 			};
 			if (!isUserLogin()) {
 				setBookingPop(false);

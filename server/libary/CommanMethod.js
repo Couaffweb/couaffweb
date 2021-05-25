@@ -251,6 +251,9 @@ module.exports = {
 	unixTimeStamp(date) {
 		return Math.round(new Date(date).getTime() / 1000, 0);
 	},
+	convertTimeZone(date, timeZone) {
+		return new Date(date.toLocaleString('en-US', { timeZone }));
+	},
 	getCurrentDay(date) {
 		const allDays = [
 			'Sunday',

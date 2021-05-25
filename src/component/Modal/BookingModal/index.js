@@ -9,6 +9,7 @@ import {
 const form = {
 	date: '',
 	time: '',
+	timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 };
 const BookingModal = ({ onClose, isShow, onSubmit, workingHours }) => {
 	const [bookingForm, setBookingForm] = useState({ ...form, date: new Date() });
@@ -107,7 +108,7 @@ const BookingModal = ({ onClose, isShow, onSubmit, workingHours }) => {
 															<DatePicker
 																showTimeSelect
 																showTimeSelectOnly
-																timeIntervals={60}
+																timeIntervals={30}
 																onBlur={checkError}
 																onFocus={removeError}
 																isError={formError.time}

@@ -38,7 +38,7 @@ const checkingBookingSlots = async (massagerId, date) => {
 	});
 };
 
-const checkingWorkingHours = (workingHours = [], bookingDate) => {
+const checkingWorkingHours = (workingHours = [], bookingDate, timeZone) => {
 	if (!workingHours) {
 		throw new ApiError('Working hours not avaiable');
 	}
@@ -46,11 +46,11 @@ const checkingWorkingHours = (workingHours = [], bookingDate) => {
 	const todayWorkingHour = workingHours.find(
 		(val) => val.day === app.getCurrentDay(bookingDate)
 	);
-	const openTime = new Date(bookingDate * 1000);
+	const openTime = app.convertTimeZone(new Date(bookingDate * 1000), timeZone);
 	const openHours = todayWorkingHour.openTime.split(':');
 	openTime.setHours(openHours[0], openHours[1], 0);
 	const openUnixTime = Math.round(openTime.getTime() / 1000, 0);
-	const closeTime = new Date(bookingDate * 1000);
+	const closeTime = app.convertTimeZone(new Date(bookingDate * 1000), timeZone);
 	const closeHours = todayWorkingHour.closeTime.split(':');
 	closeTime.setHours(closeHours[0], closeHours[1], 0);
 	const closeUnixTime = Math.round(closeTime.getTime() / 1000, 0);
@@ -193,7 +193,7 @@ const checkAllServices = async (serviceId) => {
 };
 
 exports.bookService = async ({
-	body: { massagerId, user_id, services_ids, price, userInfo, date },
+	body: { massagerId, user_id, services_ids, price, userInfo, date, timeZone },
 }) => {
 	const data = await helper.vaildation({
 		massagerId,
@@ -203,7 +203,7 @@ exports.bookService = async ({
 		date,
 	});
 	const { working_hours = [] } = await findMassagerById(massagerId);
-	await checkingWorkingHours(working_hours, date);
+	await checkingWorkingHours(working_hours, date, timeZone);
 	await checkingBookingSlots(massagerId, date);
 	Object.assign(data, { serviceDetails: await checkAllServices(services_ids) });
 	data.id = await DB.save('bookServices', data);

@@ -13,6 +13,7 @@ module.exports = {
 			price,
 			category_id,
 			user_id,
+			description,
 			userInfo: { userType },
 		},
 	}) => {
@@ -21,6 +22,7 @@ module.exports = {
 			price,
 			category_id,
 			userId: user_id,
+			description,
 			isAdmin: 0,
 		});
 		if (files && files.image) {

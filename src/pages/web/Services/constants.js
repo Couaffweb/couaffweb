@@ -3,4 +3,5 @@ export const serviceValue = {
 	price: '',
 	image: '',
 	category_id: '',
+	description: '',
 };

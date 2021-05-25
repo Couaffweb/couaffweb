@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input, Image, ReactLoading } from 'component';
+import { Form, Input, Image, ReactLoading, Textarea } from 'component';
 import { categoriesList } from './apis';
 const AddService = ({
 	handleSubmit,
@@ -80,6 +80,19 @@ const AddService = ({
 					/>
 				</div>
 				<div className='form-group log_iocns'>
+					<label> Description</label>
+					<Textarea
+						onBlur={checkError}
+						onFocus={removeError}
+						isError={formError.description}
+						value={service.description}
+						placeholder='Short Description'
+						className='form-control'
+						name='description'
+						onChange={handleInput}
+					/>
+				</div>
+				<div className='form-group log_iocns'>
 					<label> Image</label>
 					<Input
 						onBlur={checkError}
@@ -98,6 +111,7 @@ const AddService = ({
 						<Image url={serviceImage} />
 					</div>
 				)}
+
 				<div className='Explore_all_services'>
 					<button type='submit' className='btn btn-primary'>
 						{isEdit ? 'Update Service' : 'Add New Service'}

@@ -11,6 +11,7 @@ export const addService = (data) => {
 	formData.append('price', data.price);
 	formData.append('category_id', data.category_id);
 	formData.append('image', data.image);
+	formData.append('description', data.description);
 	return POST(service, formData);
 };
 
@@ -22,6 +23,7 @@ export const updateService = (data) => {
 	formData.append('price', data.price);
 	formData.append('category_id', data.category_id);
 	formData.append('image', data.image);
+	formData.append('description', data.description);
 	return PUT(editService(data.id), formData);
 };
 
