@@ -1,8 +1,7 @@
 import React, { memo, useState, useEffect } from 'react';
-import TimePicker from 'react-time-picker';
 import { useHistory } from 'react-router-dom';
 import { store as notify } from 'react-notifications-component';
-import { ReactLoading, Form } from 'component';
+import { ReactLoading, Form, DatePicker } from 'component';
 import { authInfo, alertMessage, setUserInfo } from 'utils';
 import { workingHours as Hours } from './constants';
 import { updateProfile } from './apis';
@@ -20,6 +19,12 @@ const WorkingHours = () => {
 		const currentState = JSON.parse(JSON.stringify(workingHours));
 		currentState[index][key] = val;
 		setWorkingHours([...currentState]);
+	};
+	const setHour = (time) => {
+		const date = new Date();
+		const getHours = time.split(':');
+		date.setHours(getHours[0], getHours[1], 0);
+		return date;
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -62,32 +67,52 @@ const WorkingHours = () => {
 														<strong>{day} : </strong>
 														<div className='mob'>
 															<label className='text-grey mr-1'>From</label>{' '}
-															<TimePicker
+															<DatePicker
+																showTimeSelect
+																showTimeSelectOnly
+																timeIntervals={30}
 																disableClock
+																timeCaption='Time'
+																placeholder='Time'
+																dateFormat='h:mm aa'
+																timeClassName={() => 'text-success'}
 																amPmAriaLabel={'Select AM/PM'}
 																className='form-control'
 																type='time'
-																name='from'
+																name='openTime'
 																format='hh:mm:ss a'
-																value={openTime}
-																onChange={(value) =>
-																	handleInput(value, 'openTime', index)
-																}
+																value={setHour(openTime)}
+																onChange={({ target: { value, name } }) => {
+																	const date = new Date(value);
+																	const hours = date.getHours();
+																	const min = date.getMinutes();
+																	handleInput(`${hours}:${min}`, name, index);
+																}}
 															/>{' '}
 														</div>
 														<div className='mob mb-1'>
 															<label className='text-grey mr-4'>To</label>{' '}
-															<TimePicker
+															<DatePicker
+																showTimeSelect
+																showTimeSelectOnly
+																timeIntervals={30}
 																disableClock
-																format='hh:mm:ss a'
+																timeCaption='Time'
+																placeholder='Time'
+																dateFormat='h:mm aa'
+																timeClassName={() => 'text-success'}
 																amPmAriaLabel={'Select AM/PM'}
 																className='form-control'
 																type='time'
-																name='to'
-																value={closeTime}
-																onChange={(value) =>
-																	handleInput(value, 'closeTime', index)
-																}
+																name='closeTime'
+																format='hh:mm:ss a'
+																value={setHour(closeTime)}
+																onChange={({ target: { value, name } }) => {
+																	const date = new Date(value);
+																	const hours = date.getHours();
+																	const min = date.getMinutes();
+																	handleInput(`${hours}:${min}`, name, index);
+																}}
 															/>{' '}
 														</div>
 													</div>

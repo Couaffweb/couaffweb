@@ -41,7 +41,7 @@ const ProviderEarning = React.lazy(() =>
 const WebRoutes = () => (
 	<WebLayout>
 		<ReactNotification />
-		<Suspense fallback={<ReactLoading type='Rings' />}>
+		<Suspense fallback={<ReactLoading type='Rings' isShow />}>
 			<Switch>
 				<Route
 					path='/provider-details/:id?'
