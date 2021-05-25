@@ -127,7 +127,7 @@ const ProviderEarning = ({ location, history }) => {
 						</div>
 					) : (
 						<div className='strip-account-div'>
-							<h2>Please connect your stripe for withdrawal amount</h2>
+							<h2>Please connect your stripe account for withdrawal</h2>
 							<a
 								href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${process.env.REACT_APP_STRIPE_TOKEN}&scope=read_write`}
 							>
@@ -139,13 +139,13 @@ const ProviderEarning = ({ location, history }) => {
 				<div className='col-lg-12'>
 					<div className='card'>
 						<div className='card-header card-header-fix'>
-							<div>My Transection</div>
+							<div>My Transactions</div>
 							<div>
 								<strong>Amount Avaiable : {priceFormate(totalBalance)} </strong>
 							</div>
 						</div>
 						<div className='card-body'>
-							<table className='table table-striped'>
+							<table className='table table-striped table-responsive-sm table-responsive-md'>
 								<thead className='thead-dark'>
 									<tr>
 										<th scope='col' className='td-center'>
@@ -158,7 +158,7 @@ const ProviderEarning = ({ location, history }) => {
 											Amount
 										</th>
 										<th scope='col' className='td-center'>
-											Transection Type
+											Transaction Type
 										</th>
 										<th scope='col' className='td-center'>
 											Total Balance

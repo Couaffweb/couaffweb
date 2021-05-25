@@ -44,6 +44,7 @@ img {
 .strip-account-div h5 {
   font-weight: 300;
   color: rgb(63, 61, 61);
+	text-align: center;
 }
 .strip-account-div a {
 	  height: 50px;

@@ -17,9 +17,7 @@ const StripePaymentModal = ({ onClose, isShow, onPayment, price, ...rest }) => {
 									<Image url='/assest/images/cross.png' />
 								</button>
 								<h2 className='head1'> Stripe Payment </h2>
-								<p className='head2'>
-									Please add your card details for complete payment
-								</p>
+								<p className='head2'>Pay with Credit / Debit Card</p>
 								<div className='modal-body'>
 									<CheckOutForm onPayment={onPayment} price={price} {...rest} />
 								</div>
