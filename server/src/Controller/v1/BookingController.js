@@ -202,8 +202,8 @@ exports.bookService = async ({
 		price,
 		date,
 	});
-	const { working_hours = [] } = await findMassagerById(massagerId);
-	await checkingWorkingHours(working_hours, date, timeZone);
+	await findMassagerById(massagerId);
+	//await checkingWorkingHours(working_hours, date, timeZone);
 	await checkingBookingSlots(massagerId, date);
 	Object.assign(data, { serviceDetails: await checkAllServices(services_ids) });
 	data.id = await DB.save('bookServices', data);
