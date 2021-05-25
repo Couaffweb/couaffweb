@@ -60,7 +60,7 @@ const checkingWorkingHours = (workingHours = [], bookingDate, timeZone) => {
 		0
 	);
 	console.log(openUnixTime, closeUnixTime, bookingDate);
-	if (openUnixTime > bookingDate || bookingDate > closeUnixTime - 3600) {
+	if (openUnixTime > bookingDate || bookingDate > closeUnixTime - 1800) {
 		throw new ApiError(
 			'Provider not provide the service on your selected time. Please choice different one',
 			400
