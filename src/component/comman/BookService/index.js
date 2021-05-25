@@ -21,7 +21,8 @@ const BookService = ({
 	const hanldeSubmit = useCallback(
 		(val) => {
 			let date = new Date(val.date);
-			date.setHours(new Date(val.time).getHours());
+			const selectedTime = new Date(val.time);
+			date.setHours(selectedTime.getHours(), selectedTime.getMinutes(), 0);
 			date = Math.round(new Date(date).getTime() / 1000, 0);
 			const bookingObj = {
 				massagerId,
