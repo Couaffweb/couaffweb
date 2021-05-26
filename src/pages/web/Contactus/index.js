@@ -8,7 +8,7 @@ import {
 	validateEmail,
 	alertMessage,
 } from 'utils';
-import { submitContactForm } from './apis.js';
+import { submitContactForm } from './apis';
 const contactform = {
 	first_name: '',
 	last_name: '',
