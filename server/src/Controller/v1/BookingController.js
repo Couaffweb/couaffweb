@@ -46,6 +46,8 @@ const checkingWorkingHours = (workingHours = [], bookingDate, timeZone) => {
 	const todayWorkingHour = workingHours.find(
 		(val) => val.day === app.getCurrentDay(bookingDate)
 	);
+	if (todayWorkingHour.openTime === 'closed')
+		throw new ApiError('Shop is Closed', 400);
 	const openTime = app.convertTimeZone(new Date(bookingDate * 1000), timeZone);
 	const openHours = todayWorkingHour.openTime.split(':');
 	openTime.setHours(openHours[0], openHours[1], 0);

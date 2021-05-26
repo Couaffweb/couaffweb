@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { store as notify } from 'react-notifications-component';
-import { ReactLoading, Form, DatePicker } from 'component';
+import { ReactLoading, Form, DatePicker, Input } from 'component';
 import { authInfo, alertMessage, setUserInfo } from 'utils';
 import { workingHours as Hours } from './constants';
 import { updateProfile } from './apis';
@@ -21,6 +21,7 @@ const WorkingHours = () => {
 		setWorkingHours([...currentState]);
 	};
 	const setHour = (time) => {
+		if (time === 'closed') return null;
 		const date = new Date();
 		const getHours = time.split(':');
 		date.setHours(getHours[0], getHours[1], 0);
@@ -52,13 +53,13 @@ const WorkingHours = () => {
 		<div classNameName='container container-all'>
 			<ReactLoading isShow={loading} />
 			<div classNameName='row'>
-				<div classNameName='col-lg-8'>
+				<div classNameName='col-lg-12'>
 					<div className='card'>
 						<div className='card-body'>
 							<h1 className='d-flex justify-content-center'>Working Hours</h1>
 							<hr className='line' />
 							<div className='row'>
-								<div className='col-md-6 offset-md-3'>
+								<div className='col-lg-8 offset-md-2'>
 									<Form onSubmit={handleSubmit}>
 										{workingHours.map(({ day, openTime, closeTime }, index) => (
 											<div className='row time-zone' key={index}>
@@ -81,6 +82,12 @@ const WorkingHours = () => {
 																type='time'
 																name='openTime'
 																format='hh:mm:ss a'
+																disabled={closeTime === 'closed'}
+																placeholderText={
+																	closeTime === 'closed'
+																		? 'Closed'
+																		: 'Open Time'
+																}
 																value={setHour(openTime)}
 																onChange={({ target: { value, name } }) => {
 																	const date = new Date(value);
@@ -106,12 +113,40 @@ const WorkingHours = () => {
 																type='time'
 																name='closeTime'
 																format='hh:mm:ss a'
+																disabled={closeTime === 'closed'}
+																placeholderText={
+																	closeTime === 'closed'
+																		? 'Closed'
+																		: 'Close Time'
+																}
 																value={setHour(closeTime)}
 																onChange={({ target: { value, name } }) => {
 																	const date = new Date(value);
 																	const hours = date.getHours();
 																	const min = date.getMinutes();
 																	handleInput(`${hours}:${min}`, name, index);
+																}}
+															/>{' '}
+														</div>
+														<div className='mob mb-1'>
+															<label className='text-grey'>Close</label>{' '}
+															<Input
+																type='checkbox'
+																className='form-control'
+																onChange={({ target: { checked } }) => {
+																	const date = new Date();
+																	const hours = date.getHours();
+																	let valueOpen = `${hours}:00`;
+																	let valueClose = `${hours + 1}:00`;
+																	if (checked) {
+																		valueOpen = valueClose = 'closed';
+																	}
+																	const currentState = JSON.parse(
+																		JSON.stringify(workingHours)
+																	);
+																	currentState[index]['openTime'] = valueOpen;
+																	currentState[index]['closeTime'] = valueClose;
+																	setWorkingHours([...currentState]);
 																}}
 															/>{' '}
 														</div>

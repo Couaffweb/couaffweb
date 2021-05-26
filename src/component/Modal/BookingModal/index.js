@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Image, Form, DatePicker } from 'component';
 import {
@@ -36,6 +36,17 @@ const BookingModal = ({ onClose, isShow, onSubmit, workingHours }) => {
 			onSubmit(bookingForm);
 		}
 	};
+	const disabledInput = useMemo(() => {
+		const bookingDate = Math.round(
+			new Date(bookingForm.date).getTime() / 1000,
+			0
+		);
+		const todayWorkingHour = workingHours.find(
+			(val) => val.day === getCurrentDay(bookingDate)
+		);
+		if (todayWorkingHour.openTime === 'closed') return true;
+		return false;
+	}, [bookingForm.date, workingHours]);
 	const handleColor = (time) => {
 		let bookingDate = new Date(bookingForm.date);
 		bookingDate.setHours(time.getHours());
@@ -43,6 +54,7 @@ const BookingModal = ({ onClose, isShow, onSubmit, workingHours }) => {
 		const todayWorkingHour = workingHours.find(
 			(val) => val.day === getCurrentDay(bookingDate)
 		);
+		if (todayWorkingHour.openTime === 'closed') return 'text-error';
 		const openTime = new Date(bookingDate * 1000);
 		const openHours = todayWorkingHour.openTime.split(':');
 		openTime.setHours(openHours[0], openHours[1], 0);
@@ -118,6 +130,13 @@ const BookingModal = ({ onClose, isShow, onSubmit, workingHours }) => {
 																className='form-control'
 																name='time'
 																onChange={handleInput}
+																disabled={disabledInput}
+																placeholderText={
+																	disabledInput
+																		? 'Closed for this date'
+																		: 'Choose time slot'
+																}
+																place
 																timeCaption='Time'
 																dateFormat='h:mm aa'
 																timeClassName={handleColor}
