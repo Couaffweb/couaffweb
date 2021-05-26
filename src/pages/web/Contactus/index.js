@@ -169,7 +169,11 @@ const WebContent = () => {
 															rows='5'
 														/>
 													</div>
-													<button type='submit' className='btn btn-primary'>
+													<button
+														disabled={loading}
+														type='submit'
+														className='btn btn-primary'
+													>
 														Submit
 													</button>
 												</Form>
