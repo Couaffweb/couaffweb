@@ -6,6 +6,7 @@ import SimpleImageSlider from 'react-simple-image-slider';
 import { Link } from 'react-router-dom';
 import { Image, MAP, BookService, Input } from 'component';
 import { useDebounce } from 'hooks';
+import { spliceText, hourFormate } from 'utils';
 import { providerService, getRatings } from './apis';
 const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 	const [providerInfo, setProviderInfo] = useState(state.info || {});
@@ -214,7 +215,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 												</div>
 											</div>
 									  ))
-									: services.map(({ id, name, price, image }) => (
+									: services.map(({ id, name, price, image, description }) => (
 											<div className='card' key={id}>
 												<div className='card-header'>
 													<span
@@ -233,6 +234,12 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 															<li className='purify_pxwM-croMXL8QulS7HGwl'>
 																<div className='purify_G1QImzdPFEZgTe9--pF1c'>
 																	<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
+																		{description && (
+																			<>
+																				<h6>{spliceText(description, 40)}</h6>
+																				<hr />
+																			</>
+																		)}
 																		<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
 																			<Image
 																				url={image}
@@ -533,7 +540,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 										<div className='business-time' key={day}>
 											<div className='days1'>{day}</div>
 											<div className='timeing'>
-												{openTime} - {closeTime}
+												{hourFormate(openTime)} - {hourFormate(closeTime)}
 											</div>
 										</div>
 									)

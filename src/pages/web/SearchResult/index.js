@@ -2,9 +2,9 @@ import React, { memo, useCallback, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import { Image, BookService, Paginations } from 'component';
-import { resultSearch } from './apis';
 import { categoriesList } from 'component/comman/Forms/apis';
-import { parseUrl } from 'utils';
+import { parseUrl, spliceText } from 'utils';
+import { resultSearch } from './apis';
 const SearchResult = ({
 	history,
 	match: {
@@ -218,14 +218,14 @@ const SearchResult = ({
 															<p>{providerInfo.location}</p>
 														</Link>
 													</div>
-													{service.map(({ id, name, price }) => (
+													{service.map(({ id, name, price, description }) => (
 														<div className='btm_cnt' key={id}>
 															<div className='purify_G1QImzdPFEZgTe9--pF1c'>
 																<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
 																	<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
 																		{name}
 																	</h3>
-																	<p></p>
+																	<p>{spliceText(description, 20)}</p>
 																</div>
 																<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
 																	<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>

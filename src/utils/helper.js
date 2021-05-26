@@ -97,3 +97,23 @@ export const priceFormate = (price) => {
 		currency: 'usd',
 	}).format(price);
 };
+
+export const spliceText = (text, count) => {
+	if (text) {
+		return text.slice(0, count) + (text.length > count ? '...' : '');
+	}
+	return '';
+};
+export const hourFormate = (time) => {
+	if (!time) return 'closed';
+	if (time === 'closed') return time;
+	const date = new Date();
+	const hours = time.split(':');
+	date.setHours(hours[0]);
+	date.setMinutes(hours[1]);
+	return date.toLocaleString('en-US', {
+		hour: 'numeric',
+		minute: 'numeric',
+		hour12: true,
+	});
+};
