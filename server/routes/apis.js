@@ -86,4 +86,5 @@ router.post(
 	'/amount-transfer',
 	Apiresponse(PaymentController.providerAmountTransfer)
 );
+router.post('/contact-us', Apiresponse(UserController.contactUs));
 module.exports = router;

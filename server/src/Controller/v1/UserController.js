@@ -323,6 +323,25 @@ class UserController extends ApiController {
 			data: [],
 		};
 	}
+	async contactUs({ body: { first_name, last_name, email, message } }) {
+		const data = await super.vaildation({
+			first_name,
+			last_name,
+			email,
+			message,
+		});
+		app.send_mail({
+			to: email,
+			subject: 'Contact us',
+			template: 'contactus',
+			data,
+		});
+		return {
+			message:
+				'Your query sent to support team. Please wait the support team reply',
+			data,
+		};
+	}
 	async removeAccount(Request) {
 		const { user_id } = Request.body;
 		await DB.first(`delete from users where id = ${user_id}`);
