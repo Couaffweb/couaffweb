@@ -35,7 +35,7 @@ const Profile = () => {
 	const [redirect, setRedirect] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [userPic, setUserPic] = useState(
-		userForm.profile || '/assest/images/pro.png'
+		userForm.profile || '/assest/images/top1.png'
 	);
 	const handleFile = ({ target: { name, files } }) => {
 		setUserForm({ ...userForm, [name]: files[0] });

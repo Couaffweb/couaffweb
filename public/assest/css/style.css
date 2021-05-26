@@ -23,6 +23,14 @@ img {
 	overflow-y: auto;
 	height: 100vh;
 }
+.chunk-load{
+	height: 50vh;
+	position: fixed;
+	top: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .time-zone{
 	border: 1px solid #cfcfcf;
 	margin-top: 40px;
