@@ -331,7 +331,7 @@ class UserController extends ApiController {
 			message,
 		});
 		app.send_mail({
-			to: email,
+			to: process.env.CONTACTUS_MAIL || 'sharampankaj688@gmail.com',
 			subject: 'Contact us',
 			template: 'contactus',
 			data,
