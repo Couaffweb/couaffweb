@@ -12,6 +12,7 @@ const Textarea = React.forwardRef(
 			onFocus = () => {},
 			type = 'text',
 			className,
+			errorClass = 'error-message',
 			...props
 		},
 		ref
@@ -29,7 +30,7 @@ const Textarea = React.forwardRef(
 				{...props}
 			/>
 			{isError && (
-				<span className='error-message'>
+				<span className={errorClass}>
 					{isError || 'This field is required'}
 				</span>
 			)}
@@ -46,6 +47,7 @@ Textarea.propType = {
 	onBlur: PropTypes.func,
 	type: PropTypes.string,
 	isError: PropTypes.string,
+	errorClass: PropTypes.string,
 };
 
 export default memo(Textarea);

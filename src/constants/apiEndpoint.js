@@ -25,3 +25,4 @@ export const stripeConnect = 'stripe-connect';
 export const stripePaymentToken = 'stripe-token';
 export const getAllTransectionList = 'transections';
 export const amountTranfer = 'amount-transfer';
+export const contactUs = 'contact-us';

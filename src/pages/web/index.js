@@ -7,6 +7,7 @@ import { ReactLoading } from 'component';
 import { AuthRoute, AuthProviderRoute } from 'utils';
 import WebContent from './WebInfo';
 import NOTFOUND from './NotFound';
+import Contactus from './Contactus';
 const Home = React.lazy(() => import(/* webpackChunkName: "home" */ './Home'));
 const Profile = React.lazy(() =>
 	import(/* webpackChunkName: "profile" */ './Profile')
@@ -63,7 +64,7 @@ const WebRoutes = () => (
 				<AuthProviderRoute path='/earning' component={ProviderEarning} />
 				<Route path='/about-us' component={WebContent} />
 				<Route path='/faq' component={WebContent} />
-				<Route path='/contact-us' component={WebContent} />
+				<Route path='/contact-us' component={Contactus} />
 				<Route path='/term-conditions' component={WebContent} />
 				<Route exact path='/' component={Home} />
 				<Route component={NOTFOUND} />
