@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { store as notify } from 'react-notifications-component';
 import { ReactLoading, Form, DatePicker, Input } from 'component';
-import { authInfo, alertMessage, setUserInfo } from 'utils';
+import { addZero, authInfo, alertMessage, setUserInfo } from 'utils';
 import { workingHours as Hours } from './constants';
 import { updateProfile } from './apis';
 const WorkingHours = () => {
@@ -91,8 +91,8 @@ const WorkingHours = () => {
 																value={setHour(openTime)}
 																onChange={({ target: { value, name } }) => {
 																	const date = new Date(value);
-																	const hours = date.getHours();
-																	const min = date.getMinutes();
+																	const hours = addZero(date.getHours());
+																	const min = addZero(date.getMinutes());
 																	handleInput(`${hours}:${min}`, name, index);
 																}}
 															/>{' '}
@@ -122,8 +122,8 @@ const WorkingHours = () => {
 																value={setHour(closeTime)}
 																onChange={({ target: { value, name } }) => {
 																	const date = new Date(value);
-																	const hours = date.getHours();
-																	const min = date.getMinutes();
+																	const hours = addZero(date.getHours());
+																	const min = addZero(date.getMinutes());
 																	handleInput(`${hours}:${min}`, name, index);
 																}}
 															/>{' '}
@@ -139,7 +139,7 @@ const WorkingHours = () => {
 																}
 																onChange={({ target: { checked } }) => {
 																	const date = new Date();
-																	const hours = date.getHours();
+																	const hours = addZero(date.getHours());
 																	let valueOpen = `${hours}:00`;
 																	let valueClose = `${hours + 1}:00`;
 																	if (checked) {

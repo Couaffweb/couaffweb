@@ -81,11 +81,10 @@ export const getCurrentDay = (date) => {
 	const today = new Date(date * 1000).getDay();
 	return allDays[today];
 };
-
+export const addZero = (n) => {
+	return (n < 10 ? '0' : '') + n;
+};
 export const dateFormate = (time) => {
-	function addZero(n) {
-		return (n < 10 ? '0' : '') + n;
-	}
 	const date = new Date(time * 1000);
 	const month = addZero(date.getMonth() + 1); //months (0-11)
 	const day = addZero(date.getDate()); //day (1-31)
