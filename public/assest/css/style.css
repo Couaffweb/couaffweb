@@ -24,12 +24,11 @@ img {
 	height: 100vh;
 }
 .chunk-load{
-	height: 50vh;
-	position: fixed;
-	top: 50%;
+	height: 60vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100vw;
 }
 .time-zone{
 	border: 1px solid #cfcfcf;
