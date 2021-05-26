@@ -133,6 +133,10 @@ const WorkingHours = () => {
 															<Input
 																type='checkbox'
 																className='form-control'
+																checked={
+																	openTime === 'closed' ||
+																	closeTime === 'closed'
+																}
 																onChange={({ target: { checked } }) => {
 																	const date = new Date();
 																	const hours = date.getHours();
