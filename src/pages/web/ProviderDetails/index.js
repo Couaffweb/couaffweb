@@ -273,7 +273,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 																					url={image}
 																					className='service-detail-image'
 																				/>
-																				<div className='purify_3RwjUX8hSiee916iZITO25'>
+																				<div>
 																					<BookService
 																						services_ids={id}
 																						massagerId={providerInfo.id}

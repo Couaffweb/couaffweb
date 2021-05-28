@@ -3968,6 +3968,14 @@ a.mor {
 }
 @media(max-width:767px)
 {
+	.booking-section{
+		display: flex;
+		flex-direction: column;
+  }
+	.booking-section > div >  button.purify_3geqj2n36R8Dg7nylDdXsn {
+		width: 100%;
+		margin-top: 30px;
+	}
 	.form-inline .edit_profile_data .form-control, .edit_profile_data label {
 		width: 100%;
 	}
@@ -4118,6 +4126,14 @@ a.mor {
 }
 @media(max-width:567px)
 {
+	.booking-section{
+		display: flex;
+		flex-direction: column;
+	}
+	.booking-section > div > button.purify_3geqj2n36R8Dg7nylDdXsn {
+		width: 100%;
+		margin-top: 30px;
+	}
 a.navbar-brand {
     width: 90px;
     margin: 20px 0 0;
@@ -4167,6 +4183,14 @@ a.navbar-brand {
     margin-top: 0px;
     margin-bottom: 20px;
 }
+	.booking-section{
+		display: flex;
+		flex-direction: column !important;
+  }
+	.booking-section > div > button.purify_3geqj2n36R8Dg7nylDdXsn {
+		width: 100%;
+		margin-top: 30px;
+	}
 	.dwonnlod h3 {
 		font-size: 21px;
 		padding: 41px 0 4px 53px;
@@ -4281,6 +4305,14 @@ section.serch_here {
     left: -19px;
     position: relative;
 }
+	.booking-section{
+		display: flex;
+		flex-direction: column;
+  }
+	.booking-section > div > button.purify_3geqj2n36R8Dg7nylDdXsn {
+		width: 100%;
+		margin-top: 30px;
+	}
 a.mor {
     position: relative;
     right: -10px;
