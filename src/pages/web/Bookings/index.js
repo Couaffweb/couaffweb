@@ -150,13 +150,13 @@ const Bookings = () => {
 						{loading
 							? [1, 2, 3].map((val) => (
 									<div className='col-lg-4 mt-3' key={val}>
-										<div class='card'>
+										<div className='card'>
 											<Skeleton height={230} />
-											<div class='card-body'>
-												<h5 class='card-title'>
+											<div className='card-body'>
+												<h5 className='card-title'>
 													<Skeleton width={220} />
 												</h5>
-												<p class='card-text'>
+												<p className='card-text'>
 													<Skeleton width={160} />
 												</p>
 											</div>
@@ -181,7 +181,7 @@ const Bookings = () => {
 										index
 									) => (
 										<div className='col-lg-4 mt-3' key={id}>
-											<div class='card'>
+											<div className='card'>
 												<Image
 													className='card-img-top'
 													url={
@@ -190,8 +190,8 @@ const Bookings = () => {
 													}
 													alt='Card image cap'
 												/>
-												<div class='card-body'>
-													<h5 class='card-title'>
+												<div className='card-body'>
+													<h5 className='card-title'>
 														<p className='d-flex justify-content-center'>
 															Service Info
 														</p>
@@ -199,7 +199,7 @@ const Bookings = () => {
 														<strong>Service Name :- </strong>
 														{serviceDetails[0].name}
 													</h5>
-													<p class='card-text'>
+													<div className='card-text'>
 														<strong>Price:</strong> ${serviceDetails[0].price}
 														<hr className='line' />
 														<p>
@@ -239,9 +239,9 @@ const Bookings = () => {
 																{new Date(date * 1000).toUTCString()}
 															</>
 														)}
-													</p>
+													</div>
 												</div>
-												<div class='card-footer'>
+												<div className='card-footer'>
 													{userType === 1 && status === 1 && (
 														<strong className='d-flex justify-content-center text-success'>
 															Accepted

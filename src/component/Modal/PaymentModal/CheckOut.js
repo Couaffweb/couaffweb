@@ -83,7 +83,7 @@ const CheckOutForm = ({ onPayment, price, ...rest }) => {
 								style: {
 									base: {
 										lineHeight: '24px',
-										fontSize: '20px',
+										fontSize: window.innerWidth < 700 ? '11px' : '20px',
 										color: '#424770',
 										'::placeholder': {
 											color: '#aab7c4',

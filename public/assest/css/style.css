@@ -4192,6 +4192,9 @@ a.navbar-brand {
 }
 @media(max-width:479px)
 {
+	.payment-div > .InputElement {
+    font-size: 11px !important;
+  }
 	.booking-tabs .nav-link {
     color: #000;
     letter-spacing: 1px;
@@ -4323,6 +4326,9 @@ section.serch_here {
 }
 @media(max-width:349px)
 {
+ .ElementsApp .InputElement {
+    font-size: 11px !important;
+  }
 	.booking-tabs .nav-link {
     color: #000;
     letter-spacing: 1px;
