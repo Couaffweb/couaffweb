@@ -1,5 +1,10 @@
 import React, { memo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+const pagesHeading = {
+	'term-conditions': 'Terms and Conditions',
+	'about-us': 'About us',
+	faq: 'FAQ',
+};
 const WebContent = () => {
 	const { pathname } = useLocation();
 	useEffect(() => {
@@ -17,12 +22,12 @@ const WebContent = () => {
 						<div className='col-lg-12 mt-3'>
 							<div className='add-image-section'>
 								<h6 className='heading-dynamic'>
-									{pathname.replace('/', '').replace('-', ' ')}
+									{pagesHeading[pathname.replace('/', '')]}
 								</h6>
 							</div>
 						</div>
 						<hr className='line' />
-						<div>
+						<div className='web-content'>
 							The standard Lorem Ipsum passage, used since the 1500s "Lorem
 							ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
