@@ -217,7 +217,7 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 														<div className='form-group log_iocns11'>
 															By clicking below you agree to{' '}
 															<Link to='/term-conditions'>
-																Couaff terms & conditions
+																Couaff’s terms & conditions
 															</Link>
 														</div>
 
