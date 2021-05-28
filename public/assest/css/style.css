@@ -4192,6 +4192,15 @@ a.navbar-brand {
 }
 @media(max-width:479px)
 {
+	.booking-tabs .nav-link {
+    color: #000;
+    letter-spacing: 1px;
+    padding: 9px 23px !important;
+    font-weight: 300;
+    font-size: 7px;
+    background: #f2f2f2;
+    margin-right: 2px;
+	}
 	.serch_here2 {
     margin-top: 0px;
     margin-bottom: 20px;
@@ -4314,6 +4323,15 @@ section.serch_here {
 }
 @media(max-width:349px)
 {
+	.booking-tabs .nav-link {
+    color: #000;
+    letter-spacing: 1px;
+    padding: 9px 23px !important;
+    font-weight: 300;
+    font-size: 7px;
+    background: #f2f2f2;
+    margin-right: 2px;
+	}
 .serch_here2 {
     left: -19px;
     position: relative;
