@@ -130,9 +130,11 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 
 						<div className='servicds'>
 							<div className='purify_2Bb9PTqxYaK9qlbr90yc5f'>
-								<h2 className='purify_2jycfUvFB5_MR7TPv5oX2A purify_1rkZUT9Q222TF1-HRC0qWi purify_1kwtwINWAYWvhdUjnzbb80'>
-									Services
-								</h2>
+								{false && (
+									<h2 className='purify_2jycfUvFB5_MR7TPv5oX2A purify_1rkZUT9Q222TF1-HRC0qWi purify_1kwtwINWAYWvhdUjnzbb80'>
+										Services
+									</h2>
+								)}
 								<div className='purify_1yywQqdPiQchSF0Y8TcNoc'>
 									<div
 										type='search'
@@ -240,29 +242,23 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 																				<hr />
 																			</>
 																		)}
-																		<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
+																		<div className='booking-section'>
 																			<Image
 																				url={image}
 																				className='service-detail-image'
 																			/>
-																		</h3>
-																	</div>
-																	<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
-																		<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
-																			<div className='purify_2yTWP98fyxRuHxfkKhiXXb'>
-																				<div className='purify_3RwjUX8hSiee916iZITO25'>
-																					<BookService
-																						services_ids={id}
-																						massagerId={providerInfo.id}
-																						price={price}
-																						workingHours={
-																							providerInfo.working_hours &&
-																							JSON.parse(
-																								providerInfo.working_hours
-																							)
-																						}
-																					/>
-																				</div>
+																			<div className='purify_3RwjUX8hSiee916iZITO25'>
+																				<BookService
+																					services_ids={id}
+																					massagerId={providerInfo.id}
+																					price={price}
+																					workingHours={
+																						providerInfo.working_hours &&
+																						JSON.parse(
+																							providerInfo.working_hours
+																						)
+																					}
+																				/>
 																			</div>
 																		</div>
 																	</div>

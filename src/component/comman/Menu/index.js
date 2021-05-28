@@ -64,7 +64,7 @@ const Menu = ({ logoutUser }) => {
 									onClick={() => setShowProfile(!showProfile)}
 									to='/earning'
 								>
-									My Earning
+									My Earnings
 								</Link>
 								<Link
 									className='dropdown-item'

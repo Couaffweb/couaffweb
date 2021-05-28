@@ -107,7 +107,7 @@ const SearchResult = ({
 					<div className='row'>
 						<div className='col-md-12'>
 							<h3 className='title3'>
-								{searchInfo.name || 'Providers'} In (
+								{searchInfo.name || 'Providers'} Near (
 								{searchInfo.address || 'My Current Location'})
 							</h3>
 							<div className='sortb'>

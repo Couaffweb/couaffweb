@@ -12,6 +12,15 @@ a:hover, a:focus {
 img {
 	transition: all 0.3s ease;
 }
+.booking-section{
+	display: flex;
+  justify-content: space-between;
+}
+.booking-section > img {
+	height: 191px;
+	width: 365px;
+	object-fit: cover;
+}
 .btn.btn-primary {
 	background: #000 !important;
 	border-color: #000 !important;
