@@ -7,4 +7,5 @@ export { default as BookService } from './BookService';
 export { default as Textarea } from './Input/TextInput';
 export { default as Paginations } from './Pagination';
 export { default as DatePicker } from './DatePicker';
+export { default as SeeMore } from './SeeMore';
 export * from './Forms';

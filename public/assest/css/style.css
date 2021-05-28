@@ -21,6 +21,13 @@ img {
 	width: 365px;
 	object-fit: cover;
 }
+.show-direction{
+	text-decoration-line: underline;
+	display: flex;
+	justify-content: flex-end;
+	color: blue;
+	cursor: pointer;
+}
 .click-button{
 	cursor: pointer;
 }

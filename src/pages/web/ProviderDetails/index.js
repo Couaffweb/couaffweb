@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import ReactStars from 'react-rating-stars-component';
 import SimpleImageSlider from 'react-simple-image-slider';
 import { Link } from 'react-router-dom';
-import { Image, MAP, BookService, Input } from 'component';
+import { Image, MAP, BookService, Input, MAPDirection } from 'component';
 import { useDebounce } from 'hooks';
 import { spliceText, hourFormate } from 'utils';
 import { providerService, getRatings } from './apis';
@@ -14,6 +14,11 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 	const [loading, setLoading] = useState(false);
 	const [search, setSearch] = useState('');
 	const [silderImages, setSilderImages] = useState([]);
+	const [showDirection, setShowDirection] = useState(false);
+	const [userLoaction, setUserLoaction] = useState({
+		formLat: 0,
+		formLng: 0,
+	});
 	const [providerRating, setProviderRating] = useState({
 		loading: false,
 		userRatings: [],
@@ -67,6 +72,18 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 	};
 	const openPhone = (phone) => {
 		window.open(`tel:+${phone}`, '_blank');
+	};
+	const showPosition = ({ coords: { latitude = 0, longitude = 0 } }) => {
+		setUserLoaction({
+			formLat: latitude,
+			formLng: longitude,
+		});
+		setShowDirection(!showDirection);
+	};
+	const handleDirection = () => {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		}
 	};
 	return (
 		<section className='Business_details'>
@@ -531,12 +548,32 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 
 					<div className='col-md-4'>
 						<div className='mp'>
-							<MAP
-								lat={providerInfo.latitude || 0}
-								lng={providerInfo.longitude || 0}
-								name={providerInfo.name}
-								heigth='160px'
-							/>
+							{showDirection ? (
+								<MAPDirection
+									toLat={providerInfo.latitude || 0}
+									toLng={providerInfo.longitude || 0}
+									formLat={userLoaction.formLat}
+									formLng={userLoaction.formLng}
+									name={providerInfo.name}
+									heigth='160px'
+								/>
+							) : (
+								<MAP
+									lat={providerInfo.latitude || 0}
+									lng={providerInfo.longitude || 0}
+									name={providerInfo.name}
+									heigth='160px'
+								/>
+							)}
+							<span
+								role='button'
+								tabIndex='1'
+								onClick={handleDirection}
+								onKeyPress={handleDirection}
+								className='show-direction'
+							>
+								{!showDirection ? 'Show Direction' : 'Show Map'}
+							</span>
 						</div>
 						<div className='aboutaa'>
 							<h4 className='title4'>About Provider</h4>

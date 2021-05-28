@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
-import { Image, BookService, Paginations } from 'component';
+import { Image, BookService, Paginations, SeeMore } from 'component';
 import { categoriesList } from 'component/comman/Forms/apis';
-import { parseUrl, spliceText } from 'utils';
+import { parseUrl } from 'utils';
 import { resultSearch } from './apis';
 const SearchResult = ({
 	history,
@@ -225,7 +225,9 @@ const SearchResult = ({
 																	<h3 className='purify_wqgMwye7TnARoARF1p3dc purify_3k1NnTEGO6TSunXbY5Zrkx purify_264bF_d7zMnGqSAM6litJ_'>
 																		{name}
 																	</h3>
-																	<p>{spliceText(description, 20)}</p>
+																	<p className='click-button'>
+																		<SeeMore text={description} />
+																	</p>
 																</div>
 																<div className='purify_2X6cfNVFiX_rjgGxOTClgf'>
 																	<div className='purify_ApHsEGcJQQXau-Xh8CB5h'>
