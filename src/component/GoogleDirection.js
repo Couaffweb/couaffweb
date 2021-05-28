@@ -13,7 +13,6 @@ const MAPDirection = React.memo(
 		name,
 	}) => {
 		const mapRef = useRef(null);
-		const directionRef = useRef(null);
 		useEffect(() => {
 			const initMap = () => {
 				const { google } = window;
@@ -21,7 +20,6 @@ const MAPDirection = React.memo(
 					return alert('google not define');
 				}
 				const mapDiv = mapRef.current;
-				const directionDiv = directionRef.current;
 				const directionsService = new google.maps.DirectionsService();
 				const directionsDisplay = new google.maps.DirectionsRenderer();
 
@@ -31,14 +29,16 @@ const MAPDirection = React.memo(
 				});
 
 				directionsDisplay.setMap(map);
-				directionsDisplay.setPanel(directionDiv);
+				const origin = `${toLat}, ${toLng}`;
+				const destination = `${formLat}, ${formLng}`;
 				const request = {
-					origin: new google.maps.LatLng(toLat, toLng),
-					destination: new google.maps.LatLng(formLat, formLng),
+					origin,
+					destination,
 					optimizeWaypoints: true,
+					avoidHighways: false,
+					avoidTolls: false,
 					travelMode: google.maps.DirectionsTravelMode.DRIVING,
 				};
-
 				directionsService.route(request, function (response, status) {
 					if (status === google.maps.DirectionsStatus.OK) {
 						directionsDisplay.setDirections(response);
@@ -56,12 +56,6 @@ const MAPDirection = React.memo(
 					style={{
 						height: heigth,
 						width,
-					}}
-				/>
-				<div
-					ref={directionRef}
-					style={{
-						width: '300px',
 					}}
 				/>
 			</>

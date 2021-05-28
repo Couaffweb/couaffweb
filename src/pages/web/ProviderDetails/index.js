@@ -81,6 +81,9 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 		setShowDirection(!showDirection);
 	};
 	const handleDirection = () => {
+		if (showDirection) {
+			setShowDirection(!showDirection);
+		}
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(showPosition);
 		}
@@ -143,11 +146,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 									mode='default'
 									className='purify_3otKsdI9lS_D92PQCSq2Lw purify_bcGIHqRb-2k3e0m3uLOFA purify_3dd8BXoCuu778Lk9arqv--'
 									style={{ width: '36px', height: '36px' }}
-								>
-									<Link to='#'>
-										<i className='fa fa-heart' aria-hidden='true'></i>
-									</Link>
-								</div>
+								></div>
 							</div>
 						</div>
 
@@ -268,7 +267,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 																					<h6
 																						className='click-button'
 																						role='button'
-																						tab-tabIndex='1'
+																						tabIndex='1'
 																						onClick={() =>
 																							seeMore(index, !isShow)
 																						}
@@ -324,7 +323,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 								)}
 								{loading
 									? [1, 2, 3].map((id) => (
-											<div className='col-md-4 col-sm-6 mb-3' key={id}>
+											<div className='col-md-4 col-sm-6 mb-3' key={`abc-${id}`}>
 												<Link to='#'>
 													<Skeleton height='181px' />
 												</Link>
