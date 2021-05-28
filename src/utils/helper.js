@@ -98,9 +98,11 @@ export const priceFormate = (price) => {
 	}).format(price);
 };
 
-export const spliceText = (text, count) => {
-	if (text) {
+export const spliceText = (text, count, isShowFull = false) => {
+	if (text && !isShowFull) {
 		return text.slice(0, count) + (text.length > count ? '...' : '');
+	} else if (text && isShowFull) {
+		return text;
 	}
 	return '';
 };

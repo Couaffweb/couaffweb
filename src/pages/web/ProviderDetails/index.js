@@ -28,6 +28,12 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 		fetchData(search);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [debouncedSearchTerm]);
+	const seeMore = (index, type) => {
+		const currentService = { ...services[index] };
+		currentService['isShow'] = type;
+		services[index] = currentService;
+		setServices([...services]);
+	};
 	const getProviderRating = () => {
 		setProviderRating({ ...providerRating, loading: true });
 		getRatings(params.id)
@@ -217,58 +223,79 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 												</div>
 											</div>
 									  ))
-									: services.map(({ id, name, price, image, description }) => (
-											<div className='card' key={id}>
-												<div className='card-header'>
-													<span
-														className='card-link collapsed'
-														data-toggle='collapse'
-														role='button'
-														tabIndex='1'
-													>
-														{name}
-														<i>${price}</i>
-													</span>
-												</div>
-												<div className=''>
-													<div className='card-body'>
-														<ul className='purify_1noWHOyaADqV7ZoPnoK6YA'>
-															<li className='purify_pxwM-croMXL8QulS7HGwl'>
-																<div className='purify_G1QImzdPFEZgTe9--pF1c'>
-																	<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
-																		{description && (
-																			<>
-																				<h6>{spliceText(description, 40)}</h6>
-																				<hr />
-																			</>
-																		)}
-																		<div className='booking-section'>
-																			<Image
-																				url={image}
-																				className='service-detail-image'
-																			/>
-																			<div className='purify_3RwjUX8hSiee916iZITO25'>
-																				<BookService
-																					services_ids={id}
-																					massagerId={providerInfo.id}
-																					price={price}
-																					workingHours={
-																						providerInfo.working_hours &&
-																						JSON.parse(
-																							providerInfo.working_hours
-																						)
-																					}
+									: services.map(
+											(
+												{ id, name, price, image, description, isShow = false },
+												index
+											) => (
+												<div className='card' key={id}>
+													<div className='card-header'>
+														<span
+															className='card-link collapsed'
+															data-toggle='collapse'
+															role='button'
+															tabIndex='1'
+														>
+															{name}
+															<i>${price}</i>
+														</span>
+													</div>
+													<div className=''>
+														<div className='card-body'>
+															<ul className='purify_1noWHOyaADqV7ZoPnoK6YA'>
+																<li className='purify_pxwM-croMXL8QulS7HGwl'>
+																	<div className='purify_G1QImzdPFEZgTe9--pF1c'>
+																		<div className='purify_v3uZMLhGy8qUJDizhuo5E'>
+																			{description && (
+																				<>
+																					<h6
+																						className='click-button'
+																						role='button'
+																						tab-tabIndex='1'
+																						onClick={() =>
+																							seeMore(index, !isShow)
+																						}
+																						onKeyPress={() =>
+																							seeMore(index, !isShow)
+																						}
+																					>
+																						{spliceText(
+																							description,
+																							40,
+																							isShow
+																						)}
+																					</h6>
+																					<hr />
+																				</>
+																			)}
+																			<div className='booking-section'>
+																				<Image
+																					url={image}
+																					className='service-detail-image'
 																				/>
+																				<div className='purify_3RwjUX8hSiee916iZITO25'>
+																					<BookService
+																						services_ids={id}
+																						massagerId={providerInfo.id}
+																						price={price}
+																						workingHours={
+																							providerInfo.working_hours &&
+																							JSON.parse(
+																								providerInfo.working_hours
+																							)
+																						}
+																					/>
+																				</div>
 																			</div>
 																		</div>
 																	</div>
-																</div>
-															</li>
-														</ul>
+																</li>
+															</ul>
+														</div>
 													</div>
 												</div>
-											</div>
-									  ))}
+											)
+									  )}
 							</div>
 						</div>
 						<div className='venue See '>
