@@ -572,7 +572,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 								onKeyPress={handleDirection}
 								className='show-direction'
 							>
-								{!showDirection ? 'Show Direction' : 'Show Map'}
+								{!showDirection ? 'Get Direction' : 'Show Map'}
 							</span>
 						</div>
 						<div className='aboutaa'>
