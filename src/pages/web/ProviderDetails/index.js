@@ -90,7 +90,11 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 			return setShowDirection(!showDirection);
 		}
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition, locationError);
+			navigator.geolocation.getCurrentPosition(showPosition, locationError, {
+				enableHighAccuracy: true,
+				timeout: 5000,
+				maximumAge: 0,
+			});
 		} else {
 			Alert(
 				'Error',

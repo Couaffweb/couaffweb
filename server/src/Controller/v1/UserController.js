@@ -329,7 +329,7 @@ class UserController extends ApiController {
 		});
 		app.send_mail({
 			to: process.env.CONTACTUS_MAIL || 'sharampankaj688@gmail.com',
-			subject: 'news latter subcriber info',
+			subject: 'news letter subcriber info',
 			template: 'newslatter',
 			data: { email, message: 'You have a new subscriber.' },
 		});
@@ -571,7 +571,7 @@ class UserController extends ApiController {
 		params: { massagerId },
 		query: { page = 1, limit = 20 },
 		body: {
-			userInfo: { userType, id },
+			userInfo: { userType = 0, id = 0 },
 		},
 	}) {
 		const offset = (page - 1) * limit;
