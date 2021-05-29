@@ -17,7 +17,7 @@ const missingRoutes = {
 	'near-massager': 'GET',
 	'contact-us': 'POST',
 	rating: 'GET',
-	'news-latter': 'POST',
+	'news-letter': 'POST',
 };
 const AuthSkip = (Req, res, next) => {
 	res.auth = true;
