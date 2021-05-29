@@ -6,10 +6,11 @@ import SimpleImageSlider from 'react-simple-image-slider';
 import Alert from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { Image, MAP, BookService, Input, MAPDirection } from 'component';
-import { useDebounce } from 'hooks';
+import { useDebounce, useWindowDimensions } from 'hooks';
 import { spliceText, hourFormate } from 'utils';
 import { providerService, getRatings } from './apis';
 const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
+	const { width } = useWindowDimensions();
 	const [providerInfo, setProviderInfo] = useState(state.info || {});
 	const [services, setServices] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -114,7 +115,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 										showBullets
 										showNavs
 										useGPURender
-										height={450}
+										height={width > 700 ? 450 : 200}
 										width='100%'
 										images={silderImages}
 									/>
