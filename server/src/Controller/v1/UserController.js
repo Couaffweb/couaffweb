@@ -3,7 +3,6 @@ const app = require('../../../libary/CommanMethod');
 const Db = require('../../../libary/sqlBulider');
 const ApiError = require('../../Exceptions/ApiError');
 const { lang } = require('../../../config');
-const { object } = require('prop-types');
 const DB = new Db();
 
 class UserController extends ApiController {
@@ -321,6 +320,21 @@ class UserController extends ApiController {
 		});
 		return {
 			message: 'User Logout successfully',
+			data: [],
+		};
+	}
+	async newsLatter({ body: { email } }) {
+		await super.vaildation({
+			email,
+		});
+		app.send_mail({
+			to: process.env.CONTACTUS_MAIL || 'sharampankaj688@gmail.com',
+			subject: 'news latter subcriber info',
+			template: 'newslatter',
+			data: { email, message: 'You have a new subscriber.' },
+		});
+		return {
+			message: 'Newslatters Subscribe Successfully',
 			data: [],
 		};
 	}

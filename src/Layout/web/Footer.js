@@ -13,10 +13,12 @@ const Footer = () => {
 							Lorem ipsum dolor amet consectetur adipisicing elitiuim sete
 							eiusmod tempor incididunt ut labor
 						</p>
-						<NewsLatters
-							isShow={showPopUp}
-							onClose={() => setShowPopUp(!showPopUp)}
-						/>
+						{showPopUp && (
+							<NewsLatters
+								isShow={showPopUp}
+								onClose={() => setShowPopUp(!showPopUp)}
+							/>
+						)}
 						<div className='social'>
 							<Link to=''>
 								<i className='fab fa-facebook-f'></i>
