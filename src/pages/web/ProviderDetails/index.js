@@ -81,12 +81,15 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 		});
 		setShowDirection(!showDirection);
 	};
+	const locationError = ({ message = '', code = 400 }) => {
+		Alert(code, message, 'error');
+	};
 	const handleDirection = () => {
 		if (userLoaction.formLat !== 0 || userLoaction.formLng !== 0) {
 			return setShowDirection(!showDirection);
 		}
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition);
+			navigator.geolocation.getCurrentPosition(showPosition, locationError);
 		} else {
 			Alert(
 				'Error',
