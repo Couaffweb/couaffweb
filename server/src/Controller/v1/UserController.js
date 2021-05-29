@@ -3,6 +3,7 @@ const app = require('../../../libary/CommanMethod');
 const Db = require('../../../libary/sqlBulider');
 const ApiError = require('../../Exceptions/ApiError');
 const { lang } = require('../../../config');
+const { object } = require('prop-types');
 const DB = new Db();
 
 class UserController extends ApiController {
@@ -444,6 +445,7 @@ class UserController extends ApiController {
 			limit = 20,
 			serviceId = 0,
 			categoryId = 0,
+			sortBy = '',
 		},
 	}) {
 		const offset = (page - 1) * limit;
@@ -473,6 +475,16 @@ class UserController extends ApiController {
 			orderBy: ['totalDistance asc'],
 			groupBy: [' services.userId '],
 		};
+		if (sortBy) {
+			const orderBy = {
+				totalDistance: 'totalDistance asc',
+				name: 'users.name asc',
+				rating: 'totalRating desc',
+			};
+			Object.assign(condition, {
+				orderBy: [orderBy[sortBy]],
+			});
+		}
 		if (parseFloat(latitude) !== 0 && parseFloat(longitude) !== 0) {
 			Object.assign(condition.conditions, {
 				raw: [

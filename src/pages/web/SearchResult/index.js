@@ -29,6 +29,7 @@ const SearchResult = ({
 	const [currentPage, setCurrentPage] = useState(
 		parseInt(parseUrl(history.location.search, 'page')) || 1
 	);
+	const [sortBy, setSortBy] = useState();
 	const [totalPage, setTotalPage] = useState(1);
 	useEffect(() => {
 		if (parseInt(category_id) !== 0) {
@@ -57,7 +58,13 @@ const SearchResult = ({
 	useEffect(() => {
 		fetchData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [searchInfo.id, searchInfo.latitude, searchInfo.longitude, currentPage]);
+	}, [
+		searchInfo.id,
+		searchInfo.latitude,
+		searchInfo.longitude,
+		currentPage,
+		sortBy,
+	]);
 	const fetchData = () => {
 		setLoading(true);
 
@@ -69,6 +76,7 @@ const SearchResult = ({
 			page: currentPage,
 			categoryId: category_id,
 			limit: 10,
+			sortBy,
 		})
 			.then(({ data: { result, pagination } }) => {
 				setSearchResult(result);
@@ -113,7 +121,7 @@ const SearchResult = ({
 							<div className='sortb'>
 								<div className='dropdown'>
 									<button
-										className='btn btn-secondary dropdown-toggle'
+										className='btn btn-secondary dropdown-toggle dropbtn'
 										type='button'
 										id='dropdownMenuButton'
 										data-toggle='dropdown'
@@ -122,10 +130,35 @@ const SearchResult = ({
 									>
 										Sort By
 									</button>
-									<div
-										className='dropdown-menu'
-										aria-labelledby='dropdownMenuButton'
-									></div>
+									<div class='dropdown-content'>
+										<span
+											role='button'
+											tabIndex='1'
+											className={sortBy === 'distance' ? 'active' : ''}
+											onKeyPress={() => setSortBy('totalDistance')}
+											onClick={() => setSortBy('totalDistance')}
+										>
+											By Distance
+										</span>
+										<span
+											role='button'
+											tabIndex='1'
+											className={sortBy === 'rating' ? 'active' : ''}
+											onKeyPress={() => setSortBy('rating')}
+											onClick={() => setSortBy('rating')}
+										>
+											By Rating
+										</span>
+										<span
+											role='button'
+											tabIndex='1'
+											className={sortBy === 'name' ? 'active' : ''}
+											onKeyPress={() => setSortBy('name')}
+											onClick={() => setSortBy('name')}
+										>
+											By Name
+										</span>
+									</div>
 								</div>
 							</div>
 							{loading
