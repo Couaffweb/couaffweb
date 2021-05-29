@@ -95,7 +95,7 @@ const NewsLetters = ({ onClose, isShow }) => {
 														</div>
 														<div className='log_button'>
 															<button
-																disable={loading}
+																disabled={loading}
 																className='btn btn-primary width-100'
 																type='submit'
 															>
