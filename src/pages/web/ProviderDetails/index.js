@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import ReactStars from 'react-rating-stars-component';
 import SimpleImageSlider from 'react-simple-image-slider';
+import Alert from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { Image, MAP, BookService, Input, MAPDirection } from 'component';
 import { useDebounce } from 'hooks';
@@ -81,11 +82,17 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 		setShowDirection(!showDirection);
 	};
 	const handleDirection = () => {
-		if (showDirection) {
-			setShowDirection(!showDirection);
+		if (userLoaction.formLat !== 0 || userLoaction.formLng !== 0) {
+			return setShowDirection(!showDirection);
 		}
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(showPosition);
+		} else {
+			Alert(
+				'Error',
+				'Please allow your location to see the direction',
+				'error'
+			);
 		}
 	};
 	return (

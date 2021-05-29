@@ -70,7 +70,7 @@ const SearchBox = ({
 					onAddress={selectAddress}
 					className='one'
 					type='text'
-					placeholder=' Enter City and Zip Code'
+					placeholder='Enter City or Zip Code'
 				/>
 				<i className='fa fa-map-marker' aria-hidden='true'></i>
 				<button type='button' onClick={() => startSearch()}>

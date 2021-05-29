@@ -445,6 +445,7 @@ width: 30px;
 .top-rated {
  width: 255px;
  height: 168px;
+ border-radius: 6px;
 }
 ul ,ul li {
 	margin: 0;	
