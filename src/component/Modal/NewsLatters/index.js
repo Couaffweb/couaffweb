@@ -13,16 +13,16 @@ const NewsLatters = ({ onClose, isShow }) => {
 	};
 	const checkError = ({ target: { name, value } }) => {
 		const error = validateEmail(name, value);
-		setFormError(error.Formvalue);
+		setFormError(error[name]);
 	};
 	const checkAllField = () => {
-		const error = validateEmail({ email });
-		if (error.value) {
-			setFormError(error.value);
-			return false;
+		const error = validateEmail('email', email);
+		if (error.email) {
+			setFormError(error.email);
+			return true;
 		}
 
-		return true;
+		return false;
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -67,7 +67,7 @@ const NewsLatters = ({ onClose, isShow }) => {
 								<div className='row'>
 									<div className='col-md-12'>
 										<h2 class='head1'> Signup Up For Our Newslatters</h2>
-										<p className='head2'>
+										<p className='second-heading'>
 											Register now and get special offers delivered right into
 											your inbox.
 										</p>
@@ -79,10 +79,10 @@ const NewsLatters = ({ onClose, isShow }) => {
 															<label> EMail </label>
 															<div classNames='d-flex justify-content-center'>
 																<Input
-																	count={5}
 																	onChange={({ target: { value } }) =>
 																		setEmail(value)
 																	}
+																	className='form-control'
 																	placeholder='Enter your email'
 																	isError={formError}
 																	onBlur={checkError}
@@ -90,12 +90,13 @@ const NewsLatters = ({ onClose, isShow }) => {
 																	name='email'
 																	value={email}
 																/>
+																<Image url='/assest/images/mail.png' />
 															</div>
 														</div>
-														<div className='log_button booking-button'>
+														<div className='log_button'>
 															<button
 																disable={loading}
-																className='btn btn-primay'
+																className='btn btn-primary width-100'
 																type='submit'
 															>
 																<i className='fa fa-arrow-right'></i> Subscribe

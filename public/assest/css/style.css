@@ -22,7 +22,13 @@ img {
   position: relative;
   display: inline-block;
 }
-
+.second-heading{
+	color: #000;
+}
+.width-100{
+	width: 100%;
+	margin-top: 20px;
+}
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
@@ -2996,6 +3002,9 @@ ul.cont li i {
     margin: 0 7px 0 0;
 }
 ul.cont a {
+    color: #fff;
+}
+ul.cont span {
     color: #fff;
 }
 ul.cont li i {
