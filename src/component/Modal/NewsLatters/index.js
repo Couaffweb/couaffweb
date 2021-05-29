@@ -33,7 +33,7 @@ const NewsLetters = ({ onClose, isShow }) => {
 					notify.addNotification(
 						alertMessage({
 							title: 'Success',
-							message: 'Newslatters Subscribe Successfully',
+							message: 'Newsletters Subscribe Successfully',
 						})
 					);
 					onClose();
