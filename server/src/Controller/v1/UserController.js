@@ -567,13 +567,7 @@ class UserController extends ApiController {
 			},
 		};
 	}
-	async getRating({
-		params: { massagerId },
-		query: { page = 1, limit = 20 },
-		body: {
-			userInfo: { userType = 0, id = 0 },
-		},
-	}) {
+	async getRating({ params: { massagerId }, query: { page = 1, limit = 20 } }) {
 		const offset = (page - 1) * limit;
 		let conditions = {
 			massagerId,
