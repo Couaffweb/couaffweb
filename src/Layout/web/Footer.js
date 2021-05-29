@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { NewsLatters } from 'component';
+import { NewsLetters } from 'component';
 const Footer = () => {
 	const [showPopUp, setShowPopUp] = useState(false);
 	return (
@@ -14,7 +14,7 @@ const Footer = () => {
 							eiusmod tempor incididunt ut labor
 						</p>
 						{showPopUp && (
-							<NewsLatters
+							<NewsLetters
 								isShow={showPopUp}
 								onClose={() => setShowPopUp(!showPopUp)}
 							/>
@@ -65,7 +65,7 @@ const Footer = () => {
 						</ul>
 					</div>
 					<div className='col-lg-3 col-sm-6'>
-						<h2 className='footer_hnd'>Contact with us </h2>
+						<h2 className='footer_hnd'>Newsletters </h2>
 						<ul className='cont'>
 							<li>
 								<span
@@ -75,7 +75,7 @@ const Footer = () => {
 									onKeyPress={() => setShowPopUp(!showPopUp)}
 									onClick={() => setShowPopUp(!showPopUp)}
 								>
-									Subscribe
+									Subscribe here
 								</span>
 							</li>
 						</ul>

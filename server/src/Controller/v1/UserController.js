@@ -323,7 +323,7 @@ class UserController extends ApiController {
 			data: [],
 		};
 	}
-	async newsLatter({ body: { email } }) {
+	async newsLetter({ body: { email } }) {
 		await super.vaildation({
 			email,
 		});

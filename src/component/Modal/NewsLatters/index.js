@@ -4,7 +4,7 @@ import { store as notify } from 'react-notifications-component';
 import { Image, Form, Input, ReactLoading } from 'component';
 import { alertMessage, validateEmail } from 'utils';
 import { sendEmail } from './apis';
-const NewsLatters = ({ onClose, isShow }) => {
+const NewsLetters = ({ onClose, isShow }) => {
 	const [email, setEmail] = useState('');
 	const [formError, setFormError] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -66,7 +66,7 @@ const NewsLatters = ({ onClose, isShow }) => {
 								<ReactLoading isShow={loading} />
 								<div className='row'>
 									<div className='col-md-12'>
-										<h2 class='head1'> Signup Up For Our Newslatters</h2>
+										<h2 class='head1'> Signup Up For Our Newsletters</h2>
 										<p className='second-heading'>
 											Register now and get special offers delivered right into
 											your inbox.
@@ -117,9 +117,9 @@ const NewsLatters = ({ onClose, isShow }) => {
 	);
 };
 
-NewsLatters.propType = {
+NewsLetters.propType = {
 	onClose: PropTypes.func.isRequired,
 	isShow: PropTypes.bool.isRequired,
 };
 
-export default NewsLatters;
+export default NewsLetters;

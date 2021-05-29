@@ -87,5 +87,5 @@ router.post(
 	Apiresponse(PaymentController.providerAmountTransfer)
 );
 router.post('/contact-us', Apiresponse(user.contactUs));
-router.post('/news-latter', Apiresponse(user.newsLatter));
+router.post('/news-letter', Apiresponse(user.newsLetter));
 module.exports = router;
