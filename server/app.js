@@ -39,7 +39,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(function (req, res, next) {
-	global.appURL = req.protocol + '://' + req.get('host') + '/';
+	const protocol = process.env.isStatic
+		? `${req.protocol}s://${req.get('host')}/`
+		: `${req.protocol}://${req.get('host')}/`;
+	global.appURL = protocol;
 	next();
 });
 
