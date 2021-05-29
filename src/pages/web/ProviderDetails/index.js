@@ -81,8 +81,8 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 		});
 		setShowDirection(!showDirection);
 	};
-	const locationError = ({ message = '', code = 400 }) => {
-		Alert(code, message, 'error');
+	const locationError = ({ message = '' }) => {
+		Alert('Get Location Error', message, 'error');
 	};
 	const handleDirection = () => {
 		if (userLoaction.formLat !== 0 || userLoaction.formLng !== 0) {
