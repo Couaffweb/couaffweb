@@ -85,8 +85,8 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 	const locationError = ({ message = '' }) => {
 		Alert('Get Location Error', message, 'error');
 	};
-	const handleDirection = () => {
-		if (userLoaction.formLat !== 0 || userLoaction.formLng !== 0) {
+	const handleDirection = (info = false) => {
+		if (!info) {
 			if (
 				navigator.platform.indexOf('iPhone') !== -1 ||
 				navigator.platform.indexOf('iPod') !== -1 ||
@@ -101,6 +101,10 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 					`https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.latitude},${providerInfo.longitude}`,
 					'_blank'
 				);
+			return;
+		}
+
+		if (userLoaction.formLat !== 0 || userLoaction.formLng !== 0) {
 			return setShowDirection(!showDirection);
 		}
 
