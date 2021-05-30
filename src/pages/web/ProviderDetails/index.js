@@ -86,24 +86,20 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 		Alert('Get Location Error', message, 'error');
 	};
 	const handleDirection = (info) => {
-		if (!info) {
-			if (
-				navigator.platform.indexOf('iPhone') !== -1 ||
-				navigator.platform.indexOf('iPod') !== -1 ||
-				navigator.platform.indexOf('iPad') !== -1
-			)
-				window.open(
-					`maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.latitude},${providerInfo.longitude}`,
-					'_blank'
-				);
-			else
-				window.open(
-					`https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.latitude},${providerInfo.longitude}`,
-					'_blank'
-				);
-			return;
-		}
-
+		if (
+			navigator.platform.indexOf('iPhone') !== -1 ||
+			navigator.platform.indexOf('iPod') !== -1 ||
+			navigator.platform.indexOf('iPad') !== -1
+		)
+			window.open(
+				`maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.latitude},${providerInfo.longitude}`,
+				'_blank'
+			);
+		else
+			window.open(
+				`https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.latitude},${providerInfo.longitude}`,
+				'_blank'
+			);
 		if (userLoaction.formLat !== 0 || userLoaction.formLng !== 0) {
 			return setShowDirection(!showDirection);
 		}
