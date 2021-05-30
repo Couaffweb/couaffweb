@@ -365,6 +365,7 @@ img {
 .provider-work-image{
 	object-fit: cover;
 	width: 100%;
+	border-radius: 6px;
 }
 .user-image{
 	display: flex;
@@ -448,7 +449,8 @@ img {
     top: 30%;
 }
 .service-detail-image{
-	width:50%
+	width:50%;
+	border-radius: 6px;
 }
 .delete-account {
 	display: flex;
