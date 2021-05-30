@@ -19,15 +19,15 @@
     "provider.js.map": "/static/js/provider.1bead754.chunk.js.map",
     "provider-earning.js": "/static/js/provider-earning.2e380fcb.chunk.js",
     "provider-earning.js.map": "/static/js/provider-earning.2e380fcb.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.de80372a.js",
-    "runtime-main.js.map": "/static/js/runtime-main.de80372a.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4f12d9f5.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4f12d9f5.js.map",
     "search.js": "/static/js/search.cedde5fe.chunk.js",
     "search.js.map": "/static/js/search.cedde5fe.chunk.js.map",
     "service.js": "/static/js/service.4317cc6b.chunk.js",
     "service.js.map": "/static/js/service.4317cc6b.chunk.js.map",
     "website.css": "/static/css/website.718f5395.chunk.css",
-    "website.js": "/static/js/website.69493a97.chunk.js",
-    "website.js.map": "/static/js/website.69493a97.chunk.js.map",
+    "website.js": "/static/js/website.4eeb6578.chunk.js",
+    "website.js.map": "/static/js/website.4eeb6578.chunk.js.map",
     "working-hours.js": "/static/js/working-hours.b37a5d91.chunk.js",
     "working-hours.js.map": "/static/js/working-hours.b37a5d91.chunk.js.map",
     "static/css/14.b3619c8c.chunk.css": "/static/css/14.b3619c8c.chunk.css",
@@ -45,7 +45,7 @@
     "static/js/15.d804d364.chunk.js.LICENSE.txt": "/static/js/15.d804d364.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.de80372a.js",
+    "static/js/runtime-main.4f12d9f5.js",
     "static/js/15.d804d364.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
     "static/js/main.21faf351.chunk.js"
