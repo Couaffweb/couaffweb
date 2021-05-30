@@ -87,8 +87,23 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 	};
 	const handleDirection = () => {
 		if (userLoaction.formLat !== 0 || userLoaction.formLng !== 0) {
+			if (
+				navigator.platform.indexOf('iPhone') !== -1 ||
+				navigator.platform.indexOf('iPod') !== -1 ||
+				navigator.platform.indexOf('iPad') !== -1
+			)
+				window.open(
+					`maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.lat},${providerInfo.lng}`,
+					'_blank'
+				);
+			else
+				window.open(
+					`https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.lat},${providerInfo.lng}`,
+					'_blank'
+				);
 			return setShowDirection(!showDirection);
 		}
+
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(showPosition, locationError, {
 				enableHighAccuracy: true,
@@ -586,7 +601,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 								onKeyPress={handleDirection}
 								className='show-direction'
 							>
-								{!showDirection ? 'Get Direction' : 'Show Map'}
+								{!showDirection ? 'Get Direction' : 'Open Map'}
 							</span>
 						</div>
 						<div className='aboutaa'>
