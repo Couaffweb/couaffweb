@@ -66,7 +66,7 @@ const NewsLetters = ({ onClose, isShow }) => {
 								<ReactLoading isShow={loading} />
 								<div className='row'>
 									<div className='col-md-12'>
-										<h2 class='head1'> Signup Up For Our Newsletters</h2>
+										<h2 class='head1'> Sign Up For Our Newsletters</h2>
 										<p className='second-heading'>
 											Register now and get special offers delivered right into
 											your inbox.
