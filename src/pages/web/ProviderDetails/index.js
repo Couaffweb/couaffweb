@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import ReactStars from 'react-rating-stars-component';
 import SimpleImageSlider from 'react-simple-image-slider';
-//import Alert from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { Image, MAP, BookService, Input, MAPDirection } from 'component';
 import { useDebounce, useWindowDimensions } from 'hooks';
@@ -75,16 +74,6 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 	const openPhone = (phone) => {
 		window.open(`tel:+${phone}`, '_blank');
 	};
-	// const showPosition = ({ coords: { latitude = 0, longitude = 0 } }) => {
-	// 	setUserLoaction({
-	// 		formLat: latitude,
-	// 		formLng: longitude,
-	// 	});
-	// 	setShowDirection(!showDirection);
-	// };
-	// const locationError = ({ message = '' }) => {
-	// 	Alert('Get Location Error', message, 'error');
-	// };
 	const handleDirection = (info) => {
 		if (
 			navigator.platform.indexOf('iPhone') !== -1 ||
@@ -100,23 +89,6 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 				`https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.latitude},${providerInfo.longitude}`,
 				'_blank'
 			);
-		// if (userLoaction.formLat !== 0 || userLoaction.formLng !== 0) {
-		// 	return setShowDirection(!showDirection);
-		// }
-
-		// if (navigator.geolocation) {
-		// 	navigator.geolocation.getCurrentPosition(showPosition, locationError, {
-		// 		enableHighAccuracy: true,
-		// 		timeout: 5000,
-		// 		maximumAge: 0,
-		// 	});
-		// } else {
-		// 	Alert(
-		// 		'Error',
-		// 		'Please allow your location to see the direction',
-		// 		'error'
-		// 	);
-		// }
 	};
 	return (
 		<section className='Business_details'>
@@ -601,7 +573,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 								onKeyPress={handleDirection}
 								className='show-direction'
 							>
-								{!showDirection ? 'Get Directions' : 'Open Map'}
+								Get Directions
 							</span>
 						</div>
 						<div className='aboutaa'>
