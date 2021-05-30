@@ -93,12 +93,12 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 				navigator.platform.indexOf('iPad') !== -1
 			)
 				window.open(
-					`maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.lat},${providerInfo.lng}`,
+					`maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.latitude},${providerInfo.longitude}`,
 					'_blank'
 				);
 			else
 				window.open(
-					`https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.lat},${providerInfo.lng}`,
+					`https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.latitude},${providerInfo.longitude}`,
 					'_blank'
 				);
 			return setShowDirection(!showDirection);
