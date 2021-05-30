@@ -85,7 +85,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 	const locationError = ({ message = '' }) => {
 		Alert('Get Location Error', message, 'error');
 	};
-	const handleDirection = (info = false) => {
+	const handleDirection = (info) => {
 		if (!info) {
 			if (
 				navigator.platform.indexOf('iPhone') !== -1 ||
