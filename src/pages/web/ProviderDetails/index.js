@@ -2,14 +2,19 @@ import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import ReactStars from 'react-rating-stars-component';
-import SimpleImageSlider from 'react-simple-image-slider';
 import { Link } from 'react-router-dom';
-import { Image, MAP, BookService, Input, MAPDirection } from 'component';
-import { useDebounce, useWindowDimensions } from 'hooks';
+import {
+	Image,
+	MAP,
+	BookService,
+	Input,
+	MAPDirection,
+	ImageSilder,
+} from 'component';
+import { useDebounce } from 'hooks';
 import { spliceText, hourFormate } from 'utils';
 import { providerService, getRatings } from './apis';
 const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
-	const { width } = useWindowDimensions();
 	const [providerInfo, setProviderInfo] = useState(state.info || {});
 	const [services, setServices] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -102,14 +107,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 								data-ride='carousel'
 							>
 								{silderImages.length > 0 ? (
-									<SimpleImageSlider
-										showBullets
-										showNavs
-										useGPURender
-										height={width > 700 ? 450 : 200}
-										width='100%'
-										images={silderImages}
-									/>
+									<ImageSilder className='image-silder' images={silderImages} />
 								) : (
 									<div className='carousel-inner'>
 										<div className='carousel-item active'>

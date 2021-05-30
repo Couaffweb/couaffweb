@@ -8,4 +8,5 @@ export { default as Textarea } from './Input/TextInput';
 export { default as Paginations } from './Pagination';
 export { default as DatePicker } from './DatePicker';
 export { default as SeeMore } from './SeeMore';
+export { default as ImageSilder } from './ImageSilder';
 export * from './Forms';
