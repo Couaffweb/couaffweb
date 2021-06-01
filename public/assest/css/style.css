@@ -2949,7 +2949,7 @@ section.team {
 }
 .dwonnlod {
     background: url(../images/bg.png) no-repeat left top;
-    background-size: 430px;
+    background-size: 619px;
     color: #fff;
 }
 .dwonnlod h3 {
@@ -2962,12 +2962,13 @@ section.team {
     text-transform: uppercase;
 }
 .dwonnlod p {
-    font-size: 14px;
-    padding: 30px 217px 0 16px;
-    text-align: center;
+   font-size: 14px;
+	padding: 165px 217px 0 16px;
+	text-align: center;
+	width: 485px;
 }
 .plys a {
-    width: 140px;
+    width: 115px;
     margin: 0px 9px 0;
 }
 .plys {

@@ -47,10 +47,8 @@ const Home = () => {
 			<section className='downlod'>
 				<div className='container'>
 					<div className='row'>
-						<div className='col-md-6'>
+						<div className='col-md-7'>
 							<div className='dwonnlod'>
-								<h3>Download</h3>
-								<h6>Our App</h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 								<div className='plys'>
 									<Link href=''>
@@ -62,7 +60,7 @@ const Home = () => {
 								</div>
 							</div>
 						</div>
-						<div className='col-md-6'>
+						<div className='col-md-5'>
 							<div className='dwonnlod11'>
 								<Image url='/assest/images/mob.png' />
 							</div>
