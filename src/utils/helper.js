@@ -9,9 +9,13 @@ export const getUserType = () => {
 
 export const isUserLogin = () => {
 	let info = window.localStorage.getItem('authUser');
+	const authKey = window.localStorage.getItem('authKey');
 	info = JSON.parse(info);
-	if (info) {
+	if (info && authKey) {
 		return true;
+	}
+	if (info) {
+		window.localStorage.removeItem('authUser');
 	}
 	return false;
 };
