@@ -86,7 +86,7 @@ const ProviderDetails = ({ match: { params }, location: { state = {} } }) => {
 			navigator.platform.indexOf('iPad') !== -1
 		)
 			window.open(
-				`maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=${providerInfo.latitude},${providerInfo.longitude}`,
+				`maps://maps.google.com/maps?daddr=${providerInfo.latitude},${providerInfo.longitude}&amp;ll=`,
 				'_blank'
 			);
 		else
