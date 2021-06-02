@@ -3927,6 +3927,9 @@ div#signup-modal_1 {
     margin-top: -34px;
     margin-bottom: 35px;
 }
+.sing_image img {
+    height: 360px;
+}
 @media(max-width:1199px)
 {
 	.back_fruits {
@@ -4434,7 +4437,7 @@ section.serch_here {
 }
 .dwonnlod p {
     font-size: 9px;
-    padding: 64px 47px 0 16px;
+    padding: 22% 47px 0 16px;
     text-align: center;
 }
 .plys {
