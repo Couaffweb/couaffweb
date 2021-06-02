@@ -250,7 +250,7 @@ const Signup = ({ onClose, openModel, isShow, userType = 0 }) => {
 									</div>
 									<div className='col-md-6'>
 										<div className='sing_image'>
-											<Image src='/assest/images/about.png' />
+											<Image src='/assest/images/banner.png' />
 										</div>
 									</div>
 								</div>

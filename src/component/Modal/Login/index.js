@@ -198,7 +198,7 @@ const Login = ({ openModel, onClose, isShow, onSuccess }) => {
 									</div>
 									<div className='col-md-6'>
 										<div className='sing_image'>
-											<Image url='/assest/images/about.png' />
+											<Image url='/assest/images/banner.png' />
 										</div>
 									</div>
 								</div>
