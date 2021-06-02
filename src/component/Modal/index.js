@@ -7,3 +7,4 @@ export { default as RatingModal } from './Rating';
 export { default as AddImage } from './AddImage';
 export { default as StripePaymentModal } from './PaymentModal';
 export { default as NewsLetters } from './NewsLatters';
+export { default as ImageCroper } from './ImageCroper';

@@ -1,6 +1,13 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input, Image, ReactLoading, Textarea } from 'component';
+import {
+	Form,
+	Input,
+	Image,
+	ReactLoading,
+	Textarea,
+	ImageCroper,
+} from 'component';
 import { categoriesList } from './apis';
 const AddService = ({
 	handleSubmit,
@@ -15,6 +22,8 @@ const AddService = ({
 }) => {
 	const [categoires, setCategoires] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [showCroper, setShowCroper] = useState(false);
+	const [selectedFiles, setSelectedFiles] = useState();
 	useEffect(() => {
 		setLoading(true);
 		categoriesList()
@@ -26,9 +35,27 @@ const AddService = ({
 				setLoading(false);
 			});
 	}, []);
+	const handleFileLocal = ({ target: { files } }) => {
+		setSelectedFiles(files[0]);
+		setShowCroper(true);
+	};
+	const handleCropImage = useCallback(
+		(val) => {
+			setShowCroper(false);
+			handleFile({ target: { name: 'image', files: [val] } });
+		},
+		[handleFile, setShowCroper]
+	);
 	return (
 		<Form className='edit_profile1 form-inline' onSubmit={handleSubmit}>
 			<ReactLoading isShow={loading} />
+			{showCroper && (
+				<ImageCroper
+					isShow={showCroper}
+					onComplete={handleCropImage}
+					src={selectedFiles}
+				/>
+			)}
 			<div className='edit_profile_data'>
 				<div className='form-group log_iocns'>
 					<label htmlFor='email'>Service Name:</label>
@@ -102,7 +129,7 @@ const AddService = ({
 						type='file'
 						className='form-control'
 						name='image'
-						onChange={handleFile}
+						onChange={handleFileLocal}
 					/>
 				</div>
 				{serviceImage && (

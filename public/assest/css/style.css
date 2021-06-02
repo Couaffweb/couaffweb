@@ -9,6 +9,14 @@ a:hover, a:focus {
     color: #ddd;
     text-decoration: none;
 }
+.flex-image{
+	display: flex;
+	flex-direction: column;
+}
+.flex-image > img {
+	border: 1px solid;
+	margin:10px 0;
+}
 img {
 	transition: all 0.3s ease;
 }
