@@ -2949,7 +2949,7 @@ section.team {
 }
 .dwonnlod {
     background: url(../images/bg.png) no-repeat left top;
-    background-size: 619px;
+    background-size: 100%;
     color: #fff;
 }
 .dwonnlod h3 {
@@ -3960,11 +3960,15 @@ a.mor {
 		right: 60px;
 		bottom: 41px;
 	}
-	.dwonnlod p {
-		font-size: 14px;
-		padding: 30px 47px 0 16px;
-		text-align: center;
-	}
+.dwonnlod p {
+    font-size: 14px;
+    padding: 90px 47px 0 16px;
+    text-align: center;
+    width: 53%;
+}
+.plys a {
+    width: 70px;
+}
 	footer.footer .row > div {
 		margin: 0 0 30px;
 	}
@@ -4043,6 +4047,9 @@ a.mor {
     color: #fff;
     text-align: center;
 }	
+ .dwonnlod {
+    min-height: 220px;
+}
 }
 @media(max-width:767px)
 {
@@ -4115,10 +4122,10 @@ a.mor {
 		padding: 108px 0 4px 67px;
 	}
 	.dwonnlod p {
-		font-size: 14px;
-		padding: 15px 47px 0 16px;
-		text-align: center;
-	}
+    font-size: 14px;
+    padding: 125px 47px 0 16px;
+    text-align: center;
+}
 	.venue.See img {
 		width: 100%;
 	}
@@ -4207,12 +4214,18 @@ a.mor {
     flex-wrap: wrap;
     transform: rotate(0deg);
 }
+.dwonnlod {
+    min-height: 345px;
+}
 }
 @media(max-width:567px)
 {
 	.Business_details{
 		padding: 1px 0 !important;
 	}
+	.dwonnlod {
+    min-height: 275px;
+}
 	.image-silder {
     border-radius: 6px;
     width: 100%;
@@ -4268,10 +4281,17 @@ a.navbar-brand {
     text-align: center;
 }
  
-
+.dwonnlod p {
+    font-size: 14px;
+    padding: 105px 47px 0 16px;
+    text-align: center;
+}
 }
 @media(max-width:479px)
 {
+	.dwonnlod {
+    min-height: 195px;
+}
 	.Business_details{
 		padding: 1px 0 !important;
 	}
@@ -4411,6 +4431,19 @@ section.serch_here {
 .serch_here2 {
     left: -12px;
     position: relative;
+}
+.dwonnlod p {
+    font-size: 9px;
+    padding: 64px 47px 0 16px;
+    text-align: center;
+}
+.plys {
+    display: flex;
+    margin: 13px 0 0;
+    padding: 0 0 0 6px;
+}
+.plys a {
+    width: 59px;
 }
 }
 @media(max-width:349px)
