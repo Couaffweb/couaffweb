@@ -49,7 +49,7 @@ const Home = () => {
 					<div className='row'>
 						<div className='col-md-7'>
 							<div className='dwonnlod'>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing Text.</p>
 								<div className='plys'>
 									<Link href=''>
 										<Image url='/assest/images/g.png' />{' '}
