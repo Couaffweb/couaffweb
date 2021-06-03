@@ -7,6 +7,7 @@ import {
 	GoogleAutoComplete,
 	ReactLoading,
 	Textarea,
+	ImageCroper,
 } from 'component';
 import {
 	checkRequiredField,
@@ -37,9 +38,11 @@ const Profile = () => {
 	const [userPic, setUserPic] = useState(
 		userForm.profile || '/assest/images/top1.png'
 	);
-	const handleFile = ({ target: { name, files } }) => {
-		setUserForm({ ...userForm, [name]: files[0] });
-		setUserPic(URL.createObjectURL(files[0]));
+	const [showCroper, setShowCroper] = useState(false);
+	const [selectedFile, setSelectedFile] = useState();
+	const handleFile = ({ target: { files } }) => {
+		setShowCroper(true);
+		setSelectedFile(files[0]);
 	};
 	const handleInput = ({ target: { name, value } }) => {
 		setUserForm({ ...userForm, [name]: value });
@@ -191,9 +194,25 @@ const Profile = () => {
 				});
 		}
 	};
+	const handleComplete = useCallback(
+		(val) => {
+			setShowCroper(false);
+			setUserForm((userForm) => ({ ...userForm, profile: val }));
+			setUserPic(URL.createObjectURL(val));
+		},
+		[setUserForm, setShowCroper, setUserPic]
+	);
 	return (
 		<>
 			{redirect && <Redirect to='/' />}
+			{showCroper && (
+				<ImageCroper
+					isShow={showCroper}
+					onComplete={handleComplete}
+					src={selectedFile}
+					onClose={() => setShowCroper(false)}
+				/>
+			)}
 			{!isEdit ? (
 				<section className='mender_details prfile animate__animated animate__zoomIn container-all'>
 					<ReactLoading isShow={loading} />

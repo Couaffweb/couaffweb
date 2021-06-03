@@ -54,6 +54,7 @@ const AddService = ({
 					isShow={showCroper}
 					onComplete={handleCropImage}
 					src={selectedFiles}
+					onClose={() => setShowCroper(false)}
 				/>
 			)}
 			<div className='edit_profile_data'>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactCrop from 'react-image-crop';
 import { Image } from 'component';
 import 'react-image-crop/dist/ReactCrop.css';
-const ImageCroper = ({ src, onComplete, isShow }) => {
+const ImageCroper = ({ src, onComplete, isShow, onClose }) => {
 	const [imageUrl, setImageUrl] = useState('');
 	const [imageSrc, setImageSrc] = useState(null);
 	const [imageRef, setImageRef] = useState(null);
@@ -114,9 +114,15 @@ const ImageCroper = ({ src, onComplete, isShow }) => {
 														<div className='d-flex justify-content-center'>
 															<button
 																onClick={completePath}
-																className='btn btn-danger'
+																className='btn btn-primary'
 															>
 																Complete
+															</button>
+															<button
+																onClick={onClose}
+																className='btn btn-danger ml-2'
+															>
+																Cancel
 															</button>
 														</div>
 													)}
@@ -137,5 +143,6 @@ ImageCroper.propTypes = {
 	src: PropTypes.any.isRequired,
 	onComplete: PropTypes.func.isRequired,
 	isShow: PropTypes.bool.isRequired,
+	onClose: PropTypes.func.isRequired,
 };
 export default memo(ImageCroper);

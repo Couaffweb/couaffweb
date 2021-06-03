@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Image, Input, Form } from 'component';
-
+import { Image, Input, Form, ImageCroper } from 'component';
 import { checkRequiredField, checkAllRequiredFieldsWithKey } from 'utils';
 const form = {
 	image: '',
@@ -10,12 +9,11 @@ const form = {
 const AddImage = ({ onClose, isShow, onSubmit }) => {
 	const [image, setImage] = useState(form);
 	const [formError, setFormError] = useState(form);
-	const handleInput = ({ target: { name, files } }) => {
-		setImage({
-			...image,
-			[name]: files[0],
-			previewImage: URL.createObjectURL(files[0]),
-		});
+	const [showCroper, setShowCroper] = useState(false);
+	const [selectedFile, setSelectedFile] = useState();
+	const handleInput = ({ target: { files } }) => {
+		setShowCroper(true);
+		setSelectedFile(files[0]);
 	};
 	const removeError = ({ target: { name } }) => {
 		setFormError({ ...formError, [name]: '' });
@@ -37,9 +35,28 @@ const AddImage = ({ onClose, isShow, onSubmit }) => {
 			onSubmit(image);
 		}
 	};
+	const handleComplete = useCallback(
+		(files) => {
+			setShowCroper(false);
+			setImage((val) => ({
+				...val,
+				image: files,
+				previewImage: URL.createObjectURL(files),
+			}));
+		},
+		[setImage, setShowCroper]
+	);
 	return (
 		<>
-			{isShow && (
+			{showCroper && (
+				<ImageCroper
+					src={selectedFile}
+					isShow={showCroper}
+					onComplete={handleComplete}
+					onClose={() => setShowCroper(false)}
+				/>
+			)}
+			{isShow && !showCroper && (
 				<div className='modal fade first_modal first_modal1 in show show-popup'>
 					<div className='modal-dialog'>
 						<div className='modal-content animate__animated animate__zoomIn'>
